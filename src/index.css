@@ -1,0 +1,97 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Tenor+Sans&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 22 10% 20%;
+
+    --card: 40 33% 98%;
+    --card-foreground: 22 10% 20%;
+
+    --popover: 40 33% 98%;
+    --popover-foreground: 22 10% 20%;
+
+    --primary: 35 54% 66%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 42 29% 96%;
+    --secondary-foreground: 22 10% 20%;
+
+    --muted: 35 8% 96%;
+    --muted-foreground: 22 5% 40%;
+
+    --accent: 35 54% 66%;
+    --accent-foreground: 22 10% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 8% 90%;
+    --input: 35 8% 90%;
+    --ring: 35 54% 66%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-ornate-offwhite text-ornate-charcoal font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    @apply bg-ornate-gold/20 text-ornate-charcoal;
+  }
+}
+
+@layer components {
+  .ornate-container {
+    @apply container mx-auto px-6 md:px-12 max-w-7xl;
+  }
+  
+  .ornate-title {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-ornate-charcoal;
+  }
+  
+  .ornate-subtitle {
+    @apply font-display uppercase tracking-wider text-sm md:text-base text-ornate-gold;
+  }
+  
+  .ornate-btn {
+    @apply px-8 py-3 font-display uppercase tracking-wider text-sm transition-all duration-300 inline-block;
+  }
+  
+  .ornate-btn-primary {
+    @apply ornate-btn bg-ornate-gold text-white hover:bg-ornate-darkgold;
+  }
+  
+  .ornate-btn-outline {
+    @apply ornate-btn border border-ornate-gold text-ornate-charcoal hover:bg-ornate-gold hover:text-white;
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-sm bg-white/70 border border-white/20 shadow-sm;
+  }
+}

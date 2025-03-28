@@ -56,8 +56,7 @@ const Navbar: React.FC = () => {
           : isScrolled
           ? "text-ornate-charcoal"
           : "text-white"
-      }
-      sm:text-black
+      } 
     `}
               >
                 Interior Decor

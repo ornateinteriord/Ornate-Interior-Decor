@@ -17,7 +17,7 @@ import Projects from "./pages/Projects";
 import PrivacyandPolicy from "./pages/PrivacyandPolicy";
 import Terms from "./pages/Terms";
 import ScrollToTop from "./components/scroll/ScrolltoTop";
-import './App.css'
+// import './App.css'
 
 const queryClient = new QueryClient();
 

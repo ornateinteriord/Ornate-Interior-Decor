@@ -49,7 +49,16 @@ const Navbar: React.FC = () => {
             <h1 className="font-serif text-2xl font-medium">
               <span className="text-ornate-gold">Ornate</span>{" "}
               <span
-                className={isScrolled ? "text-ornate-charcoal" : "text-white"}
+                className={`
+      ${
+        isOpen
+          ? "text-black"
+          : isScrolled
+          ? "text-ornate-charcoal"
+          : "text-white"
+      }
+      sm:text-black
+    `}
               >
                 Interior Decor
               </span>
@@ -87,7 +96,11 @@ const Navbar: React.FC = () => {
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} className="text-ornate-charcoal" /> : <Menu size={24} />}
+            {isOpen ? (
+              <X size={24} className="text-ornate-charcoal" />
+            ) : (
+              <Menu size={24} />
+            )}
           </button>
         </nav>
       </div>

@@ -57,7 +57,7 @@ const Hero: React.FC<HeroProps> = ({
       <div className="ornate-container relative z-10 py-20">
         <div className={`flex flex-col max-w-3xl mx-auto ${alignmentClasses[alignment]}`}>
           {subtitle && (
-            <span className="ornate-subtitle text-white mb-4 animate-fade-in">
+            <span className="text-lg text-white mb-4 animate-fade-in">
               {subtitle}
             </span>
           )}

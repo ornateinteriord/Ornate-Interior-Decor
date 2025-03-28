@@ -45,12 +45,12 @@ const Faq = () => {
   ];
 
   return (
-    <div className="pt-16">
+    <div >
       <Hero
         title="Frequently Asked Questions"
         subtitle="FAQ"
         description="Find answers to common questions about our services, process, and approach to interior design."
-        backgroundImage="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
+        backgroundImage="https://img.freepik.com/premium-photo/grey-living-room-interior-with-two-armchairs-shelf-with-decoration_780608-8480.jpg?semt=ais_hybrid"
         overlay={true}
       />
       

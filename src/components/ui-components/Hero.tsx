@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({
       }}
     >
       {overlay && (
-        <div className="absolute inset-0 bg-ornate-charcoal/40 backdrop-filter backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-ornate-charcoal/40  "></div>
       )}
       
       <div className="ornate-container relative z-10 py-20">
@@ -71,7 +71,7 @@ const Hero: React.FC<HeroProps> = ({
           </p>
           
           {buttonText && (
-            <Link to={buttonLink} className="ornate-btn-primary self-start animate-fade-in flex items-center group">
+            <Link to={buttonLink} className="ornate-btn-primary center animate-fade-in flex items-center group">
               {buttonText}
               <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -82,7 +82,7 @@ const Hero: React.FC<HeroProps> = ({
       {hasScrollIndicator && (
         <button
           onClick={scrollToContent}
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center animate-float cursor-pointer"
+          className="absolute bottom-12 xs:bottom-6 sm:bottom-8left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center animate-float cursor-pointer"
           aria-label="Scroll down"
         >
           <span className="text-white/80 font-display text-xs uppercase tracking-widest mb-2">Scroll</span>

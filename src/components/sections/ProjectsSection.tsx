@@ -69,7 +69,7 @@ const ProjectsSection: React.FC = () => {
         </div>
         
         <div className="text-center">
-          <Link to="#" className="ornate-btn-primary inline-flex items-center group">
+          <Link to="/projects" className="ornate-btn-primary inline-flex items-center group">
             View All Projects <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

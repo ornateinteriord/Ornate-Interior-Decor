@@ -33,12 +33,12 @@ const Help = () => {
   ];
 
   return (
-    <div className="pt-16">
+    <div >
       <Hero
         title="Help & Support"
         subtitle="We're Here For You"
         description="Find the assistance you need through our comprehensive support resources and direct communication channels."
-        backgroundImage="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?q=80&w=2000&auto=format&fit=crop"
+        backgroundImage="https://www.pixelstalk.net/wp-content/uploads/images1/Green-room-wallpaper-1920x1200.jpg"
         overlay={true}
       />
       

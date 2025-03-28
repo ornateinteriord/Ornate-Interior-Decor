@@ -6,12 +6,12 @@ import { MapPin, Mail, Phone, Clock, Instagram, Facebook, Twitter } from 'lucide
 
 const Contact = () => {
   return (
-    <div className="pt-16">
+    <div >
       <Hero
         title="Get In Touch"
         subtitle="Contact Us"
         description="We'd love to hear from you. Reach out to discuss your project, ask questions, or schedule a consultation."
-        backgroundImage="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?q=80&w=2000&auto=format&fit=crop"
+        backgroundImage="https://www.pixelstalk.net/wp-content/uploads/images1/Orange-sofa-room-design-wallpaper-hd-free-download.jpg"
         overlay={true}
       />
       
@@ -88,7 +88,7 @@ const Contact = () => {
               </div>
             </div>
             
-            <div className="bg-ornate-offwhite p-8 md:p-10 shadow-sm animate-fade-in">
+            <div className="bg-ornate-offwhite p-8 md:p-10 shadow-sm animate-fade-in ">
               <h3 className="font-serif text-2xl mb-6 text-ornate-charcoal">Send Us a Message</h3>
               <ContactForm />
             </div>

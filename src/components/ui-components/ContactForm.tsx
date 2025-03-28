@@ -42,7 +42,7 @@ const ContactForm: React.FC = () => {
   const inputClasses = "w-full px-4 py-3 bg-white border border-ornate-gold/20 focus:border-ornate-gold focus:ring-1 focus:ring-ornate-gold/30 outline-none transition duration-200";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block mb-2 font-display text-sm uppercase text-ornate-charcoal">
@@ -56,6 +56,7 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             className={inputClasses}
             required
+            autoFocus
           />
         </div>
         

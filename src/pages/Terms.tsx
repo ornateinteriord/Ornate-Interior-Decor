@@ -61,6 +61,10 @@ const Terms = () => {
     setOpenSection(openSection === id ? null : id);
   };
 
+  // Split terms into left and right columns
+  const leftTerms = termSections.slice(0, 4);
+  const rightTerms = termSections.slice(4);
+
   return (
     <div className="bg-ornate-offwhite min-h-screen">
       <Hero
@@ -82,38 +86,76 @@ const Terms = () => {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-4">
-            {termSections.map((section) => (
-              <div
-                key={section.id}
-                className="bg-white rounded-lg shadow-sm animate-fade-in"
-                style={{ animationDelay: `${section.id * 100}ms` }}
-              >
-                <button
-                  onClick={() => toggleSection(section.id)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left transition-colors duration-300 hover:bg-ornate-gold/5 rounded-lg"
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="text-ornate-gold">{section.icon}</div>
-                    <h4 className="font-serif text-xl text-ornate-charcoal">{section.title}</h4>
-                  </div>
-                  <ChevronDown
-                    className={`w-5 h-5 text-ornate-gold transition-transform duration-300 ${
-                      openSection === section.id ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left Column (4 items) */}
+            <div className="space-y-4">
+              {leftTerms.map((section) => (
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    openSection === section.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
+                  key={section.id}
+                  className="bg-white rounded-lg shadow-sm animate-fade-in"
+                  style={{ animationDelay: `${section.id * 100}ms` }}
                 >
-                  <div className="px-6 pb-5 text-ornate-charcoal/80 leading-relaxed">
-                    {section.content}
+                  <button
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full px-6 py-5 flex items-center justify-between text-left transition-colors duration-300 hover:bg-ornate-gold/5 rounded-lg"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="text-ornate-gold">{section.icon}</div>
+                      <h4 className="font-serif text-xl text-ornate-charcoal">{section.title}</h4>
+                    </div>
+                    <ChevronDown
+                      className={`w-5 h-5 text-ornate-gold transition-transform duration-300 ${
+                        openSection === section.id ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      openSection === section.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="px-6 pb-5 text-ornate-charcoal/80 leading-relaxed">
+                      {section.content}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Right Column (3 items) */}
+            <div className="space-y-4">
+              {rightTerms.map((section) => (
+                <div
+                  key={section.id}
+                  className="bg-white rounded-lg shadow-sm animate-fade-in"
+                  style={{ animationDelay: `${section.id * 100}ms` }}
+                >
+                  <button
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full px-6 py-5 flex items-center justify-between text-left transition-colors duration-300 hover:bg-ornate-gold/5 rounded-lg"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="text-ornate-gold">{section.icon}</div>
+                      <h4 className="font-serif text-xl text-ornate-charcoal">{section.title}</h4>
+                    </div>
+                    <ChevronDown
+                      className={`w-5 h-5 text-ornate-gold transition-transform duration-300 ${
+                        openSection === section.id ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      openSection === section.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="px-6 pb-5 text-ornate-charcoal/80 leading-relaxed">
+                      {section.content}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

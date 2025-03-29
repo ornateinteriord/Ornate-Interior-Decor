@@ -65,7 +65,9 @@ const Index = () => {
                     className="text-ornate-gold mr-3 mt-1 flex-shrink-0"
                   />
                   <span className="text-ornate-charcoal/80">
-                    123 Design Street, Creative City, Country
+                  148/E, 17th Main Rd,SBI Staff Colony,<br />
+                      Hosahalli Extension, stage 1,Vijayanagar<br />
+                      Bengaluru,Karnataka 560040
                   </span>
                 </li>
                 <li className="flex items-center">
@@ -74,10 +76,10 @@ const Index = () => {
                     className="text-ornate-gold mr-3 flex-shrink-0"
                   />
                   <a
-                    href="mailto:info@ornateinterior.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=ornateinteriord@gmail.com"
                     className="text-ornate-charcoal/80 hover:text-ornate-gold transition-colors"
                   >
-                    info@ornateinterior.com
+                  ornateinteriord@gmail.com
                   </a>
                 </li>
                 <li className="flex items-center">
@@ -86,10 +88,10 @@ const Index = () => {
                     className="text-ornate-gold mr-3 flex-shrink-0"
                   />
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+919845044424"
                     className="text-ornate-charcoal/80 hover:text-ornate-gold transition-colors"
                   >
-                    +1 (234) 567-890
+                     9845044424
                   </a>
                 </li>
               </ul>

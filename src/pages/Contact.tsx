@@ -32,9 +32,9 @@ const Contact = () => {
                   <div>
                     <h4 className="font-serif text-lg mb-2 text-ornate-charcoal">Our Location</h4>
                     <address className="text-ornate-charcoal/80 not-italic">
-                      123 Design Street<br />
-                      Creative City, State 12345<br />
-                      Country
+                      148/E, 17th Main Rd,SBI Staff Colony,<br />
+                      Hosahalli Extension, stage 1,Vijayanagar<br />
+                      Bengaluru,Karnataka 560040
                     </address>
                   </div>
                 </div>
@@ -43,8 +43,8 @@ const Contact = () => {
                   <Mail size={24} className="text-ornate-gold mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-serif text-lg mb-2 text-ornate-charcoal">Email Us</h4>
-                    <a href="mailto:info@ornateinterior.com" className="text-ornate-charcoal/80 hover:text-ornate-gold transition-colors">
-                      info@ornateinterior.com
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ornateinteriord@gmail.com" className="text-ornate-charcoal/80 hover:text-ornate-gold transition-colors">
+                      ornateinteriord@gmail.com
                     </a>
                   </div>
                 </div>
@@ -53,8 +53,8 @@ const Contact = () => {
                   <Phone size={24} className="text-ornate-gold mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-serif text-lg mb-2 text-ornate-charcoal">Call Us</h4>
-                    <a href="tel:+1234567890" className="text-ornate-charcoal/80 hover:text-ornate-gold transition-colors">
-                      +1 (234) 567-890
+                    <a href="tel:+919845044424" className="text-ornate-charcoal/80 hover:text-ornate-gold transition-colors">
+                      9845044424
                     </a>
                   </div>
                 </div>

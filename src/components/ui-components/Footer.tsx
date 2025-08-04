@@ -61,18 +61,22 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={20} className="text-ornate-gold mr-3 mt-1 flex-shrink-0" />
-                <span className="text-gray-300">123 Design Street, Creative City, Country</span>
+                <address className="text-ornate-charcoal/80 not-italic">
+                  148/E, 17th Main Rd,SBI Staff Colony,<br />
+                  Hosahalli Extension, stage 1,Vijayanagar<br />
+                  Bengaluru,Karnataka 560040
+                </address>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="text-ornate-gold mr-3 flex-shrink-0" />
-                <a href="mailto:info@ornateinterior.com" className="text-gray-300 hover:text-white transition-colors">
-                  info@ornateinterior.com
+                <a href="mailto:ornateinteriord@gmail.com" className="text-gray-300 hover:text-white transition-colors">
+                  ornateinteriord@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="text-ornate-gold mr-3 flex-shrink-0" />
-                <a href="tel:+1234567890" className="text-gray-300 hover:text-white transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+919845044424" className="text-gray-300 hover:text-white transition-colors">
+                  9845044424
                 </a>
               </li>
             </ul>

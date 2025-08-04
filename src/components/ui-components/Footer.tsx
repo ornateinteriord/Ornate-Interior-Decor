@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={20} className="text-ornate-gold mr-3 mt-1 flex-shrink-0" />
-                <address className="text-gray-300 hover:text-white transition-colorsnot-italic">
+                <address className="text-gray-300 hover:text-white transition-colors">
                   148/E, 17th Main Rd,SBI Staff Colony,<br />
                   Hosahalli Extension, stage 1,Vijayanagar<br />
                   Bengaluru,Karnataka 560040

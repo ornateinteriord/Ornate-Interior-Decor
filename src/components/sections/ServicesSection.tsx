@@ -1,63 +1,74 @@
-
-import React from 'react';
-import ServiceCard from '../ui-components/ServiceCard';
-import { Palette, Building2, LayoutDashboard, Home, Ruler, Sofa } from 'lucide-react';
+import React from "react";
+import ServiceCard from "../ui-components/ServiceCard";
+import { Palette, Building2, LayoutDashboard, Home, Ruler, Sofa } from "lucide-react";
 
 const services = [
   {
-    title: 'Residential Design',
-    description: 'Transform your home into a personalized sanctuary that reflects your style, needs, and aspirations with our comprehensive residential design services.',
-    icon: <Home size={48} />,
-    link: '#'
+    id: "residential-design",
+    title: "Residential Design",
+    description:
+      "Full-home and apartment interiors covering living spaces, kitchens, wardrobes, lighting layouts, and finish schedules.",
+    icon: <Home size={40} />,
+    link: "/services#residential-design",
   },
   {
-    title: 'Commercial Design',
-    description: 'Create impactful commercial spaces that enhance brand experience, boost productivity, and leave lasting impressions on clients and employees alike.',
-    icon: <Building2 size={48} />,
-    link: '#'
+    id: "commercial-design",
+    title: "Commercial Design",
+    description:
+      "Workplaces, studios, and hospitality interiors planned for acoustic comfort, brand consistency, and daily durability.",
+    icon: <Building2 size={40} />,
+    link: "/services#commercial-design",
   },
   {
-    title: 'Space Planning',
-    description: 'Maximize functionality and flow with thoughtful space planning that optimizes your floor plan and creates harmonious, purposeful environments.',
-    icon: <LayoutDashboard size={48} />,
-    link: '#'
+    id: "space-planning",
+    title: "Space Planning",
+    description:
+      "Measured 2D furniture layouts, electrical mapping, and circulation studies that make compact or complex footprints work harder.",
+    icon: <LayoutDashboard size={40} />,
+    link: "/services#space-planning",
   },
   {
-    title: 'Custom Furniture',
-    description: 'Commission bespoke furniture pieces crafted specifically for your space, ensuring perfect fit, function, and unique design expression.',
-    icon: <Sofa size={48} />,
-    link: '#'
+    id: "custom-furniture",
+    title: "Custom Furniture & Millwork",
+    description:
+      "Made-to-measure cabinetry, modular kitchens, vanities, and loose furniture detailed to fit your room dimensions.",
+    icon: <Sofa size={40} />,
+    link: "/services#custom-furniture",
   },
   {
-    title: 'Color Consultation',
-    description: 'Transform any space with expert color strategy that creates atmosphere, defines areas, and complements your overall design concept.',
-    icon: <Palette size={48} />,
-    link: '#'
+    id: "color-consultation",
+    title: "Material & Color Curation",
+    description:
+      "Coordinated palettes across veneers, laminates, stone, upholstery, and wall finishes tested under your site lighting.",
+    icon: <Palette size={40} />,
+    link: "/services#color-consultation",
   },
   {
-    title: 'Project Management',
-    description: 'Experience stress-free renovations with our comprehensive project management services, coordinating all aspects from concept to completion.',
-    icon: <Ruler size={48} />,
-    link: '#'
-  }
+    id: "project-management",
+    title: "Turnkey Execution",
+    description:
+      "On-site coordination with civil, electrical, carpentry, and painting trades with milestone tracking through completion.",
+    icon: <Ruler size={40} />,
+    link: "/services#project-management",
+  },
 ];
 
 const ServicesSection: React.FC = () => {
   return (
     <section id="services" className="py-20 bg-ornate-offwhite">
       <div className="ornate-container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="ornate-subtitle mb-4 animate-fade-in">Our Services</h2>
-          <h3 className="ornate-title mb-6 animate-fade-in">What We Offer</h3>
-          <p className="text-ornate-charcoal/80 leading-relaxed animate-fade-in">
-            We provide a full range of interior design services tailored to meet your unique needs, from concept development to final styling.
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <p className="ornate-subtitle mb-3">Scope of Work</p>
+          <h2 className="ornate-title mb-5">Design &amp; Build Services</h2>
+          <p className="text-ornate-charcoal/80 leading-relaxed">
+            Every engagement can be commissioned as a turnkey package or tailored to specific stages of your renovation or new build.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard
-              key={index}
+              key={service.id}
               title={service.title}
               description={service.description}
               icon={service.icon}

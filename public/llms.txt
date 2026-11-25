@@ -1,0 +1,32 @@
+# Ornate Interior Decor
+
+Ornate Interior Decor is an interior design and turnkey execution studio based in Vijayanagar, Bengaluru, Karnataka, India.
+
+## Studio Details
+
+- Address: 148/E, 17th Main Rd, SBI Staff Colony, Hosahalli Extension, Stage 1, Vijayanagar, Bengaluru, Karnataka 560040, India
+- Email: ornateinteriord@gmail.com
+- Phone: +91 98450 44424
+- Office Hours: Monday to Friday 09:00 - 18:00, Saturday 10:00 - 16:00
+
+## Core Services
+
+- Residential interior design (apartments, villas, living rooms, kitchens, bedrooms)
+- Commercial interior design (offices, retail, hospitality spaces)
+- Architectural space planning and layout optimization
+- Custom furniture and millwork detailing
+- Color and material curation
+- End-to-end site coordination and project management
+
+## Key Pages
+
+- [Home](https://ornate-interior-decor.vercel.app/): Studio overview, featured services, selected projects, and design process
+- [About](https://ornate-interior-decor.vercel.app/about): Studio background, working principles, and design approach
+- [Services](https://ornate-interior-decor.vercel.app/services): Detailed breakdown of residential, commercial, and planning services
+- [Projects](https://ornate-interior-decor.vercel.app/projects): Residential, commercial, and hospitality portfolio
+- [Contact](https://ornate-interior-decor.vercel.app/contact): Vijayanagar Bengaluru studio location, hours, and inquiry form
+- [FAQ](https://ornate-interior-decor.vercel.app/faq): Answers on scope, fees, timelines, and site visits
+- [Help & Support](https://ornate-interior-decor.vercel.app/help): Consultation preparation checklist and direct contact options
+- [Privacy Policy](https://ornate-interior-decor.vercel.app/privacy-policy): Client inquiry and data handling practices
+- [Terms & Conditions](https://ornate-interior-decor.vercel.app/terms-and-conditions): Service agreement terms and project conditions
+

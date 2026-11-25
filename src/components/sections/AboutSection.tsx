@@ -11,42 +11,37 @@ const AboutSection: React.FC = () => {
             <div className="relative z-10 overflow-hidden group">
               <img
                 src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop"
-                alt="Interior designer working"
-                className="w-full h-auto rounded-sm animate-fade-in-right 
-              transition-transform duration-500 ease-in-out 
-              group-hover:scale-110"
+                alt="Warm living room interior featuring timber accents, tailored seating, and natural daylight"
+                loading="lazy"
+                className="w-full h-auto rounded-sm transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
-            <div className="absolute -bottom-8 -right-8 w-64 h-64 border-8 border-white z-0"></div>
+            <div
+              className="hidden sm:block absolute -bottom-6 -right-6 w-56 h-56 border-8 border-white z-0"
+              aria-hidden="true"
+            />
           </div>
 
-          <div className="animate-fade-in-left">
-            <h2 className="ornate-subtitle mb-4">About Us</h2>
-            <h3 className="ornate-title mb-6">
-              Creating Beautiful Spaces Since 2010
-            </h3>
+          <div>
+            <p className="ornate-subtitle mb-3">Our Studio</p>
+            <h2 className="ornate-title mb-6">
+              Proportion, Materiality, and Function
+            </h2>
 
-            <p className="text-ornate-charcoal/80 mb-6 leading-relaxed">
-              Ornate Interior Decor is a premier interior design firm dedicated
-              to creating exceptional spaces that inspire and elevate everyday
-              living. With over a decade of experience, our team of skilled
-              designers combines creativity, functionality, and aesthetic
-              sensibility to transform your vision into reality.
+            <p className="text-ornate-charcoal/80 mb-5 leading-relaxed">
+              Based in Vijayanagar, Bengaluru, Ornate Interior Decor handles residential apartments, independent homes, and commercial workspaces from initial layout planning through final site handover.
             </p>
 
             <p className="text-ornate-charcoal/80 mb-8 leading-relaxed">
-              We believe that great design should not only be beautiful but also
-              reflect the personality and lifestyle of those who inhabit the
-              space. Our approach is collaborative, thoughtful, and
-              detail-oriented, ensuring that every project is unique and
-              tailored to our clients' needs.
+              Rather than relying on transient trends, our studio focuses on clear circulation, reliable joinery details, balanced lighting, and tactile finishes suited to how each room is actually used.
             </p>
 
-            <Link to="/about" className="ornate-btn-outline group">
-              Learn More About Us{" "}
+            <Link to="/about" className="ornate-btn-outline inline-flex items-center group">
+              About the Studio
               <ArrowRight
                 size={16}
                 className="ml-2 inline-block group-hover:translate-x-1 transition-transform"
+                aria-hidden="true"
               />
             </Link>
           </div>

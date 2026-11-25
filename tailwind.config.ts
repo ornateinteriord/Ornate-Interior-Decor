@@ -64,12 +64,12 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				ornate: {
-					cream: '#F5F2EB',
-					gold: '#D9B778',
-					darkgold: '#B89A5F',
-					charcoal: '#333333',
-					softblack: '#2A2A2A',
-					offwhite: '#FDFBF7',
+					cream: '#F4EFE6',
+					gold: '#C9A461',
+					darkgold: '#8E6F38',
+					charcoal: '#262320',
+					softblack: '#1A1816',
+					offwhite: '#FAF8F4',
 				}
 			},
 			borderRadius: {

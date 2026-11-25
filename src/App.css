@@ -1,21 +1,7 @@
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Inter,sans-serif;
+html {
+  scroll-behavior: smooth;
 }
 
-::-webkit-scrollbar{
-  display: none;
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Optional: Hide vertical scrollbar */
 body {
-  overflow-y: hidden;
+  overflow-x: hidden;
 }

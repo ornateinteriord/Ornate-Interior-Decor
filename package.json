@@ -5,6 +5,10 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "build:ornate": "turbo run build --filter=@ornate/web",
+    "build:admin": "turbo run build --filter=@ornate/admin",
+    "deploy:ornate": "pnpm --filter @ornate/web run deploy",
+    "deploy:admin": "pnpm --filter @ornate/admin run deploy",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck"

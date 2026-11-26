@@ -87,7 +87,7 @@ export const MobileTopBar: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-40 h-14 bg-white/95 backdrop-blur-xl border-b border-ornate-gold/15 px-3 flex items-center justify-between">
+    <header className="fixed top-0 inset-x-0 z-40 h-14 bg-white/95 backdrop-blur-xl border-b border-ornate-gold/15 px-2.5 sm:px-3 flex items-center justify-between gap-1.5">
       {isHome ? (
         <Link
           to="/"
@@ -101,41 +101,43 @@ export const MobileTopBar: React.FC = () => {
           />
         </Link>
       ) : (
-        <div className="flex items-center gap-1.5 min-w-0">
-          <button
-            type="button"
-            onClick={handleBack}
-            aria-label="Go back"
-            className="w-9 h-9 rounded-full flex items-center justify-center text-ornate-charcoal active:bg-ornate-cream transition-colors shrink-0"
-          >
-            <ChevronLeft size={22} />
-          </button>
-          <Link
-            to="/"
-            aria-label="Ornate Interior Decor Home"
-            className="w-7 h-7 rounded-lg bg-ornate-cream border border-ornate-gold/25 flex items-center justify-center p-1 shrink-0"
-          >
-            <img
-              src="/favicon.png"
-              alt="Ornate"
-              className="w-full h-full object-contain brightness-0 opacity-90"
-            />
-          </Link>
-          <h1 className="font-serif text-base sm:text-lg text-ornate-charcoal truncate">
+        <>
+          <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
+            <button
+              type="button"
+              onClick={handleBack}
+              aria-label="Go back"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-ornate-charcoal active:bg-ornate-cream transition-colors shrink-0"
+            >
+              <ChevronLeft size={21} />
+            </button>
+            <Link
+              to="/"
+              aria-label="Ornate Interior Decor Home"
+              className="flex items-center shrink-0"
+            >
+              <img
+                src="/Ornate%20Interior%20Decor%20Logo.png"
+                alt="Ornate Interior Decor"
+                className="h-7 sm:h-8 w-auto max-w-[110px] sm:max-w-[130px] object-contain brightness-0 opacity-95"
+              />
+            </Link>
+          </div>
+          <h1 className="flex-1 min-w-0 text-center font-serif text-[15px] sm:text-lg text-ornate-charcoal truncate px-1">
             {currentTitle}
           </h1>
-        </div>
+        </>
       )}
 
-      <div className="flex items-center gap-1.5 shrink-0">
+      <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
         <Link
           to="/wishlist"
           aria-label="Wishlist"
-          className="relative w-9 h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
+          className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
         >
           <Heart size={16} />
           {wishlistIds.length > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-ornate-darkgold text-white text-[9px] font-bold flex items-center justify-center">
+            <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-ornate-darkgold text-white text-[9px] font-semibold flex items-center justify-center">
               {wishlistIds.length}
             </span>
           )}
@@ -145,7 +147,7 @@ export const MobileTopBar: React.FC = () => {
           type="button"
           onClick={() => setDrawerOpen(true)}
           aria-label="Open Cart"
-          className="relative w-9 h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
+          className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
         >
           <ShoppingCart size={16} />
           {itemCount > 0 && (
@@ -158,7 +160,7 @@ export const MobileTopBar: React.FC = () => {
         <Link
           to={isAuthenticated ? "/account" : "/login"}
           aria-label="Account"
-          className="w-9 h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
+          className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
         >
           <User size={16} />
         </Link>

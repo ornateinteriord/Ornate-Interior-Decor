@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --port 5174",
     "build": "vite build",
+    "deploy": "npx --yes wrangler deploy",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview --port 5174"

@@ -40,11 +40,11 @@ const Hero: React.FC<HeroProps> = ({
   };
 
   const heightClasses =
-    variant === "full" ? "min-h-screen" : "min-h-[58vh] md:min-h-[64vh]";
+    variant === "full" ? "min-h-[86vh]" : "min-h-[54vh] md:min-h-[60vh]";
 
   const scrollToContent = () => {
     window.scrollTo({
-      top: window.innerHeight,
+      top: window.innerHeight * 0.85,
       behavior: "smooth",
     });
   };
@@ -60,7 +60,7 @@ const Hero: React.FC<HeroProps> = ({
     >
       {overlay && (
         <div
-          className="absolute inset-0 bg-gradient-to-b from-ornate-softblack/75 via-ornate-softblack/45 to-ornate-softblack/80"
+          className="absolute inset-0 bg-gradient-to-b from-ornate-softblack/80 via-ornate-softblack/55 to-ornate-softblack/85"
           aria-hidden="true"
         />
       )}
@@ -70,27 +70,25 @@ const Hero: React.FC<HeroProps> = ({
           className={`flex flex-col max-w-3xl mx-auto ${alignmentClasses[alignment]}`}
         >
           {subtitle && (
-            <span className="inline-flex items-center gap-3 font-display text-xs md:text-sm uppercase tracking-[0.22em] text-ornate-gold mb-4">
-              <span className="hidden sm:inline-block w-6 h-px bg-ornate-gold/80" aria-hidden="true" />
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase text-ornate-gold mb-5">
               {subtitle}
-              <span className="hidden sm:inline-block w-6 h-px bg-ornate-gold/80" aria-hidden="true" />
             </span>
           )}
 
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] tracking-tight mb-6 drop-shadow-sm">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight mb-5">
             {title}
           </h1>
 
-          <p className="text-white/90 text-base md:text-lg max-w-2xl mb-9 leading-relaxed">
+          <p className="text-white/85 text-base md:text-lg max-w-2xl mb-8 leading-relaxed">
             {description}
           </p>
 
           {(buttonText || secondaryButtonText) && (
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-3.5">
               {buttonText && (
                 <Link
                   to={buttonLink}
-                  className="ornate-btn bg-ornate-gold text-ornate-softblack hover:bg-white inline-flex items-center group font-medium"
+                  className="ornate-btn-accent inline-flex items-center group"
                 >
                   {buttonText}
                   <ArrowRight
@@ -103,7 +101,7 @@ const Hero: React.FC<HeroProps> = ({
               {secondaryButtonText && secondaryButtonLink && (
                 <Link
                   to={secondaryButtonLink}
-                  className="ornate-btn border border-white/80 text-white hover:bg-white hover:text-ornate-softblack inline-flex items-center group font-medium"
+                  className="ornate-btn border border-white/40 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-ornate-softblack inline-flex items-center group"
                 >
                   {secondaryButtonText}
                   <ArrowRight
@@ -122,14 +120,14 @@ const Hero: React.FC<HeroProps> = ({
         <button
           type="button"
           onClick={scrollToContent}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center cursor-pointer text-white/80 hover:text-white transition-colors"
+          className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center cursor-pointer text-white/75 hover:text-white transition-colors"
           aria-label="Scroll to main content"
         >
-          <span className="font-display text-xs uppercase tracking-widest mb-2">
-            Scroll
+          <span className="text-xs font-medium tracking-wider uppercase mb-2">
+            Explore
           </span>
-          <span className="w-5 h-9 border border-white/60 flex justify-center">
-            <span className="w-1 h-2 bg-white mt-2 animate-bounce" />
+          <span className="w-5 h-8 rounded-full border border-white/50 flex justify-center">
+            <span className="w-1 h-2 rounded-full bg-ornate-gold mt-1.5 animate-bounce" />
           </span>
         </button>
       )}

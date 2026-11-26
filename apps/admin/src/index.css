@@ -1,11 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Tenor+Sans&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: #faf8f4;
-  color: #262320;
-  font-family: "Inter", sans-serif;
+  background-color: #f7f4ee;
+  color: #1e1b18;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
 }

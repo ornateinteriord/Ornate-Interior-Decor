@@ -82,10 +82,10 @@ const SERVICE_LIST = [
 
 const MobileServicesView: React.FC = () => {
   return (
-    <div className="pt-3 pb-6 space-y-6">
+    <div className="pt-3 pb-6 space-y-6 bg-ornate-offwhite">
       <div className="px-4">
-        <div className="bg-ornate-charcoal text-white rounded-xl p-5">
-          <p className="text-[10px] font-display uppercase tracking-widest text-ornate-gold">
+        <div className="bg-ornate-moss text-white rounded-3xl p-5">
+          <p className="text-xs font-semibold text-ornate-gold">
             Design &amp; Build
           </p>
           <h2 className="font-serif text-xl mt-1">
@@ -97,14 +97,14 @@ const MobileServicesView: React.FC = () => {
           <div className="mt-4 flex gap-2.5">
             <Link
               to="/contact"
-              className="px-4 py-2 rounded-lg bg-ornate-gold text-ornate-softblack text-xs font-semibold inline-flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-full bg-ornate-gold text-ornate-softblack text-xs font-semibold inline-flex items-center gap-1.5"
             >
               Book Consultation
               <ArrowRight size={13} />
             </Link>
             <Link
               to="/shop"
-              className="px-4 py-2 rounded-lg bg-white/15 text-white text-xs font-medium"
+              className="px-4 py-2.5 rounded-full bg-white/15 border border-white/20 text-white text-xs font-semibold"
             >
               Shop Furniture
             </Link>
@@ -112,10 +112,9 @@ const MobileServicesView: React.FC = () => {
         </div>
       </div>
 
-      {/* Horizontal Space Specialties */}
       <section>
         <div className="px-4 mb-3">
-          <p className="text-[10px] font-display uppercase tracking-widest text-ornate-darkgold">
+          <p className="text-xs font-semibold text-ornate-darkgold">
             Specialties
           </p>
           <h2 className="font-serif text-xl text-ornate-charcoal">
@@ -127,7 +126,7 @@ const MobileServicesView: React.FC = () => {
           {SPACE_TYPES.map((item) => (
             <article
               key={item.title}
-              className="w-64 shrink-0 snap-start bg-white rounded-2xl border border-ornate-gold/15 overflow-hidden shadow-sm"
+              className="w-64 shrink-0 snap-start bg-white rounded-2xl border border-ornate-border overflow-hidden shadow-xs"
             >
               <div className="h-36 bg-ornate-cream">
                 <img
@@ -141,7 +140,7 @@ const MobileServicesView: React.FC = () => {
                 <h3 className="font-serif text-base text-ornate-charcoal">
                   {item.title}
                 </h3>
-                <p className="text-xs text-ornate-charcoal/70 mt-1 leading-relaxed line-clamp-2">
+                <p className="text-xs text-ornate-muted mt-1 leading-relaxed line-clamp-2">
                   {item.description}
                 </p>
               </div>
@@ -150,10 +149,9 @@ const MobileServicesView: React.FC = () => {
         </div>
       </section>
 
-      {/* Grouped Service List Cards */}
       <section className="px-4 space-y-3">
         <div>
-          <p className="text-[10px] font-display uppercase tracking-widest text-ornate-darkgold">
+          <p className="text-xs font-semibold text-ornate-darkgold">
             Scope of Work
           </p>
           <h2 className="font-serif text-xl text-ornate-charcoal">
@@ -161,19 +159,19 @@ const MobileServicesView: React.FC = () => {
           </h2>
         </div>
 
-        <div className="bg-white rounded-xl border border-ornate-gold/20 divide-y divide-ornate-gold/10 overflow-hidden shadow-sm">
+        <div className="bg-white rounded-2xl border border-ornate-border divide-y divide-ornate-border overflow-hidden shadow-xs">
           {SERVICE_LIST.map((service) => {
             const Icon = service.icon;
             return (
               <div key={service.title} className="p-4 flex items-start gap-3.5">
-                <span className="w-10 h-10 rounded-lg bg-ornate-cream flex items-center justify-center text-ornate-darkgold shrink-0">
+                <span className="w-10 h-10 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss shrink-0">
                   <Icon size={20} />
                 </span>
                 <div>
                   <h3 className="font-serif text-base text-ornate-charcoal">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-ornate-charcoal/70 mt-1 leading-relaxed">
+                  <p className="text-xs text-ornate-muted mt-1 leading-relaxed">
                     {service.description}
                   </p>
                 </div>

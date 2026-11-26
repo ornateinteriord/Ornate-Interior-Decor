@@ -31,7 +31,6 @@ const CheckoutPage: React.FC = () => {
   const [selectedAddressId, setSelectedAddressId] = useState<string>("");
   const [showNewAddressForm, setShowNewAddressForm] = useState(false);
 
-  // New Address Form
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [line1, setLine1] = useState("");
@@ -43,12 +42,10 @@ const CheckoutPage: React.FC = () => {
   const [addressType, setAddressType] = useState<AddressType>("Home");
   const [savingAddress, setSavingAddress] = useState(false);
 
-  // Order Options
   const [deliveryNotes, setDeliveryNotes] = useState("");
   const [giftWrap, setGiftWrap] = useState(false);
   const [promoInput, setPromoInput] = useState("");
 
-  // Razorpay Session State
   const [creatingOrder, setCreatingOrder] = useState(false);
   const [rzpSession, setRzpSession] = useState<RazorpayOrderCreateResponse | null>(
     null
@@ -89,7 +86,6 @@ const CheckoutPage: React.FC = () => {
     );
   }
 
-  // Strictly enforce login before checkout
   if (!isAuthenticated) {
     return <Navigate to="/login?redirect=/checkout" replace />;
   }
@@ -97,15 +93,15 @@ const CheckoutPage: React.FC = () => {
   if (items.length === 0 && !rzpSession && !failedOrder) {
     return (
       <div className="min-h-screen bg-ornate-offwhite pt-14 md:pt-32 pb-16 px-4">
-        <div className="max-w-lg mx-auto bg-white border border-ornate-gold/25 rounded-sm p-10 text-center space-y-4">
+        <div className="max-w-lg mx-auto ornate-card p-10 text-center space-y-4">
           <h1 className="font-serif text-3xl text-ornate-charcoal">
             No Items to Checkout
           </h1>
-          <p className="text-sm text-ornate-charcoal/70">
-            Your shopping cart is currently empty. Add furniture pieces before checking out.
+          <p className="text-sm text-ornate-muted">
+            Your shopping bag is currently empty. Add furniture pieces before checking out.
           </p>
           <Link to="/shop" className="ornate-btn-primary inline-flex">
-            Return to Shop
+            Return to Store
           </Link>
         </div>
       </div>
@@ -192,7 +188,7 @@ const CheckoutPage: React.FC = () => {
           description="Select your delivery address and pay securely online via Razorpay."
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "Cart", path: "/cart" },
+            { name: "Bag", path: "/cart" },
             { name: "Checkout", path: "/checkout" },
           ]}
         />
@@ -203,7 +199,7 @@ const CheckoutPage: React.FC = () => {
           {/* Left Column: Address & Options */}
           <div className="lg:col-span-7 space-y-6">
             {failedOrder && (
-              <div className="bg-rose-50 border border-rose-200 rounded-sm p-5 space-y-3">
+              <div className="bg-rose-50 border border-rose-200 rounded-2xl p-5 space-y-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="text-rose-700 shrink-0 mt-0.5" size={20} />
                   <div>
@@ -218,13 +214,13 @@ const CheckoutPage: React.FC = () => {
                     type="button"
                     disabled={creatingOrder}
                     onClick={handleRetryFailedPayment}
-                    className="px-4 py-2 bg-rose-700 text-white text-xs font-medium rounded-sm inline-flex items-center gap-1.5 hover:bg-rose-800"
+                    className="px-4 py-2 bg-rose-700 text-white text-xs font-semibold rounded-full inline-flex items-center gap-1.5 hover:bg-rose-800"
                   >
                     <RefreshCw size={13} /> Retry Razorpay Payment
                   </button>
                   <Link
                     to={`/orders/${failedOrder.order.orderNumber}`}
-                    className="px-4 py-2 border border-rose-300 text-rose-800 text-xs font-medium rounded-sm"
+                    className="px-4 py-2 border border-rose-300 text-rose-800 text-xs font-semibold rounded-full"
                   >
                     View Order Attempt
                   </Link>
@@ -233,19 +229,22 @@ const CheckoutPage: React.FC = () => {
             )}
 
             {/* Step 1: Delivery Address */}
-            <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-4">
-              <div className="flex items-center justify-between border-b border-ornate-gold/15 pb-3">
-                <div className="flex items-center gap-2">
+            <div className="ornate-card p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-ornate-border pb-3">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-7 h-7 rounded-full bg-ornate-moss text-white text-xs font-bold flex items-center justify-center">
+                    1
+                  </span>
                   <MapPin size={17} className="text-ornate-darkgold" />
                   <h2 className="font-serif text-xl text-ornate-charcoal">
-                    1. Delivery Address
+                    Delivery Address
                   </h2>
                 </div>
                 {addresses.length > 0 && (
                   <button
                     type="button"
                     onClick={() => setShowNewAddressForm((v) => !v)}
-                    className="text-xs font-medium text-ornate-darkgold inline-flex items-center gap-1 hover:underline"
+                    className="text-xs font-semibold text-ornate-moss inline-flex items-center gap-1 hover:underline"
                   >
                     <Plus size={14} />{" "}
                     {showNewAddressForm ? "Hide Form" : "Add New Address"}
@@ -262,30 +261,30 @@ const CheckoutPage: React.FC = () => {
                         key={addr.id}
                         type="button"
                         onClick={() => setSelectedAddressId(addr.id)}
-                        className={`text-left p-4 rounded-sm border transition-all ${
+                        className={`text-left p-4 rounded-2xl border transition-all ${
                           selected
-                            ? "border-ornate-charcoal bg-ornate-cream/55 ring-1 ring-ornate-charcoal"
-                            : "border-ornate-gold/25 bg-ornate-offwhite hover:border-ornate-darkgold"
+                            ? "border-ornate-moss bg-ornate-sage/45 ring-1 ring-ornate-moss"
+                            : "border-ornate-border bg-ornate-offwhite hover:border-ornate-moss/60"
                         }`}
                       >
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] font-display uppercase tracking-wider px-2 py-0.5 bg-white border border-ornate-gold/25 rounded-sm">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[11px] font-semibold px-2.5 py-0.5 bg-white border border-ornate-border rounded-full">
                             {addr.type}
                           </span>
                           {selected && (
-                            <CheckCircle2 size={15} className="text-ornate-charcoal" />
+                            <CheckCircle2 size={16} className="text-ornate-moss" />
                           )}
                         </div>
-                        <p className="font-medium text-sm text-ornate-charcoal">
+                        <p className="font-semibold text-sm text-ornate-charcoal">
                           {addr.fullName}
                         </p>
-                        <p className="text-xs text-ornate-charcoal/75 mt-1 leading-relaxed">
+                        <p className="text-xs text-ornate-muted mt-1 leading-relaxed">
                           {addr.line1}
                           {addr.line2 ? `, ${addr.line2}` : ""}
                           <br />
                           {addr.city}, {addr.state} - {addr.pincode}
                         </p>
-                        <p className="text-xs text-ornate-charcoal/70 mt-1">
+                        <p className="text-xs text-ornate-muted mt-1">
                           Phone: {addr.phone}
                         </p>
                       </button>
@@ -297,9 +296,9 @@ const CheckoutPage: React.FC = () => {
               {showNewAddressForm && (
                 <form
                   onSubmit={handleSaveAddress}
-                  className="bg-ornate-offwhite border border-ornate-gold/20 rounded-sm p-4 space-y-3"
+                  className="bg-ornate-offwhite border border-ornate-border rounded-2xl p-4 space-y-3"
                 >
-                  <p className="text-xs font-display uppercase tracking-wider text-ornate-darkgold">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ornate-darkgold">
                     Add Delivery Address
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -309,7 +308,7 @@ const CheckoutPage: React.FC = () => {
                       placeholder="Recipient Full Name *"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     />
                     <input
                       type="tel"
@@ -317,7 +316,7 @@ const CheckoutPage: React.FC = () => {
                       placeholder="Mobile Number *"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     />
                   </div>
                   <input
@@ -326,7 +325,7 @@ const CheckoutPage: React.FC = () => {
                     placeholder="Flat, House No, Street, Apartment *"
                     value={line1}
                     onChange={(e) => setLine1(e.target.value)}
-                    className="w-full px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                    className="ornate-input"
                   />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input
@@ -334,14 +333,14 @@ const CheckoutPage: React.FC = () => {
                       placeholder="Area / Colony (Optional)"
                       value={line2}
                       onChange={(e) => setLine2(e.target.value)}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     />
                     <input
                       type="text"
                       placeholder="Landmark (Optional)"
                       value={landmark}
                       onChange={(e) => setLandmark(e.target.value)}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     />
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -351,7 +350,7 @@ const CheckoutPage: React.FC = () => {
                       placeholder="City *"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     />
                     <input
                       type="text"
@@ -359,7 +358,7 @@ const CheckoutPage: React.FC = () => {
                       placeholder="State *"
                       value={state}
                       onChange={(e) => setState(e.target.value)}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     />
                     <input
                       type="text"
@@ -368,12 +367,12 @@ const CheckoutPage: React.FC = () => {
                       placeholder="6-Digit Pincode *"
                       value={pincode}
                       onChange={(e) => setPincode(e.target.value.replace(/\D/g, ""))}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     />
                     <select
                       value={addressType}
                       onChange={(e) => setAddressType(e.target.value as AddressType)}
-                      className="px-3 py-2 text-sm bg-white border border-ornate-gold/30 rounded-sm"
+                      className="ornate-input"
                     >
                       <option value="Home">Home</option>
                       <option value="Office">Office</option>
@@ -384,7 +383,7 @@ const CheckoutPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={savingAddress}
-                    className="ornate-btn-primary py-2.5 px-5"
+                    className="ornate-btn-primary py-2.5 px-5 text-xs"
                   >
                     {savingAddress ? "Saving..." : "Save & Use This Address"}
                   </button>
@@ -393,22 +392,28 @@ const CheckoutPage: React.FC = () => {
             </div>
 
             {/* Step 2: Delivery Instructions & Gift Wrap */}
-            <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-4">
-              <h2 className="font-serif text-xl text-ornate-charcoal border-b border-ornate-gold/15 pb-3">
-                2. Delivery Preferences
-              </h2>
+            <div className="ornate-card p-6 space-y-4">
+              <div className="flex items-center gap-2.5 border-b border-ornate-border pb-3">
+                <span className="w-7 h-7 rounded-full bg-ornate-moss text-white text-xs font-bold flex items-center justify-center">
+                  2
+                </span>
+                <h2 className="font-serif text-xl text-ornate-charcoal">
+                  Delivery Preferences
+                </h2>
+              </div>
               <textarea
                 rows={2}
                 value={deliveryNotes}
                 onChange={(e) => setDeliveryNotes(e.target.value)}
                 placeholder="Floor / service elevator instructions, preferred delivery window, or assembly notes..."
-                className="w-full px-3.5 py-2.5 text-sm bg-ornate-offwhite border border-ornate-gold/30 rounded-sm"
+                className="ornate-input"
               />
               <label className="flex items-center gap-2.5 text-sm cursor-pointer">
                 <input
                   type="checkbox"
                   checked={giftWrap}
                   onChange={(e) => setGiftWrap(e.target.checked)}
+                  className="accent-ornate-moss w-4 h-4"
                 />
                 <Gift size={15} className="text-ornate-darkgold" />
                 Include complimentary Ornate Studio welcome card &amp; protective wrapping
@@ -416,25 +421,30 @@ const CheckoutPage: React.FC = () => {
             </div>
 
             {/* Step 3: Online Payment Notice (Razorpay Only) */}
-            <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-3">
+            <div className="ornate-card p-6 space-y-3">
               <div className="flex items-center justify-between">
-                <h2 className="font-serif text-xl text-ornate-charcoal flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-7 h-7 rounded-full bg-ornate-moss text-white text-xs font-bold flex items-center justify-center">
+                    3
+                  </span>
                   <CreditCard size={18} className="text-ornate-darkgold" />
-                  3. Online Payment (Razorpay)
-                </h2>
-                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-medium">
+                  <h2 className="font-serif text-xl text-ornate-charcoal">
+                    Online Payment (Razorpay)
+                  </h2>
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
                   Online Only
                 </span>
               </div>
-              <p className="text-xs text-ornate-charcoal/75 leading-relaxed">
+              <p className="text-xs text-ornate-muted leading-relaxed">
                 Cash on Delivery is disabled. Pay securely via UPI, Credit/Debit Card, or NetBanking using Razorpay Test Gateway with full HMAC-SHA256 verification.
               </p>
             </div>
           </div>
 
           {/* Right Column: Order Summary */}
-          <aside className="lg:col-span-5 bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-5 lg:sticky lg:top-28 shadow-sm">
-            <h2 className="font-serif text-2xl text-ornate-charcoal border-b border-ornate-gold/15 pb-3">
+          <aside className="lg:col-span-5 ornate-card p-6 space-y-5 lg:sticky lg:top-24">
+            <h2 className="font-serif text-2xl text-ornate-charcoal border-b border-ornate-border pb-3">
               Order Review ({items.length})
             </h2>
 
@@ -444,35 +454,35 @@ const CheckoutPage: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-14 h-14 rounded-sm object-cover bg-ornate-cream shrink-0"
+                    className="w-14 h-14 rounded-xl object-cover bg-ornate-cream shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-ornate-charcoal truncate">
+                    <p className="font-semibold text-ornate-charcoal truncate">
                       {item.name}
                     </p>
-                    <p className="text-xs text-ornate-charcoal/60">
+                    <p className="text-xs text-ornate-muted price-nums">
                       Qty {item.quantity} × {formatINR(item.unitPrice)}
                     </p>
                   </div>
-                  <span className="font-semibold shrink-0">
+                  <span className="font-bold shrink-0 price-nums">
                     {formatINR(item.unitPrice * item.quantity)}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="flex gap-2 pt-2 border-t border-ornate-gold/15">
+            <div className="flex gap-2 pt-2 border-t border-ornate-border">
               <div className="relative flex-1">
                 <Tag
                   size={13}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-ornate-darkgold"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ornate-darkgold"
                 />
                 <input
                   type="text"
                   value={promoInput}
                   onChange={(e) => setPromoInput(e.target.value.toUpperCase())}
                   placeholder={couponCode ? `Applied: ${couponCode}` : "Promo code"}
-                  className="w-full pl-8 pr-3 py-2 text-xs border border-ornate-gold/30 rounded-sm bg-ornate-offwhite"
+                  className="w-full pl-9 pr-3 py-2 text-xs border border-ornate-border rounded-full bg-ornate-offwhite"
                 />
               </div>
               <button
@@ -482,36 +492,36 @@ const CheckoutPage: React.FC = () => {
                   const ok = await applyCoupon(promoInput.trim());
                   if (ok) setPromoInput("");
                 }}
-                className="px-4 py-2 bg-ornate-charcoal text-white text-xs font-display uppercase tracking-wider rounded-sm"
+                className="px-4 py-2 bg-ornate-moss text-white text-xs font-semibold rounded-full hover:bg-ornate-mossLight"
               >
                 Apply
               </button>
             </div>
 
-            <div className="space-y-2 text-sm border-t border-ornate-gold/15 pt-4">
+            <div className="space-y-2 text-sm border-t border-ornate-border pt-4">
               <div className="flex justify-between">
-                <span className="text-ornate-charcoal/75">Subtotal</span>
-                <span>{formatINR(summary.subtotal)}</span>
+                <span className="text-ornate-muted">Subtotal</span>
+                <span className="price-nums">{formatINR(summary.subtotal)}</span>
               </div>
               {summary.couponDiscount > 0 && (
-                <div className="flex justify-between text-emerald-700">
+                <div className="flex justify-between text-emerald-700 font-medium">
                   <span>Coupon ({summary.couponCode})</span>
-                  <span>-{formatINR(summary.couponDiscount)}</span>
+                  <span className="price-nums">-{formatINR(summary.couponDiscount)}</span>
                 </div>
               )}
               <div className="flex justify-between">
-                <span className="text-ornate-charcoal/75">Insured Delivery</span>
-                <span>
+                <span className="text-ornate-muted">Insured Delivery</span>
+                <span className="price-nums">
                   {summary.shippingFee === 0 ? "FREE" : formatINR(summary.shippingFee)}
                 </span>
               </div>
-              <div className="flex justify-between text-xs text-ornate-charcoal/60">
+              <div className="flex justify-between text-xs text-ornate-muted">
                 <span>GST (18% Included)</span>
-                <span>{formatINR(summary.gstAmount)}</span>
+                <span className="price-nums">{formatINR(summary.gstAmount)}</span>
               </div>
-              <div className="flex justify-between text-xl font-semibold pt-3 border-t border-ornate-gold/20">
+              <div className="flex justify-between text-xl font-bold pt-3 border-t border-ornate-border">
                 <span>Payable Total</span>
-                <span className="font-serif">{formatINR(summary.grandTotal)}</span>
+                <span className="price-nums">{formatINR(summary.grandTotal)}</span>
               </div>
             </div>
 
@@ -527,9 +537,9 @@ const CheckoutPage: React.FC = () => {
                 : `Pay ${formatINR(summary.grandTotal)} with Razorpay`}
             </button>
 
-            <p className="text-[11px] text-center text-ornate-charcoal/60 flex items-center justify-center gap-1.5">
-              <ShieldCheck size={14} className="text-ornate-darkgold" />
-              Server-verified pricing, stock check &amp; HMAC-SHA256 payment signature
+            <p className="text-xs text-center text-ornate-muted flex items-center justify-center gap-1.5">
+              <ShieldCheck size={14} className="text-ornate-moss shrink-0" />
+              Server-verified pricing, stock check &amp; HMAC-SHA256 signature
             </p>
           </aside>
         </div>

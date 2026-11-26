@@ -28,7 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   if (variant === "overlay") {
     return (
       <article
-        className={`group relative overflow-hidden rounded-sm bg-ornate-softblack border border-ornate-gold/20 shadow-sm ${className}`}
+        className={`group relative overflow-hidden rounded-2xl bg-ornate-softblack border border-ornate-border shadow-sm ${className}`}
       >
         <div className="relative aspect-[16/10] w-full overflow-hidden">
           <img
@@ -43,14 +43,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           />
 
           <div className="absolute top-4 left-4">
-            <span className="inline-block px-3 py-1 bg-ornate-softblack/80 backdrop-blur-sm border border-ornate-gold/30 font-display uppercase tracking-[0.14em] text-[10px] text-ornate-gold">
+            <span className="inline-block px-3 py-1 rounded-full bg-ornate-softblack/80 backdrop-blur-sm border border-white/20 text-xs font-semibold text-ornate-gold">
               {category}
             </span>
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
             {scope && (
-              <p className="font-display uppercase tracking-[0.14em] text-[11px] text-ornate-gold/90 mb-1.5">
+              <p className="text-xs font-semibold text-ornate-gold/95 mb-1">
                 {scope}
               </p>
             )}
@@ -62,11 +62,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </p>
             <Link
               to={link}
-              className="inline-flex items-center text-ornate-gold hover:text-white font-display text-xs uppercase tracking-[0.14em] transition-colors"
+              className="inline-flex items-center text-ornate-gold hover:text-white text-sm font-semibold transition-colors"
             >
               View Details
               <ArrowRight
-                size={14}
+                size={15}
                 className="ml-2 transform transition-transform group-hover:translate-x-1"
                 aria-hidden="true"
               />
@@ -79,7 +79,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <article
-      className={`group bg-white border border-ornate-gold/20 hover:border-ornate-darkgold/50 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col ${className}`}
+      className={`group ornate-card overflow-hidden hover:border-ornate-moss/45 hover:shadow-md flex flex-col ${className}`}
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-ornate-cream">
         <img
@@ -88,7 +88,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
-        <span className="absolute top-3.5 left-3.5 px-2.5 py-1 bg-ornate-softblack/85 backdrop-blur-sm text-ornate-gold font-display uppercase tracking-[0.14em] text-[10px]">
+        <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-ornate-softblack/85 backdrop-blur-sm text-ornate-gold text-xs font-semibold">
           {category}
         </span>
       </div>
@@ -96,26 +96,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className="p-6 flex-1 flex flex-col justify-between">
         <div>
           {scope && (
-            <p className="font-display uppercase tracking-[0.14em] text-[11px] text-ornate-darkgold mb-1.5">
+            <p className="text-xs font-semibold text-ornate-darkgold mb-1.5">
               {scope}
             </p>
           )}
           <h3 className="font-serif text-xl text-ornate-charcoal mb-2 leading-snug">
             {title}
           </h3>
-          <p className="text-ornate-charcoal/75 text-sm leading-relaxed line-clamp-2 mb-5">
+          <p className="text-ornate-muted text-sm leading-relaxed line-clamp-2 mb-5">
             {description}
           </p>
         </div>
 
-        <div className="pt-4 border-t border-ornate-gold/15">
+        <div className="pt-4 border-t border-ornate-border">
           <Link
             to={link}
-            className="inline-flex items-center text-ornate-darkgold hover:text-ornate-charcoal font-display text-xs uppercase tracking-[0.14em] transition-colors"
+            className="inline-flex items-center text-ornate-moss hover:text-ornate-darkgold text-sm font-semibold transition-colors"
           >
             Inquire About Space
             <ArrowRight
-              size={14}
+              size={15}
               className="ml-2 transform transition-transform group-hover:translate-x-1"
               aria-hidden="true"
             />

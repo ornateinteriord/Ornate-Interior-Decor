@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-ornate-offwhite min-h-screen pt-8 md:pt-28 pb-16 flex items-center justify-center px-4">
+    <div className="bg-ornate-offwhite min-h-screen pt-10 md:pt-28 pb-16 flex items-center justify-center px-4">
       <Seo
         title="Sign In"
         description="Sign in to your Ornate Interior Decor account to manage addresses, orders, and checkout."
@@ -40,23 +40,25 @@ const LoginPage: React.FC = () => {
         noIndex
       />
 
-      <div className="w-full max-w-md bg-white border border-ornate-gold/25 rounded-sm shadow-sm p-8 space-y-6">
+      <div className="w-full max-w-md ornate-card p-8 space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-11 h-11 rounded-full bg-ornate-cream border border-ornate-gold/25 mx-auto flex items-center justify-center text-ornate-darkgold">
+          <div className="w-12 h-12 rounded-2xl bg-ornate-sage mx-auto flex items-center justify-center text-ornate-moss">
             <Lock size={20} />
           </div>
-          <p className="ornate-subtitle">Customer Account</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-ornate-darkgold">
+            Customer Account
+          </p>
           <h1 className="font-serif text-3xl text-ornate-charcoal">Sign In</h1>
           {redirect === "/checkout" && (
-            <p className="text-xs bg-ornate-cream/80 border border-ornate-gold/25 px-3 py-2 rounded-sm text-ornate-charcoal">
-              Login is required to proceed to checkout. Your cart items will stay intact.
+            <p className="text-xs bg-ornate-sage/60 border border-ornate-moss/20 px-3 py-2 rounded-xl text-ornate-moss">
+              Login is required to proceed to checkout. Your bag items stay intact.
             </p>
           )}
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block font-display text-xs uppercase tracking-wider text-ornate-charcoal/80 mb-1.5">
+            <label className="block text-xs font-semibold text-ornate-charcoal mb-1.5">
               Email Address
             </label>
             <input
@@ -66,12 +68,12 @@ const LoginPage: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full px-3.5 py-2.5 border border-ornate-gold/30 rounded-sm bg-ornate-offwhite text-sm"
+              className="ornate-input"
             />
           </div>
 
           <div>
-            <label className="block font-display text-xs uppercase tracking-wider text-ornate-charcoal/80 mb-1.5">
+            <label className="block text-xs font-semibold text-ornate-charcoal mb-1.5">
               Password
             </label>
             <div className="relative">
@@ -82,12 +84,12 @@ const LoginPage: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
-                className="w-full px-3.5 py-2.5 pr-10 border border-ornate-gold/30 rounded-sm bg-ornate-offwhite text-sm"
+                className="ornate-input pr-10"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-ornate-charcoal/55"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-ornate-muted"
                 aria-label="Toggle password visibility"
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -105,11 +107,11 @@ const LoginPage: React.FC = () => {
           </button>
         </form>
 
-        <div className="text-center text-sm text-ornate-charcoal/75 pt-2 border-t border-ornate-gold/15">
+        <div className="text-center text-sm text-ornate-muted pt-3 border-t border-ornate-border">
           New to Ornate Studio?{" "}
           <Link
             to={`/register?redirect=${encodeURIComponent(redirect)}`}
-            className="text-ornate-darkgold font-semibold hover:underline"
+            className="text-ornate-moss font-semibold hover:underline"
           >
             Create an Account
           </Link>

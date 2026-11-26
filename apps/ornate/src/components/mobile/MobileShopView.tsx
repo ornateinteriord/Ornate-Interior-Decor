@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   ArrowUpDown,
   Heart,
+  Minus,
   PackageX,
   Plus,
   RefreshCw,
@@ -60,8 +61,14 @@ const MobileShopView: React.FC<ShopViewProps> = ({
   onResetFilters,
 }) => {
   const [filterSheetOpen, setFilterSheetOpen] = useState(false);
-  const { addToCart } = useCart();
+  const { items: cartItems, addToCart, updateQuantity } = useCart();
   const { isWishlisted, toggleWishlist, recentlyViewedIds } = useStoreExtras();
+
+  const cartQtyByProduct = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const item of cartItems) map.set(item.productId, item.quantity);
+    return map;
+  }, [cartItems]);
 
   const recentlyViewed = useMemo(() => {
     const map = new Map(products.map((p) => [p.id, p]));
@@ -72,12 +79,12 @@ const MobileShopView: React.FC<ShopViewProps> = ({
   }, [products, recentlyViewedIds]);
 
   return (
-    <div className="bg-ornate-offwhite min-h-screen pb-4">
-      <div className="sticky top-14 z-30 bg-ornate-offwhite/95 backdrop-blur-md border-b border-ornate-gold/20 pt-3 pb-2.5 px-4 space-y-2.5">
+    <div className="bg-ornate-offwhite min-h-screen pb-6">
+      <div className="sticky top-14 z-30 bg-ornate-offwhite/95 backdrop-blur-md border-b border-ornate-border pt-3 pb-2.5 px-4 space-y-2.5">
         <div className="relative">
           <Search
             size={17}
-            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ornate-charcoal/50"
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ornate-muted"
             aria-hidden="true"
           />
           <input
@@ -86,28 +93,28 @@ const MobileShopView: React.FC<ShopViewProps> = ({
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search desks, chairs, brands..."
             aria-label="Search furniture products"
-            className="w-full h-11 pl-10 pr-10 rounded-xl bg-white border border-ornate-gold/25 shadow-sm text-sm text-ornate-charcoal placeholder:text-ornate-charcoal/45 focus:border-ornate-darkgold outline-none"
+            className="w-full h-11 pl-10 pr-10 rounded-full bg-white border border-ornate-border shadow-xs text-sm text-ornate-charcoal placeholder:text-ornate-muted/70 focus:border-ornate-moss outline-none"
           />
           {filters.search && (
             <button
               type="button"
               onClick={() => onSearchChange("")}
               aria-label="Clear search"
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal/70"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal"
             >
               <X size={13} />
             </button>
           )}
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-0.5 -mx-0.5">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
           <button
             type="button"
             onClick={() => onSubcategoryChange("all")}
-            className={`shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium border transition-all ${
+            className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all ${
               filters.subcategory === "all"
-                ? "bg-ornate-charcoal text-white border-ornate-charcoal shadow-sm"
-                : "bg-white text-ornate-charcoal border-ornate-gold/25"
+                ? "bg-ornate-moss text-white border-ornate-moss shadow-xs"
+                : "bg-white text-ornate-charcoal border-ornate-border"
             }`}
           >
             All ({subcategoryCounts.all ?? products.length})
@@ -119,10 +126,10 @@ const MobileShopView: React.FC<ShopViewProps> = ({
                 key={sub.slug}
                 type="button"
                 onClick={() => onSubcategoryChange(sub.slug)}
-                className={`shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium border transition-all ${
+                className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                   isActive
-                    ? "bg-ornate-charcoal text-white border-ornate-charcoal shadow-sm"
-                    : "bg-white text-ornate-charcoal border-ornate-gold/25"
+                    ? "bg-ornate-moss text-white border-ornate-moss shadow-xs"
+                    : "bg-white text-ornate-charcoal border-ornate-border"
                 }`}
               >
                 {sub.name} ({subcategoryCounts[sub.slug] ?? 0})
@@ -132,20 +139,20 @@ const MobileShopView: React.FC<ShopViewProps> = ({
         </div>
 
         <div className="flex items-center justify-between gap-2 pt-0.5">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 px-0.5 -mx-0.5">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
             <button
               type="button"
               onClick={() => setFilterSheetOpen(true)}
-              className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+              className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                 activeFilterCount > 0
-                  ? "bg-ornate-gold/20 border-ornate-darkgold text-ornate-charcoal"
-                  : "bg-white border-ornate-gold/25 text-ornate-charcoal"
+                  ? "bg-ornate-sage border-ornate-moss text-ornate-moss"
+                  : "bg-white border-ornate-border text-ornate-charcoal"
               }`}
             >
               <SlidersHorizontal size={13} aria-hidden="true" />
               Filters
               {activeFilterCount > 0 && (
-                <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-ornate-charcoal text-white text-[10px]">
+                <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-ornate-moss text-white text-[10px]">
                   {activeFilterCount}
                 </span>
               )}
@@ -154,10 +161,10 @@ const MobileShopView: React.FC<ShopViewProps> = ({
             <button
               type="button"
               onClick={() => onDealsOnlyChange(!filters.dealsOnly)}
-              className={`shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+              className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                 filters.dealsOnly
-                  ? "bg-amber-50 border-ornate-darkgold text-ornate-charcoal"
-                  : "bg-white border-ornate-gold/25 text-ornate-charcoal/80"
+                  ? "bg-amber-50 border-ornate-darkgold text-ornate-darkgold"
+                  : "bg-white border-ornate-border text-ornate-charcoal"
               }`}
             >
               Deals
@@ -166,14 +173,14 @@ const MobileShopView: React.FC<ShopViewProps> = ({
             <button
               type="button"
               onClick={() => setFilterSheetOpen(true)}
-              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-white border border-ornate-gold/25 text-ornate-charcoal/80"
+              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-ornate-border text-ornate-charcoal"
             >
               <ArrowUpDown size={12} aria-hidden="true" />
               {SORT_LABELS[filters.sortBy]}
             </button>
           </div>
 
-          <span className="shrink-0 text-[11px] font-medium text-ornate-charcoal/60">
+          <span className="shrink-0 text-xs font-semibold text-ornate-muted price-nums">
             {filteredProducts.length} items
           </span>
         </div>
@@ -185,7 +192,7 @@ const MobileShopView: React.FC<ShopViewProps> = ({
             {Array.from({ length: 4 }).map((_, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-ornate-gold/15 overflow-hidden animate-pulse"
+                className="bg-white rounded-2xl border border-ornate-border overflow-hidden animate-pulse"
               >
                 <div className="aspect-[4/4.2] bg-ornate-cream" />
                 <div className="p-3 space-y-2">
@@ -198,18 +205,18 @@ const MobileShopView: React.FC<ShopViewProps> = ({
         )}
 
         {isError && !isLoading && (
-          <div className="bg-white rounded-3xl border border-ornate-gold/20 p-8 text-center mt-4">
+          <div className="ornate-card p-8 text-center mt-4">
             <PackageX size={34} className="mx-auto text-ornate-darkgold mb-2" />
             <h2 className="font-serif text-xl text-ornate-charcoal mb-1.5">
               Could Not Load Catalog
             </h2>
-            <p className="text-xs text-ornate-charcoal/70 mb-5">
+            <p className="text-xs text-ornate-muted mb-5">
               Tap below to reload products from the store API.
             </p>
             <button
               type="button"
               onClick={onRetry}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ornate-charcoal text-white text-xs font-medium"
+              className="ornate-btn-primary text-xs py-2.5 px-5 gap-2"
             >
               <RefreshCw size={14} /> Retry
             </button>
@@ -217,15 +224,18 @@ const MobileShopView: React.FC<ShopViewProps> = ({
         )}
 
         {!isLoading && !isError && filteredProducts.length === 0 && (
-          <div className="bg-white rounded-3xl border border-ornate-gold/20 p-8 text-center mt-4">
+          <div className="ornate-card p-8 text-center mt-4">
             <Search size={30} className="mx-auto text-ornate-darkgold mb-2" />
             <h2 className="font-serif text-xl text-ornate-charcoal mb-1.5">
               No Furniture Found
             </h2>
+            <p className="text-xs text-ornate-muted mb-4">
+              Try clearing your active filters or search terms.
+            </p>
             <button
               type="button"
               onClick={onResetFilters}
-              className="mt-3 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-ornate-charcoal text-white text-xs font-medium"
+              className="ornate-btn-primary text-xs py-2.5 px-5 gap-1.5"
             >
               <RotateCcw size={13} /> Reset Filters
             </button>
@@ -236,10 +246,11 @@ const MobileShopView: React.FC<ShopViewProps> = ({
           <div className="grid grid-cols-2 gap-3">
             {filteredProducts.map((product) => {
               const wishlisted = isWishlisted(product.id);
+              const cartQty = cartQtyByProduct.get(product.id) || 0;
               return (
                 <div
                   key={product.id}
-                  className="bg-white rounded-xl border border-ornate-gold/20 overflow-hidden shadow-sm flex flex-col justify-between"
+                  className="bg-white rounded-2xl border border-ornate-border overflow-hidden shadow-xs flex flex-col justify-between"
                 >
                   <div>
                     <div className="relative aspect-[4/4.2] bg-ornate-cream overflow-hidden">
@@ -252,7 +263,7 @@ const MobileShopView: React.FC<ShopViewProps> = ({
                         />
                       </Link>
                       {(product.dealActive || product.isFeatured) && (
-                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-sm bg-ornate-softblack/90 text-ornate-gold text-[10px] font-display uppercase tracking-wider">
+                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-ornate-moss text-white text-[10px] font-semibold">
                           {product.dealActive
                             ? `${product.savingsPercent}% OFF`
                             : "Featured"}
@@ -262,7 +273,7 @@ const MobileShopView: React.FC<ShopViewProps> = ({
                         type="button"
                         onClick={() => void toggleWishlist(product.id, product.name)}
                         aria-label="Save to wishlist"
-                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center shadow-xs"
+                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 border border-ornate-border flex items-center justify-center shadow-xs"
                       >
                         <Heart
                           size={13}
@@ -275,57 +286,82 @@ const MobileShopView: React.FC<ShopViewProps> = ({
 
                     <Link to={`/shop/${product.slug}`} className="block p-3 pb-1.5">
                       <div className="flex items-center justify-between gap-1">
-                        <p className="text-[10px] font-medium uppercase tracking-wider text-ornate-darkgold truncate">
+                        <p className="text-[11px] font-medium text-ornate-darkgold truncate">
                           {product.brand}
                         </p>
                         {product.reviewCount > 0 && (
-                          <span className="inline-flex items-center gap-0.5 text-[10px] text-amber-600 font-semibold">
+                          <span className="inline-flex items-center gap-0.5 text-[11px] text-amber-600 font-semibold">
                             <Star size={10} fill="currentColor" />
                             {product.averageRating}
                           </span>
                         )}
                       </div>
-                      <h3 className="font-serif text-sm text-ornate-charcoal leading-snug line-clamp-2 mt-0.5">
+                      <h3 className="font-sans text-sm font-semibold text-ornate-charcoal leading-snug line-clamp-2 mt-0.5">
                         {product.name}
                       </h3>
                     </Link>
                   </div>
 
-                  <div className="px-3 pb-3 pt-1 space-y-2">
+                  <div className="px-3 pb-3 pt-1 space-y-2.5">
                     <div className="flex items-end justify-between gap-1">
                       <div>
-                        <p className="font-serif text-sm font-semibold text-ornate-charcoal">
+                        <p className="font-sans text-sm font-bold text-ornate-charcoal price-nums">
                           {formatINR(product.price)}
                         </p>
                         {product.mrp && (
-                          <p className="text-[10px] text-ornate-charcoal/45 line-through">
+                          <p className="text-[11px] text-ornate-muted/75 line-through price-nums">
                             {formatINR(product.mrp)}
                           </p>
                         )}
                       </div>
                       {product.savingsPercent > 0 && (
-                        <span className="text-[10px] font-semibold text-emerald-700">
+                        <span className="text-[11px] font-semibold text-emerald-700">
                           -{product.savingsPercent}%
                         </span>
                       )}
                     </div>
 
-                    <button
-                      type="button"
-                      disabled={!product.inStock}
-                      onClick={() => void addToCart(product, 1, true)}
-                      className="w-full h-8 rounded-lg bg-ornate-charcoal text-white text-[11px] font-medium inline-flex items-center justify-center gap-1 disabled:opacity-45"
-                    >
-                      {product.inStock ? (
-                        <>
-                          <Plus size={12} /> Add to Cart
-                        </>
-                      ) : (
-                        <>
-                          <ShoppingBag size={11} /> Sold Out
-                        </>
-                      )}
-                    </button>
+                    {cartQty > 0 ? (
+                      <div className="flex items-center justify-between border border-ornate-moss rounded-full bg-ornate-sage/50 h-8 px-1.5">
+                        <button
+                          type="button"
+                          onClick={() => void updateQuantity(product.id, cartQty - 1)}
+                          aria-label="Decrease quantity"
+                          className="w-6 h-6 rounded-full flex items-center justify-center text-ornate-moss"
+                        >
+                          <Minus size={12} />
+                        </button>
+                        <span className="text-xs font-bold text-ornate-moss price-nums">
+                          {cartQty}
+                        </span>
+                        <button
+                          type="button"
+                          disabled={cartQty >= product.stockCount}
+                          onClick={() => void updateQuantity(product.id, cartQty + 1)}
+                          aria-label="Increase quantity"
+                          className="w-6 h-6 rounded-full flex items-center justify-center text-ornate-moss disabled:opacity-40"
+                        >
+                          <Plus size={12} />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled={!product.inStock}
+                        onClick={() => void addToCart(product, 1, true)}
+                        className="w-full h-8 rounded-full bg-ornate-moss text-white text-xs font-semibold inline-flex items-center justify-center gap-1 disabled:opacity-45"
+                      >
+                        {product.inStock ? (
+                          <>
+                            <Plus size={13} /> Add
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingBag size={12} /> Sold Out
+                          </>
+                        )}
+                      </button>
+                    )}
                   </div>
                 </div>
               );
@@ -343,7 +379,7 @@ const MobileShopView: React.FC<ShopViewProps> = ({
                 <Link
                   key={item.id}
                   to={`/shop/${item.slug}`}
-                  className="w-36 shrink-0 bg-white rounded-xl border border-ornate-gold/20 overflow-hidden"
+                  className="w-36 shrink-0 bg-white rounded-2xl border border-ornate-border overflow-hidden"
                 >
                   <div className="h-24 bg-ornate-cream">
                     <img
@@ -352,9 +388,11 @@ const MobileShopView: React.FC<ShopViewProps> = ({
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-2">
-                    <p className="font-serif text-xs line-clamp-1">{item.name}</p>
-                    <p className="text-xs font-semibold text-ornate-darkgold">
+                  <div className="p-2.5">
+                    <p className="font-sans text-xs font-semibold text-ornate-charcoal line-clamp-1">
+                      {item.name}
+                    </p>
+                    <p className="text-xs font-bold text-ornate-moss mt-0.5 price-nums">
                       {formatINR(item.price)}
                     </p>
                   </div>
@@ -367,8 +405,8 @@ const MobileShopView: React.FC<ShopViewProps> = ({
 
       {/* Filter Sheet */}
       <Drawer open={filterSheetOpen} onOpenChange={setFilterSheetOpen}>
-        <DrawerContent className="max-h-[85vh] bg-ornate-offwhite rounded-t-2xl">
-          <DrawerHeader className="text-left border-b border-ornate-gold/15 pb-3">
+        <DrawerContent className="max-h-[85vh] bg-ornate-offwhite rounded-t-3xl">
+          <DrawerHeader className="text-left border-b border-ornate-border pb-3">
             <div className="flex items-center justify-between">
               <DrawerTitle className="font-serif text-xl text-ornate-charcoal">
                 Filter &amp; Sort
@@ -376,19 +414,19 @@ const MobileShopView: React.FC<ShopViewProps> = ({
               <button
                 type="button"
                 onClick={onResetFilters}
-                className="text-xs font-medium text-ornate-darkgold"
+                className="text-xs font-semibold text-ornate-darkgold"
               >
                 Reset All
               </button>
             </div>
-            <DrawerDescription className="text-xs text-ornate-charcoal/65">
+            <DrawerDescription className="text-xs text-ornate-muted">
               Narrow down furniture by brand, budget, deals, and availability.
             </DrawerDescription>
           </DrawerHeader>
 
           <div className="px-4 py-4 overflow-y-auto space-y-6">
             <div>
-              <p className="text-xs font-display uppercase tracking-wider text-ornate-charcoal/75 mb-2.5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-ornate-muted mb-2.5">
                 Sort By
               </p>
               <div className="flex flex-wrap gap-2">
@@ -397,10 +435,10 @@ const MobileShopView: React.FC<ShopViewProps> = ({
                     key={key}
                     type="button"
                     onClick={() => onSortChange(key)}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-medium border ${
+                    className={`px-3.5 py-2 rounded-full text-xs font-semibold border ${
                       filters.sortBy === key
-                        ? "bg-ornate-charcoal text-white border-ornate-charcoal"
-                        : "bg-white text-ornate-charcoal border-ornate-gold/25"
+                        ? "bg-ornate-moss text-white border-ornate-moss"
+                        : "bg-white text-ornate-charcoal border-ornate-border"
                     }`}
                   >
                     {SORT_LABELS[key]}
@@ -411,17 +449,17 @@ const MobileShopView: React.FC<ShopViewProps> = ({
 
             {availableBrands.length > 0 && (
               <div>
-                <p className="text-xs font-display uppercase tracking-wider text-ornate-charcoal/75 mb-2.5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-ornate-muted mb-2.5">
                   Brand
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
                     onClick={() => onBrandChange("all")}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-medium border ${
+                    className={`px-3.5 py-2 rounded-full text-xs font-semibold border ${
                       filters.brand === "all"
-                        ? "bg-ornate-charcoal text-white border-ornate-charcoal"
-                        : "bg-white text-ornate-charcoal border-ornate-gold/25"
+                        ? "bg-ornate-moss text-white border-ornate-moss"
+                        : "bg-white text-ornate-charcoal border-ornate-border"
                     }`}
                   >
                     All Brands
@@ -431,10 +469,10 @@ const MobileShopView: React.FC<ShopViewProps> = ({
                       key={brand}
                       type="button"
                       onClick={() => onBrandChange(brand)}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-medium border ${
+                      className={`px-3.5 py-2 rounded-full text-xs font-semibold border ${
                         filters.brand === brand
-                          ? "bg-ornate-charcoal text-white border-ornate-charcoal"
-                          : "bg-white text-ornate-charcoal border-ornate-gold/25"
+                          ? "bg-ornate-moss text-white border-ornate-moss"
+                          : "bg-white text-ornate-charcoal border-ornate-border"
                       }`}
                     >
                       {brand}
@@ -446,10 +484,10 @@ const MobileShopView: React.FC<ShopViewProps> = ({
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                <p className="text-xs font-display uppercase tracking-wider text-ornate-charcoal/75">
+                <p className="text-xs font-semibold uppercase tracking-wider text-ornate-muted">
                   Max Budget
                 </p>
-                <span className="text-sm font-semibold text-ornate-darkgold">
+                <span className="text-sm font-bold text-ornate-moss price-nums">
                   {formatINR(filters.maxPrice)}
                 </span>
               </div>
@@ -464,16 +502,16 @@ const MobileShopView: React.FC<ShopViewProps> = ({
               />
             </div>
 
-            <div className="bg-white rounded-2xl border border-ornate-gold/20 divide-y divide-ornate-gold/10">
+            <div className="bg-white rounded-2xl border border-ornate-border divide-y divide-ornate-border">
               <div className="p-4 flex items-center justify-between">
-                <span className="text-sm font-medium">In Stock Only</span>
+                <span className="text-sm font-medium text-ornate-charcoal">In Stock Only</span>
                 <Switch
                   checked={filters.inStockOnly}
                   onCheckedChange={onInStockChange}
                 />
               </div>
               <div className="p-4 flex items-center justify-between">
-                <span className="text-sm font-medium">Special Deals Only</span>
+                <span className="text-sm font-medium text-ornate-charcoal">Special Deals Only</span>
                 <Switch
                   checked={filters.dealsOnly}
                   onCheckedChange={onDealsOnlyChange}
@@ -482,11 +520,11 @@ const MobileShopView: React.FC<ShopViewProps> = ({
             </div>
           </div>
 
-          <DrawerFooter className="border-t border-ornate-gold/15 bg-white">
+          <DrawerFooter className="border-t border-ornate-border bg-white">
             <button
               type="button"
               onClick={() => setFilterSheetOpen(false)}
-              className="w-full h-12 rounded-xl bg-ornate-charcoal text-white font-display text-xs uppercase tracking-wider"
+              className="w-full h-12 rounded-full bg-ornate-moss text-white text-sm font-semibold"
             >
               Show {filteredProducts.length} Furniture Pieces
             </button>

@@ -91,7 +91,7 @@ const Terms = () => {
     return (
       <div
         key={section.id}
-        className="bg-white border border-ornate-gold/20 shadow-sm"
+        className="ornate-card overflow-hidden"
       >
         <h3>
           <button
@@ -100,10 +100,10 @@ const Terms = () => {
             aria-expanded={isOpen}
             aria-controls={panelId}
             onClick={() => toggleSection(section.id)}
-            className="w-full px-6 py-5 flex items-center justify-between text-left transition-colors duration-200 hover:bg-ornate-cream/50 gap-4"
+            className="w-full px-6 py-5 flex items-center justify-between text-left transition-colors duration-200 hover:bg-ornate-offwhite gap-4"
           >
-            <div className="flex items-center space-x-4">
-              <div className="text-ornate-darkgold flex-shrink-0" aria-hidden="true">
+            <div className="flex items-center space-x-3.5">
+              <div className="w-9 h-9 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss flex-shrink-0" aria-hidden="true">
                 {section.icon}
               </div>
               <span className="font-serif text-lg md:text-xl text-ornate-charcoal">
@@ -112,7 +112,7 @@ const Terms = () => {
             </div>
             <ChevronDown
               aria-hidden="true"
-              className={`w-5 h-5 text-ornate-darkgold flex-shrink-0 transition-transform duration-200 ${
+              className={`w-5 h-5 text-ornate-moss flex-shrink-0 transition-transform duration-200 ${
                 isOpen ? "rotate-180" : ""
               }`}
             />
@@ -123,7 +123,7 @@ const Terms = () => {
           role="region"
           aria-labelledby={btnId}
           hidden={!isOpen}
-          className="px-6 pb-5 text-ornate-charcoal/80 text-sm leading-relaxed border-t border-ornate-gold/10 pt-4"
+          className="px-6 pb-5 text-ornate-muted text-sm leading-relaxed border-t border-ornate-border pt-4"
         >
           {section.content}
         </div>
@@ -172,29 +172,29 @@ const Terms = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-ornate-charcoal text-white">
+      <section className="py-20 bg-ornate-moss text-white">
         <div className="ornate-container">
           <div className="text-center max-w-3xl mx-auto">
-            <p className="text-ornate-gold text-xs uppercase tracking-widest font-display mb-3">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-ornate-gold text-xs font-semibold mb-3">
               Clarifications
-            </p>
-            <h2 className="text-3xl md:text-5xl font-serif mb-6">
+            </span>
+            <h2 className="text-3xl md:text-5xl font-serif mb-5">
               Need Clarification on Project Terms?
             </h2>
             <p className="text-white/80 leading-relaxed mb-8">
               Contact our Bengaluru office before commissioning your project or review our Privacy Policy.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3.5">
               <Link
                 to="/contact"
-                className="ornate-btn bg-ornate-gold text-ornate-softblack hover:bg-white inline-flex items-center font-medium"
+                className="ornate-btn-accent inline-flex items-center"
               >
                 Contact Us
                 <ArrowRight size={16} className="ml-2" aria-hidden="true" />
               </Link>
               <Link
                 to="/privacy-policy"
-                className="ornate-btn border border-white/40 text-white hover:bg-white hover:text-ornate-charcoal"
+                className="ornate-btn border border-white/35 text-white hover:bg-white hover:text-ornate-softblack"
               >
                 Privacy Policy
               </Link>

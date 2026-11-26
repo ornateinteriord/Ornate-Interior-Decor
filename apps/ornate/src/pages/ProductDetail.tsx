@@ -63,7 +63,6 @@ const ProductDetail: React.FC = () => {
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [qty, setQty] = useState(1);
 
-  // Pincode check
   const [pincode, setPincode] = useState("560040");
   const [pincodeInfo, setPincodeInfo] = useState<{
     zone: string;
@@ -72,10 +71,7 @@ const ProductDetail: React.FC = () => {
     note: string;
   } | null>(null);
 
-  // Stock Alert
   const [alertEmail, setAlertEmail] = useState("");
-
-  // Reviews
   const [rating, setRating] = useState(5);
   const [reviewTitle, setReviewTitle] = useState("");
   const [reviewComment, setReviewComment] = useState("");
@@ -139,15 +135,15 @@ const ProductDetail: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-ornate-offwhite min-h-screen pt-4 md:pt-28 pb-16">
+      <div className="bg-ornate-offwhite min-h-screen pt-6 md:pt-28 pb-16">
         <div className="ornate-container">
           <div className="animate-pulse grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-6 aspect-[4/3] bg-ornate-cream rounded-sm" />
+            <div className="lg:col-span-6 aspect-[4/3] bg-ornate-cream rounded-2xl" />
             <div className="lg:col-span-6 space-y-4 py-4">
               <div className="h-3 w-40 bg-ornate-cream rounded" />
               <div className="h-9 w-3/4 bg-ornate-cream rounded" />
               <div className="h-6 w-1/3 bg-ornate-cream rounded" />
-              <div className="h-28 w-full bg-ornate-cream rounded" />
+              <div className="h-28 w-full bg-ornate-cream rounded-2xl" />
             </div>
           </div>
         </div>
@@ -159,7 +155,7 @@ const ProductDetail: React.FC = () => {
     return (
       <div className="bg-ornate-offwhite min-h-screen pt-10 md:pt-32 pb-20">
         <div className="ornate-container">
-          <div className="max-w-lg mx-auto bg-white border border-ornate-gold/20 rounded-sm p-10 text-center shadow-sm">
+          <div className="max-w-lg mx-auto ornate-card p-10 text-center">
             <PackageX size={38} className="mx-auto text-ornate-darkgold mb-3" />
             <h1 className="font-serif text-2xl text-ornate-charcoal mb-2">
               Unable to Load Product
@@ -187,13 +183,13 @@ const ProductDetail: React.FC = () => {
           noIndex
         />
         <div className="ornate-container">
-          <div className="max-w-lg mx-auto bg-white border border-ornate-gold/20 rounded-sm p-10 text-center shadow-sm">
+          <div className="max-w-lg mx-auto ornate-card p-10 text-center">
             <PackageX size={38} className="mx-auto text-ornate-darkgold mb-3" />
             <h1 className="font-serif text-3xl text-ornate-charcoal mb-2">
               Product Not Found
             </h1>
             <Link to="/shop" className="ornate-btn-primary inline-flex items-center gap-2 mt-4">
-              <ArrowLeft size={15} /> Back to Furniture Shop
+              <ArrowLeft size={15} /> Back to Furniture Store
             </Link>
           </div>
         </div>
@@ -292,28 +288,28 @@ const ProductDetail: React.FC = () => {
 
       {/* Desktop View */}
       <div className="hidden md:block">
-        <section className="pt-24 pb-5 bg-ornate-cream/65 border-b border-ornate-gold/20">
+        <section className="pt-28 pb-4 bg-ornate-cream border-b border-ornate-border">
           <div className="ornate-container flex items-center justify-between gap-4">
             <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-2 text-[11px] font-display uppercase tracking-[0.16em] text-ornate-charcoal/65">
+              <ol className="inline-flex flex-wrap items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-ornate-border text-xs font-medium text-ornate-muted">
                 <li>
-                  <Link to="/" className="hover:text-ornate-darkgold">Home</Link>
+                  <Link to="/" className="hover:text-ornate-moss">Home</Link>
                 </li>
                 <li><ChevronRight size={13} className="text-ornate-darkgold" /></li>
                 <li>
-                  <Link to="/shop" className="hover:text-ornate-darkgold">Shop</Link>
+                  <Link to="/shop" className="hover:text-ornate-moss">Shop</Link>
                 </li>
                 <li><ChevronRight size={13} className="text-ornate-darkgold" /></li>
                 <li>
                   <Link
                     to={`/shop?category=${product.subcategorySlug}`}
-                    className="hover:text-ornate-darkgold"
+                    className="hover:text-ornate-moss"
                   >
                     {product.subcategoryName}
                   </Link>
                 </li>
                 <li><ChevronRight size={13} className="text-ornate-darkgold" /></li>
-                <li aria-current="page" className="text-ornate-charcoal font-medium truncate max-w-[260px]">
+                <li aria-current="page" className="text-ornate-charcoal font-semibold truncate max-w-[260px]">
                   {product.name}
                 </li>
               </ol>
@@ -323,13 +319,13 @@ const ProductDetail: React.FC = () => {
               <button
                 type="button"
                 onClick={handleShare}
-                className="inline-flex items-center gap-1.5 text-xs text-ornate-charcoal/75 hover:text-ornate-darkgold"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-ornate-charcoal hover:text-ornate-moss px-3 py-1.5 rounded-full bg-white border border-ornate-border"
               >
-                <Share2 size={14} /> Share
+                <Share2 size={13} /> Share
               </button>
               <Link
                 to="/shop"
-                className="inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.14em] text-ornate-darkgold hover:text-ornate-charcoal shrink-0"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-ornate-moss hover:text-ornate-darkgold shrink-0"
               >
                 <ArrowLeft size={14} /> All Furniture
               </Link>
@@ -337,33 +333,33 @@ const ProductDetail: React.FC = () => {
           </div>
         </section>
 
-        <section className="py-12 lg:py-14">
+        <section className="py-10 lg:py-12">
           <div className="ornate-container">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               {/* Gallery */}
-              <div className="lg:col-span-6 lg:sticky lg:top-28 space-y-3">
-                <div className="relative aspect-[4/3] bg-white border border-ornate-gold/25 rounded-sm overflow-hidden shadow-sm">
+              <div className="lg:col-span-6 lg:sticky lg:top-24 space-y-3">
+                <div className="relative aspect-[4/3] bg-white border border-ornate-border rounded-2xl overflow-hidden shadow-sm">
                   <img
                     src={activeImage.url}
                     alt={activeImage.alt || product.name}
                     className="w-full h-full object-cover"
                   />
                   {(product.dealActive || product.isFeatured) && (
-                    <span className="absolute top-4 left-4 px-3 py-1 bg-ornate-softblack/90 text-ornate-gold font-display text-[10px] uppercase tracking-[0.16em]">
+                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-ornate-moss text-white text-xs font-semibold">
                       {product.dealActive
                         ? `Deal · ${product.savingsPercent}% Off`
                         : "Featured Piece"}
                     </span>
                   )}
                   <span
-                    className={`absolute top-4 right-4 px-3 py-1 text-xs font-medium rounded-sm border ${
+                    className={`absolute top-4 right-4 px-3 py-1 text-xs font-semibold rounded-full border ${
                       product.inStock
                         ? "bg-white/95 text-emerald-800 border-emerald-200"
                         : "bg-white/95 text-rose-700 border-rose-200"
                     }`}
                   >
                     {product.inStock
-                      ? `In Stock (${product.stockCount} available)`
+                      ? `In Stock (${product.stockCount})`
                       : "Out of Stock"}
                   </span>
                 </div>
@@ -375,10 +371,10 @@ const ProductDetail: React.FC = () => {
                         key={img.id || img.url}
                         type="button"
                         onClick={() => setActiveImageIdx(idx)}
-                        className={`aspect-square overflow-hidden rounded-sm border bg-white ${
+                        className={`aspect-square overflow-hidden rounded-xl border bg-white ${
                           idx === activeImageIdx
-                            ? "border-ornate-charcoal ring-1 ring-ornate-charcoal"
-                            : "border-ornate-gold/25 opacity-75 hover:opacity-100"
+                            ? "border-ornate-moss ring-2 ring-ornate-moss/40"
+                            : "border-ornate-border opacity-75 hover:opacity-100"
                         }`}
                       >
                         <img
@@ -395,27 +391,27 @@ const ProductDetail: React.FC = () => {
               {/* Details & Purchase Controls */}
               <div className="lg:col-span-6 space-y-6">
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs font-display uppercase tracking-[0.16em] text-ornate-darkgold mb-2">
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-ornate-darkgold mb-2">
                     <span>{product.subcategoryName}</span>
                     <span>·</span>
                     <span>{product.brand}</span>
                     <span>·</span>
-                    <span className="text-ornate-charcoal/60">{product.sku}</span>
+                    <span className="font-mono text-ornate-muted">{product.sku}</span>
                   </div>
 
-                  <h1 className="font-serif text-3xl lg:text-4xl text-ornate-charcoal leading-[1.15] tracking-tight mb-3">
+                  <h1 className="font-serif text-3xl lg:text-4xl text-ornate-charcoal leading-[1.12] tracking-tight mb-3">
                     {product.name}
                   </h1>
 
-                  <div className="flex flex-wrap items-center gap-4 mb-3">
+                  <div className="flex flex-wrap items-center gap-3 mb-3">
                     {reviews.length > 0 && (
                       <a
                         href="#product-reviews"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium bg-white px-2.5 py-1 border border-ornate-gold/25 rounded-sm"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold bg-white px-3 py-1 border border-ornate-border rounded-full"
                       >
                         <Star size={13} className="text-amber-500 fill-amber-500" />
                         <span>{product.averageRating || "5.0"}</span>
-                        <span className="text-ornate-charcoal/60">
+                        <span className="text-ornate-muted">
                           ({reviews.length} reviews)
                         </span>
                       </a>
@@ -423,66 +419,67 @@ const ProductDetail: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => void toggleWishlist(product.id, product.name)}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-ornate-charcoal/80 hover:text-rose-700"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-ornate-charcoal hover:text-rose-700 px-3 py-1 rounded-full bg-white border border-ornate-border"
                     >
                       <Heart
-                        size={14}
+                        size={13}
                         className={wishlisted ? "fill-rose-600 text-rose-600" : ""}
                       />
-                      {wishlisted ? "Saved to Wishlist" : "Add to Wishlist"}
+                      {wishlisted ? "Saved" : "Wishlist"}
                     </button>
                     <button
                       type="button"
                       onClick={() => toggleCompare(product.id, product.name)}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-ornate-charcoal/80 hover:text-ornate-darkgold"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-ornate-charcoal hover:text-ornate-moss px-3 py-1 rounded-full bg-white border border-ornate-border"
                     >
-                      <GitCompareArrows size={14} />
+                      <GitCompareArrows size={13} />
                       {compared ? "In Compare" : "Compare"}
                     </button>
                   </div>
 
                   {product.shortDescription && (
-                    <p className="text-sm text-ornate-charcoal/75 leading-relaxed">
+                    <p className="text-sm text-ornate-muted leading-relaxed">
                       {product.shortDescription}
                     </p>
                   )}
                 </div>
 
                 {/* Price & Cart Box */}
-                <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-4 shadow-sm">
+                <div className="ornate-card p-6 space-y-4">
                   <div className="flex flex-wrap items-baseline gap-3">
-                    <span className="font-serif text-3xl font-semibold text-ornate-charcoal">
+                    <span className="font-sans text-3xl font-bold text-ornate-charcoal price-nums">
                       {formatINR(product.price)}
                     </span>
                     {product.mrp && (
-                      <span className="text-base text-ornate-charcoal/45 line-through">
+                      <span className="text-base text-ornate-muted line-through price-nums">
                         {formatINR(product.mrp)}
                       </span>
                     )}
                     {product.savingsPercent > 0 && (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-sm bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
                         <Tag size={12} />
                         {product.savingsPercent}% off
                         {savingsAmount > 0 ? ` (Save ${formatINR(savingsAmount)})` : ""}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-ornate-charcoal/60">
-                    Inclusive of all taxes (18% GST). Free shipping above ₹25,000.
+                  <p className="text-xs text-ornate-muted">
+                    Inclusive of all taxes (18% GST). Free insured delivery above ₹25,000.
                   </p>
 
                   {product.inStock ? (
                     <div className="space-y-3 pt-1">
                       <div className="flex items-center gap-3">
-                        <div className="flex items-center border border-ornate-gold/30 rounded-sm bg-ornate-offwhite">
+                        <div className="flex items-center border border-ornate-border rounded-full bg-ornate-offwhite px-1">
                           <button
                             type="button"
                             onClick={() => setQty((q) => Math.max(1, q - 1))}
-                            className="w-10 h-11 flex items-center justify-center hover:bg-ornate-cream"
+                            aria-label="Decrease quantity"
+                            className="w-9 h-10 flex items-center justify-center rounded-full hover:bg-white"
                           >
                             <Minus size={14} />
                           </button>
-                          <span className="w-10 text-center text-sm font-semibold">
+                          <span className="w-9 text-center text-sm font-bold price-nums">
                             {qty}
                           </span>
                           <button
@@ -491,7 +488,8 @@ const ProductDetail: React.FC = () => {
                             onClick={() =>
                               setQty((q) => Math.min(product.stockCount, q + 1))
                             }
-                            className="w-10 h-11 flex items-center justify-center hover:bg-ornate-cream disabled:opacity-40"
+                            aria-label="Increase quantity"
+                            className="w-9 h-10 flex items-center justify-center rounded-full hover:bg-white disabled:opacity-40"
                           >
                             <Plus size={14} />
                           </button>
@@ -502,13 +500,13 @@ const ProductDetail: React.FC = () => {
                           onClick={() => void addToCart(product, qty, true)}
                           className="flex-1 ornate-btn-primary h-11 gap-2"
                         >
-                          <ShoppingBag size={15} /> Add to Cart
+                          <ShoppingBag size={15} /> Add to Bag
                         </button>
 
                         <button
                           type="button"
                           onClick={handleBuyNow}
-                          className="ornate-btn h-11 bg-ornate-gold text-ornate-softblack hover:bg-ornate-darkgold hover:text-white gap-1.5"
+                          className="ornate-btn-accent h-11 gap-1.5"
                         >
                           <Zap size={15} /> Buy Now
                         </button>
@@ -531,7 +529,7 @@ const ProductDetail: React.FC = () => {
                     </div>
                   ) : (
                     <form onSubmit={handleStockAlert} className="space-y-2.5 pt-2">
-                      <p className="text-xs font-medium text-rose-700">
+                      <p className="text-xs font-semibold text-rose-700">
                         Currently Out of Stock — get notified when restocked:
                       </p>
                       <div className="flex gap-2">
@@ -541,11 +539,11 @@ const ProductDetail: React.FC = () => {
                           value={alertEmail}
                           onChange={(e) => setAlertEmail(e.target.value)}
                           placeholder="Enter email for restock alert"
-                          className="flex-1 px-3 py-2 text-xs border border-ornate-gold/30 rounded-sm bg-ornate-offwhite"
+                          className="ornate-input flex-1"
                         />
                         <button
                           type="submit"
-                          className="px-4 py-2 bg-ornate-charcoal text-white text-xs font-medium rounded-sm inline-flex items-center gap-1.5"
+                          className="ornate-btn-primary py-2 px-4 text-xs gap-1.5"
                         >
                           <Bell size={13} /> Notify Me
                         </button>
@@ -554,39 +552,39 @@ const ProductDetail: React.FC = () => {
                   )}
 
                   {/* Pincode Delivery Checker */}
-                  <div className="pt-4 border-t border-ornate-gold/15 space-y-2">
+                  <div className="pt-4 border-t border-ornate-border space-y-2">
                     <form onSubmit={handleCheckPincode} className="flex items-center gap-2">
-                      <MapPin size={15} className="text-ornate-darkgold shrink-0" />
+                      <MapPin size={15} className="text-ornate-moss shrink-0" />
                       <input
                         type="text"
                         maxLength={6}
                         value={pincode}
                         onChange={(e) => setPincode(e.target.value.replace(/\D/g, ""))}
-                        placeholder="Enter 6-digit delivery pincode"
-                        className="w-44 px-3 py-1.5 text-xs border border-ornate-gold/30 rounded-sm bg-ornate-offwhite"
+                        placeholder="6-digit pincode"
+                        className="w-40 px-3 py-1.5 text-xs border border-ornate-border rounded-full bg-ornate-offwhite"
                       />
                       <button
                         type="submit"
-                        className="text-xs font-medium text-ornate-darkgold hover:underline"
+                        className="text-xs font-semibold text-ornate-moss hover:text-ornate-darkgold"
                       >
                         Check Delivery
                       </button>
                     </form>
                     {pincodeInfo && (
-                      <p className="text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-sm">
+                      <p className="text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-xl">
                         <strong>{pincodeInfo.zone}:</strong> Estimated delivery in{" "}
                         {pincodeInfo.estimatedDays}. {pincodeInfo.note}
                       </p>
                     )}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 pt-3 border-t border-ornate-gold/15 text-xs text-ornate-charcoal/75">
+                  <div className="grid grid-cols-2 gap-3 pt-3 border-t border-ornate-border text-xs text-ornate-muted">
                     <div className="flex items-center gap-2">
-                      <ShieldCheck size={15} className="text-ornate-darkgold shrink-0" />
+                      <ShieldCheck size={15} className="text-ornate-moss shrink-0" />
                       <span>Razorpay Verified Online Checkout</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Truck size={15} className="text-ornate-darkgold shrink-0" />
+                      <Truck size={15} className="text-ornate-moss shrink-0" />
                       <span>Bengaluru Delivery &amp; Setup</span>
                     </div>
                   </div>
@@ -594,45 +592,45 @@ const ProductDetail: React.FC = () => {
 
                 {product.longDescription && (
                   <div className="space-y-2">
-                    <h2 className="font-display text-xs uppercase tracking-[0.16em] text-ornate-darkgold">
+                    <h2 className="text-xs font-semibold uppercase tracking-wider text-ornate-darkgold">
                       Overview
                     </h2>
-                    <p className="text-sm md:text-base text-ornate-charcoal/80 leading-relaxed">
+                    <p className="text-sm md:text-base text-ornate-charcoal/85 leading-relaxed">
                       {product.longDescription}
                     </p>
                   </div>
                 )}
 
-                <div className="bg-white border border-ornate-gold/25 rounded-sm overflow-hidden">
-                  <div className="px-5 py-3.5 bg-ornate-cream/55 border-b border-ornate-gold/15 flex items-center gap-2">
-                    <Sparkles size={14} className="text-ornate-darkgold" />
-                    <h2 className="font-display text-xs uppercase tracking-[0.16em] text-ornate-charcoal">
+                <div className="ornate-card overflow-hidden">
+                  <div className="px-5 py-3.5 bg-ornate-cream/70 border-b border-ornate-border flex items-center gap-2">
+                    <Sparkles size={15} className="text-ornate-moss" />
+                    <h2 className="font-sans text-xs font-semibold uppercase tracking-wider text-ornate-charcoal">
                       Specifications &amp; Details
                     </h2>
                   </div>
 
-                  <dl className="divide-y divide-ornate-gold/15 text-sm">
+                  <dl className="divide-y divide-ornate-border text-sm">
                     <div className="px-5 py-3 flex items-center justify-between gap-4">
-                      <dt className="text-ornate-charcoal/65">Brand</dt>
-                      <dd className="font-medium text-right">{product.brand}</dd>
+                      <dt className="text-ornate-muted">Brand</dt>
+                      <dd className="font-semibold text-right">{product.brand}</dd>
                     </div>
                     <div className="px-5 py-3 flex items-center justify-between gap-4">
-                      <dt className="text-ornate-charcoal/65">Collection</dt>
-                      <dd className="font-medium text-right">{product.subcategoryName}</dd>
+                      <dt className="text-ornate-muted">Collection</dt>
+                      <dd className="font-semibold text-right">{product.subcategoryName}</dd>
                     </div>
                     <div className="px-5 py-3 flex items-center justify-between gap-4">
-                      <dt className="text-ornate-charcoal/65">SKU</dt>
-                      <dd className="font-medium text-right">{product.sku}</dd>
+                      <dt className="text-ornate-muted">SKU</dt>
+                      <dd className="font-mono text-xs font-medium text-right">{product.sku}</dd>
                     </div>
                     {product.attributes.map((attr) => (
                       <div
                         key={attr.key}
                         className="px-5 py-3 flex items-start justify-between gap-4"
                       >
-                        <dt className="text-ornate-charcoal/65 shrink-0">
+                        <dt className="text-ornate-muted shrink-0">
                           {formatAttributeKey(attr.key)}
                         </dt>
-                        <dd className="font-medium text-right">{attr.value}</dd>
+                        <dd className="font-semibold text-right">{attr.value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -641,15 +639,15 @@ const ProductDetail: React.FC = () => {
             </div>
 
             {/* Customer Reviews */}
-            <div id="product-reviews" className="mt-16 pt-12 border-t border-ornate-gold/20 grid grid-cols-1 lg:grid-cols-12 gap-8">
-              <div className="lg:col-span-5 bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-4">
+            <div id="product-reviews" className="mt-16 pt-12 border-t border-ornate-border grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <div className="lg:col-span-5 ornate-card p-6 space-y-4">
                 <h2 className="font-serif text-2xl text-ornate-charcoal">
                   Customer Reviews ({reviews.length})
                 </h2>
                 {isAuthenticated ? (
                   <form onSubmit={handleReviewSubmit} className="space-y-3">
                     <div>
-                      <label className="block text-xs font-medium mb-1">Your Rating</label>
+                      <label className="block text-xs font-semibold mb-1">Your Rating</label>
                       <div className="flex gap-1.5">
                         {[1, 2, 3, 4, 5].map((starVal) => (
                           <button
@@ -676,7 +674,7 @@ const ProductDetail: React.FC = () => {
                       placeholder="Review headline"
                       value={reviewTitle}
                       onChange={(e) => setReviewTitle(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-ornate-gold/30 rounded-sm bg-ornate-offwhite"
+                      className="ornate-input"
                     />
                     <textarea
                       rows={3}
@@ -684,7 +682,7 @@ const ProductDetail: React.FC = () => {
                       placeholder="Share comfort, finish quality, and delivery experience..."
                       value={reviewComment}
                       onChange={(e) => setReviewComment(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-ornate-gold/30 rounded-sm bg-ornate-offwhite"
+                      className="ornate-input"
                     />
                     <button
                       type="submit"
@@ -695,11 +693,11 @@ const ProductDetail: React.FC = () => {
                     </button>
                   </form>
                 ) : (
-                  <div className="bg-ornate-offwhite p-4 rounded-sm border border-ornate-gold/20 text-xs space-y-2">
+                  <div className="bg-ornate-offwhite p-4 rounded-xl border border-ornate-border text-xs space-y-2">
                     <p>Sign in to rate and review this furniture piece.</p>
                     <Link
                       to={`/login?redirect=/shop/${product.slug}`}
-                      className="inline-block text-ornate-darkgold font-semibold hover:underline"
+                      className="inline-block text-ornate-moss font-semibold hover:underline"
                     >
                       Sign In to Write Review →
                     </Link>
@@ -709,33 +707,33 @@ const ProductDetail: React.FC = () => {
 
               <div className="lg:col-span-7 space-y-3">
                 {reviews.length === 0 ? (
-                  <div className="bg-white border border-ornate-gold/20 rounded-sm p-8 text-center text-sm text-ornate-charcoal/65">
+                  <div className="ornate-card p-8 text-center text-sm text-ornate-muted">
                     No customer reviews yet. Be the first to review {product.name}!
                   </div>
                 ) : (
                   reviews.map((r) => (
                     <div
                       key={r.id}
-                      className="bg-white border border-ornate-gold/20 rounded-sm p-5 space-y-2"
+                      className="ornate-card p-5 space-y-2"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="inline-flex items-center gap-1 text-amber-600 text-xs font-semibold">
                             <Star size={13} fill="currentColor" /> {r.rating}/5
                           </span>
-                          <span className="font-medium text-sm">{r.userName}</span>
+                          <span className="font-semibold text-sm">{r.userName}</span>
                           {r.verifiedPurchase && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-medium">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-semibold">
                               <CheckCircle2 size={10} /> Verified Buyer
                             </span>
                           )}
                         </div>
-                        <span className="text-[11px] text-ornate-charcoal/55">
+                        <span className="text-xs text-ornate-muted">
                           {new Date(r.createdAt).toLocaleDateString("en-IN")}
                         </span>
                       </div>
-                      <h3 className="font-serif text-base">{r.title}</h3>
-                      <p className="text-xs text-ornate-charcoal/75 leading-relaxed">
+                      <h3 className="font-sans font-semibold text-base">{r.title}</h3>
+                      <p className="text-xs text-ornate-muted leading-relaxed">
                         {r.comment}
                       </p>
                     </div>
@@ -747,7 +745,7 @@ const ProductDetail: React.FC = () => {
         </section>
 
         {(relatedProducts.length > 0 || recentlyViewedProducts.length > 0) && (
-          <section className="py-14 bg-white border-t border-ornate-gold/15">
+          <section className="py-14 bg-white border-t border-ornate-border">
             <div className="ornate-container space-y-12">
               {relatedProducts.length > 0 && (
                 <div>
@@ -759,7 +757,7 @@ const ProductDetail: React.FC = () => {
                       <Link
                         key={item.id}
                         to={`/shop/${item.slug}`}
-                        className="group bg-ornate-offwhite border border-ornate-gold/20 rounded-sm overflow-hidden"
+                        className="group ornate-card bg-ornate-offwhite overflow-hidden"
                       >
                         <div className="aspect-[4/3] bg-ornate-cream overflow-hidden">
                           <img
@@ -769,11 +767,13 @@ const ProductDetail: React.FC = () => {
                           />
                         </div>
                         <div className="p-4">
-                          <p className="text-[11px] uppercase tracking-wider text-ornate-darkgold">
+                          <p className="text-xs font-medium text-ornate-darkgold">
                             {item.subcategoryName}
                           </p>
-                          <h3 className="font-serif text-lg mt-1">{item.name}</h3>
-                          <p className="font-semibold text-sm mt-2">
+                          <h3 className="font-sans font-semibold text-base mt-1 text-ornate-charcoal">
+                            {item.name}
+                          </h3>
+                          <p className="font-bold text-sm mt-2 price-nums">
                             {formatINR(item.price)}
                           </p>
                         </div>
@@ -793,7 +793,7 @@ const ProductDetail: React.FC = () => {
                       <Link
                         key={item.id}
                         to={`/shop/${item.slug}`}
-                        className="bg-ornate-offwhite border border-ornate-gold/20 rounded-sm overflow-hidden"
+                        className="ornate-card bg-ornate-offwhite overflow-hidden"
                       >
                         <div className="aspect-[4/3] bg-ornate-cream">
                           <img
@@ -803,8 +803,8 @@ const ProductDetail: React.FC = () => {
                           />
                         </div>
                         <div className="p-3">
-                          <p className="font-serif text-sm line-clamp-1">{item.name}</p>
-                          <p className="text-xs font-semibold text-ornate-darkgold mt-1">
+                          <p className="font-sans text-sm font-semibold line-clamp-1">{item.name}</p>
+                          <p className="text-xs font-bold text-ornate-moss mt-1 price-nums">
                             {formatINR(item.price)}
                           </p>
                         </div>
@@ -818,25 +818,41 @@ const ProductDetail: React.FC = () => {
         )}
       </div>
 
-      {/* Mobile Native View */}
-      <div className="md:hidden pb-24">
-        <div className="bg-white border-b border-ornate-gold/15">
+      {/* Mobile Native View (Full Parity!) */}
+      <div className="md:hidden pb-36">
+        <div className="bg-white border-b border-ornate-border">
           <div className="relative aspect-[4/3] bg-ornate-cream overflow-hidden">
             <img
               src={activeImage.url}
               alt={activeImage.alt || product.name}
               className="w-full h-full object-cover"
             />
-            <button
-              type="button"
-              onClick={() => void toggleWishlist(product.id, product.name)}
-              className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/95 flex items-center justify-center shadow"
-            >
-              <Heart
-                size={16}
-                className={wishlisted ? "fill-rose-600 text-rose-600" : "text-ornate-charcoal"}
-              />
-            </button>
+            {product.dealActive && (
+              <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-ornate-moss text-white text-xs font-semibold">
+                {product.savingsPercent}% Off
+              </span>
+            )}
+            <div className="absolute bottom-3 right-3 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleShare}
+                aria-label="Share product"
+                className="w-9 h-9 rounded-full bg-white/95 border border-ornate-border flex items-center justify-center shadow"
+              >
+                <Share2 size={15} className="text-ornate-charcoal" />
+              </button>
+              <button
+                type="button"
+                onClick={() => void toggleWishlist(product.id, product.name)}
+                aria-label="Toggle wishlist"
+                className="w-9 h-9 rounded-full bg-white/95 border border-ornate-border flex items-center justify-center shadow"
+              >
+                <Heart
+                  size={16}
+                  className={wishlisted ? "fill-rose-600 text-rose-600" : "text-ornate-charcoal"}
+                />
+              </button>
+            </div>
           </div>
           {galleryImages.length > 1 && (
             <div className="flex gap-2 overflow-x-auto no-scrollbar px-4 py-2.5">
@@ -845,8 +861,8 @@ const ProductDetail: React.FC = () => {
                   key={img.id || img.url}
                   type="button"
                   onClick={() => setActiveImageIdx(idx)}
-                  className={`w-14 h-14 shrink-0 rounded-md overflow-hidden border ${
-                    idx === activeImageIdx ? "border-ornate-charcoal" : "border-ornate-gold/25"
+                  className={`w-14 h-14 shrink-0 rounded-xl overflow-hidden border ${
+                    idx === activeImageIdx ? "border-ornate-moss ring-2 ring-ornate-moss/40" : "border-ornate-border"
                   }`}
                 >
                   <img src={img.url} alt="" className="w-full h-full object-cover" />
@@ -857,31 +873,53 @@ const ProductDetail: React.FC = () => {
         </div>
 
         <div className="px-4 pt-4 space-y-4">
-          <div className="bg-white rounded-xl border border-ornate-gold/20 p-4 space-y-2.5">
-            <p className="text-[11px] font-display uppercase tracking-wider text-ornate-darkgold">
-              {product.subcategoryName} · {product.brand}
-            </p>
-            <h1 className="font-serif text-2xl text-ornate-charcoal">{product.name}</h1>
+          <div className="bg-white rounded-2xl border border-ornate-border p-4 space-y-2.5">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-xs font-semibold text-ornate-darkgold">
+                {product.subcategoryName} · {product.brand}
+              </p>
+              <span
+                className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${
+                  product.inStock
+                    ? "bg-emerald-50 text-emerald-800"
+                    : "bg-rose-50 text-rose-700"
+                }`}
+              >
+                {product.inStock ? `${product.stockCount} in stock` : "Sold Out"}
+              </span>
+            </div>
+            <h1 className="font-serif text-2xl text-ornate-charcoal leading-tight">
+              {product.name}
+            </h1>
             <div className="flex items-baseline gap-2.5">
-              <span className="font-serif text-2xl font-semibold">
+              <span className="font-sans text-2xl font-bold text-ornate-charcoal price-nums">
                 {formatINR(product.price)}
               </span>
               {product.mrp && (
-                <span className="text-sm text-ornate-charcoal/45 line-through">
+                <span className="text-sm text-ornate-muted line-through price-nums">
                   {formatINR(product.mrp)}
                 </span>
               )}
+              {product.savingsPercent > 0 && (
+                <span className="text-xs font-semibold text-emerald-700">
+                  -{product.savingsPercent}%
+                </span>
+              )}
             </div>
-            {product.longDescription && (
-              <p className="text-xs text-ornate-charcoal/80 leading-relaxed pt-2 border-t border-ornate-gold/10">
-                {product.longDescription}
+            <p className="text-xs text-ornate-muted">
+              Incl. 18% GST · Free delivery above ₹25,000
+            </p>
+            {(product.longDescription || product.shortDescription) && (
+              <p className="text-xs text-ornate-charcoal/85 leading-relaxed pt-2 border-t border-ornate-border">
+                {product.longDescription || product.shortDescription}
               </p>
             )}
           </div>
 
-          <div className="bg-white rounded-xl border border-ornate-gold/20 p-4 space-y-2">
-            <p className="text-xs font-display uppercase tracking-wider text-ornate-darkgold">
-              Check Pincode Delivery
+          {/* Mobile Pincode Checker */}
+          <div className="bg-white rounded-2xl border border-ornate-border p-4 space-y-2">
+            <p className="text-xs font-semibold text-ornate-darkgold">
+              Check Delivery Timeline
             </p>
             <form onSubmit={handleCheckPincode} className="flex gap-2">
               <input
@@ -890,11 +928,11 @@ const ProductDetail: React.FC = () => {
                 value={pincode}
                 onChange={(e) => setPincode(e.target.value.replace(/\D/g, ""))}
                 placeholder="560040"
-                className="flex-1 px-3 py-2 text-xs border border-ornate-gold/30 rounded-lg"
+                className="flex-1 px-3 py-2 text-xs border border-ornate-border rounded-full bg-ornate-offwhite"
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-ornate-charcoal text-white text-xs rounded-lg"
+                className="px-4 py-2 bg-ornate-moss text-white text-xs font-semibold rounded-full"
               >
                 Check
               </button>
@@ -903,23 +941,132 @@ const ProductDetail: React.FC = () => {
               <p className="text-xs text-emerald-800">{pincodeInfo.estimatedDays}</p>
             )}
           </div>
+
+          {/* Mobile Specifications Table */}
+          <div className="bg-white rounded-2xl border border-ornate-border overflow-hidden">
+            <div className="px-4 py-3 bg-ornate-cream/65 border-b border-ornate-border">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-ornate-charcoal">
+                Specifications &amp; Details
+              </h2>
+            </div>
+            <dl className="divide-y divide-ornate-border text-xs">
+              <div className="px-4 py-2.5 flex justify-between">
+                <dt className="text-ornate-muted">SKU</dt>
+                <dd className="font-mono font-medium">{product.sku}</dd>
+              </div>
+              <div className="px-4 py-2.5 flex justify-between">
+                <dt className="text-ornate-muted">Brand</dt>
+                <dd className="font-semibold">{product.brand}</dd>
+              </div>
+              {product.attributes.map((attr) => (
+                <div key={attr.key} className="px-4 py-2.5 flex justify-between gap-4">
+                  <dt className="text-ornate-muted">{formatAttributeKey(attr.key)}</dt>
+                  <dd className="font-semibold text-right">{attr.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          {/* Mobile Custom Enquiry */}
+          <div className="bg-ornate-cream rounded-2xl border border-ornate-border p-4 flex items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold text-ornate-charcoal">
+                Custom Finish or Size?
+              </p>
+              <p className="text-xs text-ornate-muted">
+                Enquire with our Bengaluru studio
+              </p>
+            </div>
+            <Link
+              to={enquiryHref}
+              className="px-3.5 py-2 rounded-full bg-white border border-ornate-border text-xs font-semibold text-ornate-moss shrink-0"
+            >
+              Enquire
+            </Link>
+          </div>
+
+          {/* Mobile Reviews */}
+          <div className="bg-white rounded-2xl border border-ornate-border p-4 space-y-3">
+            <h2 className="font-serif text-lg text-ornate-charcoal">
+              Customer Reviews ({reviews.length})
+            </h2>
+            {reviews.length === 0 ? (
+              <p className="text-xs text-ornate-muted">
+                No reviews yet for this piece.
+              </p>
+            ) : (
+              <div className="space-y-2.5">
+                {reviews.slice(0, 3).map((r) => (
+                  <div
+                    key={r.id}
+                    className="p-3 rounded-xl bg-ornate-offwhite border border-ornate-border space-y-1"
+                  >
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-semibold text-ornate-charcoal">
+                        {r.userName}
+                      </span>
+                      <span className="inline-flex items-center gap-0.5 text-amber-600 font-semibold">
+                        <Star size={11} fill="currentColor" /> {r.rating}
+                      </span>
+                    </div>
+                    <p className="text-xs font-semibold">{r.title}</p>
+                    <p className="text-xs text-ornate-muted">{r.comment}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Related Products */}
+          {relatedProducts.length > 0 && (
+            <div className="space-y-2.5">
+              <h2 className="font-serif text-lg text-ornate-charcoal px-1">
+                Similar Pieces
+              </h2>
+              <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+                {relatedProducts.map((item) => (
+                  <Link
+                    key={item.id}
+                    to={`/shop/${item.slug}`}
+                    className="w-40 shrink-0 bg-white rounded-2xl border border-ornate-border overflow-hidden"
+                  >
+                    <div className="h-28 bg-ornate-cream">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-2.5">
+                      <p className="text-xs font-semibold text-ornate-charcoal line-clamp-1">
+                        {item.name}
+                      </p>
+                      <p className="text-xs font-bold text-ornate-moss mt-0.5 price-nums">
+                        {formatINR(item.price)}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Sticky Mobile Purchase Bar */}
-        <div className="fixed bottom-16 inset-x-0 z-30 bg-white/95 backdrop-blur-md border-t border-ornate-gold/20 px-4 py-2.5 flex items-center gap-2 shadow-[0_-4px_16px_rgba(26,24,22,0.06)]">
+        <div className="fixed bottom-16 inset-x-0 z-30 bg-white/95 backdrop-blur-md border-t border-ornate-border px-4 py-2.5 flex items-center gap-2.5 shadow-[0_-4px_16px_rgba(20,18,16,0.06)]">
           <button
             type="button"
             disabled={!product.inStock}
             onClick={() => void addToCart(product, 1, true)}
-            className="flex-1 h-11 rounded-xl border border-ornate-charcoal text-ornate-charcoal text-xs font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-45"
+            className="flex-1 h-11 rounded-full border border-ornate-moss text-ornate-moss text-xs font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-45"
           >
-            <ShoppingBag size={14} /> Add to Cart
+            <ShoppingBag size={14} /> Add to Bag
           </button>
           <button
             type="button"
             disabled={!product.inStock}
             onClick={handleBuyNow}
-            className="flex-1 h-11 rounded-xl bg-ornate-charcoal text-white text-xs font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-45"
+            className="flex-1 h-11 rounded-full bg-ornate-moss text-white text-xs font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-45"
           >
             <Zap size={14} /> Buy Now
           </button>

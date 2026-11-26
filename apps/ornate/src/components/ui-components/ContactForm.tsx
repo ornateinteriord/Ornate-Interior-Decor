@@ -114,7 +114,7 @@ const ContactForm: React.FC = () => {
   };
 
   const inputClasses =
-    "w-full px-4 py-3 bg-white border border-ornate-gold/30 focus:border-ornate-darkgold focus-visible:ring-2 focus-visible:ring-ornate-gold focus-visible:ring-offset-0 outline-none transition duration-200 text-ornate-charcoal";
+    "ornate-input";
 
   return (
     <div className="space-y-6">
@@ -122,37 +122,37 @@ const ContactForm: React.FC = () => {
         <div
           role="status"
           aria-live="polite"
-          className="bg-white border border-ornate-gold p-5 flex flex-col gap-3"
+          className="bg-ornate-sage/60 border border-ornate-moss/25 rounded-2xl p-5 flex flex-col gap-3"
         >
           <div className="flex items-start gap-3">
-            <CheckCircle2 className="text-ornate-darkgold mt-0.5 flex-shrink-0" size={20} aria-hidden="true" />
+            <CheckCircle2 className="text-ornate-moss mt-0.5 flex-shrink-0" size={20} aria-hidden="true" />
             <div>
               <p className="font-serif text-lg text-ornate-charcoal">
                 Inquiry Ready, {submittedDraft.name}
               </p>
               <p className="text-sm text-ornate-charcoal/80 mt-1">
-                Because this site has no server-side inbox, launch your email client below or call {STUDIO_INFO.phoneDisplay} to send your brief directly to our Bengaluru studio.
+                Launch your email client below or call {STUDIO_INFO.phoneDisplay} to send your brief directly to our Bengaluru studio.
               </p>
             </div>
           </div>
           <div className="flex flex-wrap gap-3 pt-1">
-            <a href={submittedDraft.mailtoHref} className="ornate-btn-primary inline-flex items-center">
-              <Mail size={16} className="mr-2" aria-hidden="true" />
+            <a href={submittedDraft.mailtoHref} className="ornate-btn-primary inline-flex items-center text-xs">
+              <Mail size={15} className="mr-2" aria-hidden="true" />
               Open Email Draft
             </a>
-            <a href={STUDIO_INFO.phoneHref} className="ornate-btn-outline inline-flex items-center">
+            <a href={STUDIO_INFO.phoneHref} className="ornate-btn-outline inline-flex items-center text-xs">
               Call {STUDIO_INFO.phoneDisplay}
             </a>
           </div>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <form onSubmit={handleSubmit} noValidate className="space-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label
               htmlFor="contact-name"
-              className="block mb-2 font-display text-xs uppercase tracking-wider text-ornate-charcoal"
+              className="block mb-1.5 text-xs font-semibold text-ornate-charcoal"
             >
               Full Name <span className="text-ornate-darkgold">*</span>
             </label>
@@ -178,7 +178,7 @@ const ContactForm: React.FC = () => {
           <div>
             <label
               htmlFor="contact-email"
-              className="block mb-2 font-display text-xs uppercase tracking-wider text-ornate-charcoal"
+              className="block mb-1.5 text-xs font-semibold text-ornate-charcoal"
             >
               Email Address <span className="text-ornate-darkgold">*</span>
             </label>
@@ -202,11 +202,11 @@ const ContactForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label
               htmlFor="contact-phone"
-              className="block mb-2 font-display text-xs uppercase tracking-wider text-ornate-charcoal"
+              className="block mb-1.5 text-xs font-semibold text-ornate-charcoal"
             >
               Phone Number
             </label>
@@ -224,7 +224,7 @@ const ContactForm: React.FC = () => {
           <div>
             <label
               htmlFor="contact-subject"
-              className="block mb-2 font-display text-xs uppercase tracking-wider text-ornate-charcoal"
+              className="block mb-1.5 text-xs font-semibold text-ornate-charcoal"
             >
               Inquiry Topic <span className="text-ornate-darkgold">*</span>
             </label>
@@ -256,7 +256,7 @@ const ContactForm: React.FC = () => {
         <div>
           <label
             htmlFor="contact-message"
-            className="block mb-2 font-display text-xs uppercase tracking-wider text-ornate-charcoal"
+            className="block mb-1.5 text-xs font-semibold text-ornate-charcoal"
           >
             Project Details <span className="text-ornate-darkgold">*</span>
           </label>
@@ -284,7 +284,7 @@ const ContactForm: React.FC = () => {
         >
           Prepare Inquiry
           <Send
-            size={16}
+            size={15}
             className="ml-2 group-hover:translate-x-1 transition-transform"
             aria-hidden="true"
           />

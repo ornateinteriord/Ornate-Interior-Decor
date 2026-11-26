@@ -65,12 +65,17 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				ornate: {
-					cream: '#F4EFE6',
-					gold: '#C9A461',
-					darkgold: '#8E6F38',
-					charcoal: '#262320',
-					softblack: '#1A1816',
-					offwhite: '#FAF8F4',
+					cream: '#EFEAE0',
+					gold: '#D49B54',
+					darkgold: '#9B5F22',
+					charcoal: '#1E1B18',
+					muted: '#635B52',
+					softblack: '#141210',
+					offwhite: '#F7F4EE',
+					moss: '#1F2D27',
+					mossLight: '#2D4037',
+					sage: '#E6ECE8',
+					border: '#E5DDD0',
 				}
 			},
 			borderRadius: {
@@ -79,9 +84,10 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				serif: ['Playfair Display', 'serif'],
-				display: ['Tenor Sans', 'sans-serif'],
+				sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+				serif: ['Fraunces', 'Georgia', 'serif'],
+				display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace'],
 			},
 			keyframes: {
 				'accordion-down': {

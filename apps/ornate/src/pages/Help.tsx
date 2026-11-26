@@ -86,36 +86,36 @@ const Help = () => {
           ]}
         />
 
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="ornate-container">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <p className="ornate-subtitle mb-3">Quick Navigation</p>
-            <h2 className="ornate-title mb-5">How Can We Help?</h2>
-            <p className="text-ornate-charcoal/80 leading-relaxed">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="ornate-pill-label mb-3">Quick Navigation</span>
+            <h2 className="ornate-title mb-4">How Can We Help?</h2>
+            <p className="text-ornate-muted leading-relaxed">
               Jump directly to service details, consultation guidelines, or legal terms.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {resources.map((resource) => (
               <article
                 key={resource.title}
-                className="p-8 border border-ornate-gold/20 hover:border-ornate-gold/60 transition-colors flex flex-col justify-between"
+                className="ornate-card p-7 hover:border-ornate-moss/45 flex flex-col justify-between"
               >
                 <div>
-                  <div className="mb-5" aria-hidden="true">
+                  <div className="w-11 h-11 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss mb-5" aria-hidden="true">
                     {resource.icon}
                   </div>
-                  <h3 className="font-serif text-xl mb-3 text-ornate-charcoal">
+                  <h3 className="font-serif text-xl mb-2.5 text-ornate-charcoal">
                     {resource.title}
                   </h3>
-                  <p className="text-ornate-charcoal/75 text-sm mb-6 leading-relaxed">
+                  <p className="text-ornate-muted text-sm mb-6 leading-relaxed">
                     {resource.description}
                   </p>
                 </div>
                 <Link
                   to={resource.to}
-                  className="inline-flex items-center text-ornate-darkgold hover:text-ornate-charcoal font-display text-xs uppercase tracking-wider transition-colors group"
+                  className="inline-flex items-center text-ornate-moss hover:text-ornate-darkgold text-sm font-semibold transition-colors group"
                 >
                   {resource.cta}
                   <ArrowRight
@@ -130,23 +130,25 @@ const Help = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-ornate-cream">
+      <section className="py-20 bg-ornate-cream border-t border-ornate-border">
         <div className="ornate-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="ornate-subtitle mb-3">Direct Channels</p>
-              <h2 className="ornate-title mb-6">Speak With Our Team</h2>
+              <span className="ornate-pill-label mb-3">Direct Channels</span>
+              <h2 className="ornate-title mb-5">Speak With Our Team</h2>
 
-              <p className="text-ornate-charcoal/80 mb-8 leading-relaxed">
+              <p className="text-ornate-muted mb-7 leading-relaxed">
                 For active project updates, site visit scheduling, or new inquiries, reach our Vijayanagar office by phone or email during working hours.
               </p>
 
-              <div className="bg-white p-8 border border-ornate-gold/20 space-y-6 mb-6">
-                <div className="flex items-center">
-                  <Mail size={22} className="text-ornate-darkgold mr-4 flex-shrink-0" aria-hidden="true" />
+              <div className="ornate-card p-7 space-y-5 mb-5">
+                <div className="flex items-center gap-4">
+                  <span className="w-11 h-11 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss shrink-0">
+                    <Mail size={20} aria-hidden="true" />
+                  </span>
                   <div>
                     <h3 className="font-serif text-lg text-ornate-charcoal">Email Studio</h3>
-                    <p className="text-sm text-ornate-charcoal/75">{STUDIO_INFO.email}</p>
+                    <p className="text-sm text-ornate-muted">{STUDIO_INFO.email}</p>
                   </div>
                 </div>
                 <a
@@ -162,12 +164,14 @@ const Help = () => {
                 </a>
               </div>
 
-              <div className="bg-white p-8 border border-ornate-gold/20 space-y-6">
-                <div className="flex items-center">
-                  <Phone size={22} className="text-ornate-darkgold mr-4 flex-shrink-0" aria-hidden="true" />
+              <div className="ornate-card p-7 space-y-5">
+                <div className="flex items-center gap-4">
+                  <span className="w-11 h-11 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss shrink-0">
+                    <Phone size={20} aria-hidden="true" />
+                  </span>
                   <div>
                     <h3 className="font-serif text-lg text-ornate-charcoal">Phone Consultation</h3>
-                    <p className="text-sm text-ornate-charcoal/75">
+                    <p className="text-sm text-ornate-muted">
                       {STUDIO_INFO.phoneDisplay} (Mon - Sat)
                     </p>
                   </div>
@@ -186,28 +190,28 @@ const Help = () => {
               </div>
             </div>
 
-            <div className="bg-white p-8 border border-ornate-gold/20 shadow-sm">
+            <div className="ornate-card p-8">
               <h2 className="font-serif text-2xl mb-6 text-ornate-charcoal">
                 Consultation Checklist
               </h2>
 
               <div className="space-y-6">
                 {quickChecks.map((item) => (
-                  <div key={item.question} className="border-b border-ornate-gold/15 pb-6 last:border-b-0 last:pb-0">
+                  <div key={item.question} className="border-b border-ornate-border pb-6 last:border-b-0 last:pb-0">
                     <h3 className="font-serif text-lg mb-2 text-ornate-charcoal">
                       {item.question}
                     </h3>
-                    <p className="text-ornate-charcoal/75 text-sm leading-relaxed">
+                    <p className="text-ornate-muted text-sm leading-relaxed">
                       {item.answer}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-ornate-gold/15 text-center">
+              <div className="mt-8 pt-6 border-t border-ornate-border text-center">
                 <Link
                   to="/faq"
-                  className="inline-flex items-center text-ornate-darkgold hover:text-ornate-charcoal font-display text-xs uppercase tracking-wider group"
+                  className="inline-flex items-center text-ornate-moss hover:text-ornate-darkgold text-sm font-semibold group"
                 >
                   View All FAQs
                   <ArrowRight

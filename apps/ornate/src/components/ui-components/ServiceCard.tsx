@@ -8,6 +8,7 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   link: string;
   index: number;
+  tone?: "light" | "dark";
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -15,22 +16,52 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   description,
   icon,
   link,
+  tone = "light",
 }) => {
+  const isDark = tone === "dark";
+
   return (
-    <article className="bg-white p-8 border border-ornate-gold/20 hover:border-ornate-gold/60 shadow-sm transition-colors duration-300 group flex flex-col justify-between">
+    <article
+      className={`p-7 rounded-2xl border transition-all duration-200 group flex flex-col justify-between ${
+        isDark
+          ? "bg-white/[0.06] border-white/15 hover:bg-white/[0.11] hover:border-ornate-gold/50"
+          : "bg-white border-ornate-border hover:border-ornate-moss/45 shadow-sm hover:shadow-md"
+      }`}
+    >
       <div>
-        <div className="text-ornate-darkgold mb-6" aria-hidden="true">
+        <div
+          className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${
+            isDark
+              ? "bg-ornate-gold/15 text-ornate-gold border border-ornate-gold/25"
+              : "bg-ornate-sage text-ornate-moss"
+          }`}
+          aria-hidden="true"
+        >
           {icon}
         </div>
-        <h3 className="font-serif text-xl mb-4 text-ornate-charcoal">{title}</h3>
-        <p className="text-ornate-charcoal/75 mb-6 leading-relaxed text-sm">
+        <h3
+          className={`font-serif text-xl mb-3 ${
+            isDark ? "text-white" : "text-ornate-charcoal"
+          }`}
+        >
+          {title}
+        </h3>
+        <p
+          className={`mb-6 leading-relaxed text-sm ${
+            isDark ? "text-white/75" : "text-ornate-muted"
+          }`}
+        >
           {description}
         </p>
       </div>
 
       <Link
         to={link}
-        className="inline-flex items-center text-ornate-darkgold hover:text-ornate-charcoal font-display text-xs uppercase tracking-wider transition-colors"
+        className={`inline-flex items-center text-sm font-semibold transition-colors ${
+          isDark
+            ? "text-ornate-gold hover:text-white"
+            : "text-ornate-moss hover:text-ornate-darkgold"
+        }`}
       >
         Explore Service
         <ArrowRight

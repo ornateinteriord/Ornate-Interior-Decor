@@ -94,28 +94,28 @@ const MobileProjectsView: React.FC = () => {
       : PROJECTS_DATA.filter((p) => p.category === selected);
 
   return (
-    <div className="px-4 pt-3 pb-6 space-y-4">
-      <div className="bg-white rounded-xl border border-ornate-gold/20 p-4 shadow-sm">
-        <p className="text-[10px] font-display uppercase tracking-[0.18em] text-ornate-darkgold">
+    <div className="px-4 pt-3 pb-6 space-y-4 bg-ornate-offwhite">
+      <div className="ornate-card p-4">
+        <p className="text-xs font-semibold text-ornate-darkgold">
           Portfolio
         </p>
         <h2 className="font-serif text-xl text-ornate-charcoal mt-0.5">
           Completed &amp; Featured Spaces
         </h2>
-        <p className="text-xs text-ornate-charcoal/70 mt-1 leading-relaxed">
+        <p className="text-xs text-ornate-muted mt-1 leading-relaxed">
           Residential apartments, villas, offices, and hospitality interiors in Bengaluru.
         </p>
 
-        <div className="flex gap-2 overflow-x-auto no-scrollbar mt-3 py-1 px-0.5 -mx-0.5">
+        <div className="flex gap-2 overflow-x-auto no-scrollbar mt-3 py-0.5">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               type="button"
               onClick={() => setSelected(cat)}
-              className={`shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium border transition-colors ${
+              className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                 selected === cat
-                  ? "bg-ornate-charcoal text-white border-ornate-charcoal"
-                  : "bg-ornate-offwhite text-ornate-charcoal border-ornate-gold/25 hover:border-ornate-darkgold"
+                  ? "bg-ornate-moss text-white border-ornate-moss"
+                  : "bg-ornate-offwhite text-ornate-charcoal border-ornate-border hover:border-ornate-moss"
               }`}
             >
               {cat}
@@ -124,11 +124,11 @@ const MobileProjectsView: React.FC = () => {
         </div>
       </div>
 
-      <div className="space-y-3.5">
+      <div className="space-y-4">
         {visibleProjects.map((project) => (
           <article
             key={project.title}
-            className="bg-white rounded-xl border border-ornate-gold/20 overflow-hidden shadow-sm"
+            className="ornate-card overflow-hidden"
           >
             <div className="relative aspect-[16/10] bg-ornate-cream">
               <img
@@ -137,26 +137,26 @@ const MobileProjectsView: React.FC = () => {
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
-              <span className="absolute top-3 left-3 px-2.5 py-1 rounded-sm bg-ornate-softblack/85 backdrop-blur-sm text-ornate-gold text-[10px] font-display uppercase tracking-wider">
+              <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-ornate-softblack/85 backdrop-blur-sm text-ornate-gold text-[11px] font-semibold">
                 {project.category}
               </span>
             </div>
             <div className="p-4">
-              <p className="text-[11px] text-ornate-darkgold font-medium">
+              <p className="text-xs text-ornate-darkgold font-semibold">
                 {project.scope}
               </p>
               <h3 className="font-serif text-lg text-ornate-charcoal mt-0.5">
                 {project.title}
               </h3>
-              <p className="text-xs text-ornate-charcoal/75 leading-relaxed mt-1.5">
+              <p className="text-xs text-ornate-muted leading-relaxed mt-1.5">
                 {project.description}
               </p>
               <Link
                 to="/contact"
-                className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-ornate-charcoal"
+                className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-ornate-moss"
               >
                 Plan a Similar Space
-                <ArrowRight size={13} className="text-ornate-darkgold" />
+                <ArrowRight size={13} />
               </Link>
             </div>
           </article>

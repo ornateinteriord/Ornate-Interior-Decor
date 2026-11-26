@@ -19,14 +19,14 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   aside,
 }) => {
   return (
-    <section className="pt-28 pb-12 md:pt-32 md:pb-14 bg-ornate-cream/65 border-b border-ornate-gold/20">
+    <section className="pt-28 pb-9 md:pt-32 md:pb-11 bg-ornate-cream border-b border-ornate-border">
       <div className="ornate-container">
-        <nav aria-label="Breadcrumb" className="mb-6">
-          <ol className="flex flex-wrap items-center gap-2 text-[11px] font-display uppercase tracking-[0.16em] text-ornate-charcoal/65">
+        <nav aria-label="Breadcrumb" className="mb-5">
+          <ol className="inline-flex flex-wrap items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-ornate-border text-xs font-medium text-ornate-muted">
             {breadcrumbs.map((item, index) => {
               const isLast = index === breadcrumbs.length - 1;
               return (
-                <li key={item.path} className="flex items-center gap-2">
+                <li key={item.path} className="flex items-center gap-1.5">
                   {index > 0 && (
                     <ChevronRight
                       size={13}
@@ -37,14 +37,14 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                   {isLast ? (
                     <span
                       aria-current="page"
-                      className="text-ornate-charcoal font-medium"
+                      className="text-ornate-charcoal font-semibold"
                     >
                       {item.name}
                     </span>
                   ) : (
                     <Link
                       to={item.path}
-                      className="hover:text-ornate-darkgold transition-colors"
+                      className="hover:text-ornate-moss transition-colors"
                     >
                       {item.name}
                     </Link>
@@ -55,16 +55,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           </ol>
         </nav>
 
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-3">
-              <span className="h-px w-8 bg-ornate-darkgold" aria-hidden="true" />
-              <p className="ornate-subtitle">{subtitle}</p>
-            </div>
-            <h1 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-ornate-charcoal leading-[1.12] mb-4">
+            <span className="ornate-pill-label mb-3">{subtitle}</span>
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-ornate-charcoal leading-[1.1] mb-3">
               {title}
             </h1>
-            <p className="text-ornate-charcoal/75 text-base md:text-lg leading-relaxed max-w-2xl">
+            <p className="text-ornate-muted text-base md:text-lg leading-relaxed max-w-2xl">
               {description}
             </p>
           </div>

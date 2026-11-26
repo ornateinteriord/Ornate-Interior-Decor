@@ -78,17 +78,19 @@ export const CartDrawer: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-xs"
+        className="fixed inset-0 bg-ornate-softblack/55 backdrop-blur-xs"
         onClick={() => setDrawerOpen(false)}
       />
 
       <aside
         aria-label="Shopping Cart"
-        className="relative z-10 w-full max-w-md bg-ornate-offwhite h-full shadow-2xl border-l border-ornate-gold/25 flex flex-col"
+        className="relative z-10 w-full max-w-md bg-ornate-offwhite h-full shadow-2xl border-l border-ornate-border flex flex-col"
       >
-        <div className="px-5 py-4 bg-white border-b border-ornate-gold/20 flex items-center justify-between">
+        <div className="px-5 py-4 bg-white border-b border-ornate-border flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <ShoppingBag size={18} className="text-ornate-darkgold" />
+            <span className="w-8 h-8 rounded-full bg-ornate-sage flex items-center justify-center text-ornate-moss">
+              <ShoppingBag size={16} />
+            </span>
             <h2 className="font-serif text-xl text-ornate-charcoal">
               Your Studio Bag ({itemCount})
             </h2>
@@ -97,7 +99,7 @@ export const CartDrawer: React.FC = () => {
             type="button"
             onClick={() => setDrawerOpen(false)}
             aria-label="Close cart"
-            className="p-2 rounded-full hover:bg-ornate-cream text-ornate-charcoal"
+            className="w-9 h-9 rounded-full hover:bg-ornate-cream flex items-center justify-center text-ornate-charcoal"
           >
             <X size={18} />
           </button>
@@ -105,23 +107,23 @@ export const CartDrawer: React.FC = () => {
 
         {/* Free Shipping Progress */}
         {items.length > 0 && (
-          <div className="px-5 py-3 bg-ornate-cream/65 border-b border-ornate-gold/15 space-y-1.5">
+          <div className="px-5 py-3 bg-ornate-cream/80 border-b border-ornate-border space-y-1.5">
             <div className="flex items-center gap-2 text-xs text-ornate-charcoal">
-              <Truck size={14} className="text-ornate-darkgold shrink-0" />
+              <Truck size={14} className="text-ornate-moss shrink-0" />
               {remainingForFreeShipping === 0 ? (
-                <span className="font-medium text-emerald-800 flex items-center gap-1">
+                <span className="font-semibold text-emerald-800 flex items-center gap-1">
                   <CheckCircle2 size={13} /> Unlocked FREE Insured Furniture Delivery!
                 </span>
               ) : (
                 <span>
-                  Add <strong>{formatINR(remainingForFreeShipping)}</strong> more for{" "}
+                  Add <strong className="price-nums">{formatINR(remainingForFreeShipping)}</strong> more for{" "}
                   <strong>FREE Delivery</strong>
                 </span>
               )}
             </div>
             <div className="h-1.5 w-full bg-white rounded-full overflow-hidden">
               <div
-                className="h-full bg-ornate-darkgold transition-all duration-300"
+                className="h-full bg-ornate-moss transition-all duration-300 rounded-full"
                 style={{ width: `${freeShippingProgress}%` }}
               />
             </div>
@@ -129,22 +131,22 @@ export const CartDrawer: React.FC = () => {
         )}
 
         {/* Cart Items */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-4">
+        <div className="flex-1 overflow-y-auto p-5 space-y-3.5">
           {items.length === 0 ? (
-            <div className="bg-white border border-ornate-gold/20 rounded-sm p-8 text-center space-y-4 my-8">
-              <ShoppingBag size={36} className="mx-auto text-ornate-darkgold/70" />
+            <div className="ornate-card p-8 text-center space-y-4 my-8">
+              <ShoppingBag size={36} className="mx-auto text-ornate-darkgold" />
               <div>
                 <p className="font-serif text-xl text-ornate-charcoal">
                   Your Bag is Empty
                 </p>
-                <p className="text-xs text-ornate-charcoal/70 mt-1">
+                <p className="text-xs text-ornate-muted mt-1">
                   Explore ergonomic seating, solid wood desks, and architectural pieces.
                 </p>
               </div>
               <Link
                 to="/shop"
                 onClick={() => setDrawerOpen(false)}
-                className="ornate-btn-primary inline-flex items-center gap-2"
+                className="ornate-btn-primary inline-flex items-center gap-2 text-xs"
               >
                 Browse Furniture <ArrowRight size={14} />
               </Link>
@@ -153,12 +155,12 @@ export const CartDrawer: React.FC = () => {
             items.map((item) => (
               <div
                 key={item.productId}
-                className="bg-white border border-ornate-gold/20 rounded-sm p-3.5 flex gap-3.5"
+                className="ornate-card p-3.5 flex gap-3.5"
               >
                 <Link
                   to={`/shop/${item.slug}`}
                   onClick={() => setDrawerOpen(false)}
-                  className="w-20 h-20 rounded-sm overflow-hidden bg-ornate-cream shrink-0"
+                  className="w-20 h-20 rounded-xl overflow-hidden bg-ornate-cream shrink-0"
                 >
                   <img
                     src={item.image}
@@ -173,7 +175,7 @@ export const CartDrawer: React.FC = () => {
                       <Link
                         to={`/shop/${item.slug}`}
                         onClick={() => setDrawerOpen(false)}
-                        className="font-serif text-sm text-ornate-charcoal hover:text-ornate-darkgold line-clamp-2 leading-snug"
+                        className="font-sans font-semibold text-sm text-ornate-charcoal hover:text-ornate-moss line-clamp-2 leading-snug"
                       >
                         {item.name}
                       </Link>
@@ -181,29 +183,29 @@ export const CartDrawer: React.FC = () => {
                         type="button"
                         onClick={() => void removeItem(item.productId)}
                         aria-label={`Remove ${item.name}`}
-                        className="text-ornate-charcoal/45 hover:text-rose-700 shrink-0"
+                        className="text-ornate-muted hover:text-rose-700 shrink-0"
                       >
                         <Trash2 size={14} />
                       </button>
                     </div>
-                    <p className="text-[11px] text-ornate-charcoal/60 mt-0.5">
-                      {item.brand} · {item.sku}
+                    <p className="text-[11px] text-ornate-muted mt-0.5">
+                      {item.brand} · <span className="font-mono">{item.sku}</span>
                     </p>
                   </div>
 
                   <div className="flex items-center justify-between gap-2 pt-2">
-                    <div className="flex items-center border border-ornate-gold/30 rounded-sm bg-ornate-offwhite">
+                    <div className="flex items-center border border-ornate-border rounded-full bg-ornate-offwhite px-1">
                       <button
                         type="button"
                         onClick={() =>
                           void updateQuantity(item.productId, item.quantity - 1)
                         }
                         aria-label="Decrease quantity"
-                        className="w-7 h-7 flex items-center justify-center text-ornate-charcoal hover:bg-ornate-cream"
+                        className="w-6 h-7 flex items-center justify-center text-ornate-charcoal hover:bg-white rounded-full"
                       >
                         <Minus size={12} />
                       </button>
-                      <span className="w-7 text-center text-xs font-medium">
+                      <span className="w-7 text-center text-xs font-bold price-nums">
                         {item.quantity}
                       </span>
                       <button
@@ -213,14 +215,14 @@ export const CartDrawer: React.FC = () => {
                           void updateQuantity(item.productId, item.quantity + 1)
                         }
                         aria-label="Increase quantity"
-                        className="w-7 h-7 flex items-center justify-center text-ornate-charcoal hover:bg-ornate-cream disabled:opacity-40"
+                        className="w-6 h-7 flex items-center justify-center text-ornate-charcoal hover:bg-white rounded-full disabled:opacity-40"
                       >
                         <Plus size={12} />
                       </button>
                     </div>
 
                     <div className="text-right">
-                      <p className="text-sm font-semibold text-ornate-charcoal">
+                      <p className="text-sm font-bold text-ornate-charcoal price-nums">
                         {formatINR(item.unitPrice * item.quantity)}
                       </p>
                       <button
@@ -228,7 +230,7 @@ export const CartDrawer: React.FC = () => {
                         onClick={() =>
                           void handleSaveForLater(item.productId, item.name)
                         }
-                        className="text-[10px] text-ornate-darkgold hover:underline inline-flex items-center gap-1"
+                        className="text-[11px] text-ornate-darkgold font-medium hover:underline inline-flex items-center gap-1"
                       >
                         <Bookmark size={10} /> Save for later
                       </button>
@@ -241,16 +243,16 @@ export const CartDrawer: React.FC = () => {
 
           {/* Promo Code */}
           {items.length > 0 && (
-            <div className="bg-white border border-ornate-gold/20 rounded-sm p-3.5 space-y-2.5">
-              <div className="flex items-center justify-between text-xs font-medium text-ornate-charcoal">
+            <div className="ornate-card p-3.5 space-y-2.5">
+              <div className="flex items-center justify-between text-xs font-semibold text-ornate-charcoal">
                 <span className="inline-flex items-center gap-1.5">
-                  <Tag size={13} className="text-ornate-darkgold" /> Apply Promo Code
+                  <Tag size={13} className="text-ornate-moss" /> Apply Promo Code
                 </span>
                 {couponCode && (
                   <button
                     type="button"
                     onClick={() => void applyCoupon(null)}
-                    className="text-[11px] text-rose-700 hover:underline"
+                    className="text-xs text-rose-700 hover:underline"
                   >
                     Remove ({couponCode})
                   </button>
@@ -263,12 +265,12 @@ export const CartDrawer: React.FC = () => {
                   value={promoInput}
                   onChange={(e) => setPromoInput(e.target.value.toUpperCase())}
                   placeholder="Enter code (e.g. ORNATE10)"
-                  className="flex-1 px-3 py-1.5 text-xs border border-ornate-gold/30 rounded-sm bg-ornate-offwhite"
+                  className="flex-1 px-3 py-1.5 text-xs border border-ornate-border rounded-full bg-ornate-offwhite"
                 />
                 <button
                   type="submit"
                   disabled={applyingCoupon}
-                  className="px-3.5 py-1.5 bg-ornate-charcoal text-white text-xs font-display uppercase tracking-wider rounded-sm hover:bg-ornate-darkgold"
+                  className="px-4 py-1.5 bg-ornate-moss text-white text-xs font-semibold rounded-full hover:bg-ornate-mossLight"
                 >
                   Apply
                 </button>
@@ -281,10 +283,10 @@ export const CartDrawer: React.FC = () => {
                       key={c.code}
                       type="button"
                       onClick={() => void applyCoupon(c.code)}
-                      className={`px-2 py-0.5 rounded-sm border text-[10px] font-mono transition-colors ${
+                      className={`px-2.5 py-0.5 rounded-full border text-[11px] font-mono transition-colors ${
                         couponCode === c.code
                           ? "bg-emerald-50 border-emerald-400 text-emerald-800"
-                          : "bg-ornate-offwhite border-ornate-gold/30 text-ornate-charcoal hover:border-ornate-darkgold"
+                          : "bg-ornate-offwhite border-ornate-border text-ornate-charcoal hover:border-ornate-moss"
                       }`}
                       title={c.description}
                     >
@@ -299,47 +301,49 @@ export const CartDrawer: React.FC = () => {
 
         {/* Summary & Actions */}
         {items.length > 0 && (
-          <div className="p-5 bg-white border-t border-ornate-gold/20 space-y-3">
-            <div className="space-y-1.5 text-xs text-ornate-charcoal/80">
+          <div className="p-5 bg-white border-t border-ornate-border space-y-3">
+            <div className="space-y-1.5 text-xs text-ornate-muted">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>{formatINR(summary.subtotal)}</span>
+                <span className="font-semibold text-ornate-charcoal price-nums">
+                  {formatINR(summary.subtotal)}
+                </span>
               </div>
               {summary.productSavings > 0 && (
-                <div className="flex justify-between text-emerald-700">
+                <div className="flex justify-between text-emerald-700 font-medium">
                   <span>Catalog Discount</span>
-                  <span>-{formatINR(summary.productSavings)}</span>
+                  <span className="price-nums">-{formatINR(summary.productSavings)}</span>
                 </div>
               )}
               {summary.couponDiscount > 0 && (
-                <div className="flex justify-between text-emerald-700 font-medium">
+                <div className="flex justify-between text-emerald-700 font-semibold">
                   <span>Coupon ({summary.couponCode})</span>
-                  <span>-{formatINR(summary.couponDiscount)}</span>
+                  <span className="price-nums">-{formatINR(summary.couponDiscount)}</span>
                 </div>
               )}
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>
+                <span className="font-semibold text-ornate-charcoal price-nums">
                   {summary.shippingFee === 0 ? (
-                    <span className="text-emerald-700 font-medium">FREE</span>
+                    <span className="text-emerald-700 font-semibold">FREE</span>
                   ) : (
                     formatINR(summary.shippingFee)
                   )}
                 </span>
               </div>
-              <div className="flex justify-between text-[11px] text-ornate-charcoal/55">
+              <div className="flex justify-between text-[11px] text-ornate-muted">
                 <span>Inclusive of 18% GST</span>
-                <span>{formatINR(summary.gstAmount)}</span>
+                <span className="price-nums">{formatINR(summary.gstAmount)}</span>
               </div>
-              <div className="flex justify-between text-base font-semibold text-ornate-charcoal pt-2 border-t border-ornate-gold/15">
+              <div className="flex justify-between text-base font-bold text-ornate-charcoal pt-2 border-t border-ornate-border">
                 <span>Total Payable</span>
-                <span className="font-serif">{formatINR(summary.grandTotal)}</span>
+                <span className="price-nums">{formatINR(summary.grandTotal)}</span>
               </div>
             </div>
 
             {!isAuthenticated && (
-              <p className="text-[11px] text-ornate-darkgold bg-ornate-cream/70 px-3 py-1.5 rounded-sm">
-                Sign in or create a free account at next step to complete Razorpay checkout.
+              <p className="text-xs text-ornate-moss bg-ornate-sage/70 px-3 py-2 rounded-xl">
+                Sign in or register at next step to complete Razorpay checkout.
               </p>
             )}
 
@@ -347,14 +351,14 @@ export const CartDrawer: React.FC = () => {
               <Link
                 to="/cart"
                 onClick={() => setDrawerOpen(false)}
-                className="ornate-btn-outline text-center py-2.5"
+                className="ornate-btn-outline text-center py-2.5 text-xs"
               >
-                View Cart
+                View Bag
               </Link>
               <button
                 type="button"
                 onClick={handleCheckout}
-                className="ornate-btn-primary py-2.5 gap-1.5"
+                className="ornate-btn-primary py-2.5 text-xs gap-1.5"
               >
                 Checkout <ArrowRight size={14} />
               </button>

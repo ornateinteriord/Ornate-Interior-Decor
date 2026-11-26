@@ -34,7 +34,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-ornate-offwhite min-h-screen pt-8 md:pt-28 pb-16 flex items-center justify-center px-4">
+    <div className="bg-ornate-offwhite min-h-screen pt-10 md:pt-28 pb-16 flex items-center justify-center px-4">
       <Seo
         title="Create Account"
         description="Create your Ornate Interior Decor account with basic details to checkout and track furniture orders."
@@ -42,23 +42,25 @@ const RegisterPage: React.FC = () => {
         noIndex
       />
 
-      <div className="w-full max-w-md bg-white border border-ornate-gold/25 rounded-sm shadow-sm p-8 space-y-6">
+      <div className="w-full max-w-md ornate-card p-8 space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-11 h-11 rounded-full bg-ornate-cream border border-ornate-gold/25 mx-auto flex items-center justify-center text-ornate-darkgold">
+          <div className="w-12 h-12 rounded-2xl bg-ornate-sage mx-auto flex items-center justify-center text-ornate-moss">
             <UserPlus size={20} />
           </div>
-          <p className="ornate-subtitle">Quick Registration</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-ornate-darkgold">
+            Quick Registration
+          </p>
           <h1 className="font-serif text-3xl text-ornate-charcoal">
             Create Account
           </h1>
-          <p className="text-xs text-ornate-charcoal/70">
-            Enter your basic details to save delivery addresses, checkout via Razorpay, and track orders.
+          <p className="text-xs text-ornate-muted">
+            Save delivery addresses, checkout via Razorpay, and track orders effortlessly.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block font-display text-xs uppercase tracking-wider text-ornate-charcoal/80 mb-1.5">
+            <label className="block text-xs font-semibold text-ornate-charcoal mb-1.5">
               Full Name *
             </label>
             <input
@@ -68,12 +70,12 @@ const RegisterPage: React.FC = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Aarav Rao"
-              className="w-full px-3.5 py-2.5 border border-ornate-gold/30 rounded-sm bg-ornate-offwhite text-sm"
+              className="ornate-input"
             />
           </div>
 
           <div>
-            <label className="block font-display text-xs uppercase tracking-wider text-ornate-charcoal/80 mb-1.5">
+            <label className="block text-xs font-semibold text-ornate-charcoal mb-1.5">
               Email Address *
             </label>
             <input
@@ -83,12 +85,12 @@ const RegisterPage: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="aarav@example.com"
-              className="w-full px-3.5 py-2.5 border border-ornate-gold/30 rounded-sm bg-ornate-offwhite text-sm"
+              className="ornate-input"
             />
           </div>
 
           <div>
-            <label className="block font-display text-xs uppercase tracking-wider text-ornate-charcoal/80 mb-1.5">
+            <label className="block text-xs font-semibold text-ornate-charcoal mb-1.5">
               Phone Number *
             </label>
             <input
@@ -98,12 +100,12 @@ const RegisterPage: React.FC = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+91 98450 00000"
-              className="w-full px-3.5 py-2.5 border border-ornate-gold/30 rounded-sm bg-ornate-offwhite text-sm"
+              className="ornate-input"
             />
           </div>
 
           <div>
-            <label className="block font-display text-xs uppercase tracking-wider text-ornate-charcoal/80 mb-1.5">
+            <label className="block text-xs font-semibold text-ornate-charcoal mb-1.5">
               Password *
             </label>
             <div className="relative">
@@ -115,12 +117,12 @@ const RegisterPage: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="At least 4 characters"
-                className="w-full px-3.5 py-2.5 pr-10 border border-ornate-gold/30 rounded-sm bg-ornate-offwhite text-sm"
+                className="ornate-input pr-10"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-ornate-charcoal/55"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-ornate-muted"
                 aria-label="Toggle password visibility"
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -138,11 +140,11 @@ const RegisterPage: React.FC = () => {
           </button>
         </form>
 
-        <div className="text-center text-sm text-ornate-charcoal/75 pt-2 border-t border-ornate-gold/15">
+        <div className="text-center text-sm text-ornate-muted pt-3 border-t border-ornate-border">
           Already registered?{" "}
           <Link
             to={`/login?redirect=${encodeURIComponent(redirect)}`}
-            className="text-ornate-darkgold font-semibold hover:underline"
+            className="text-ornate-moss font-semibold hover:underline"
           >
             Sign In
           </Link>

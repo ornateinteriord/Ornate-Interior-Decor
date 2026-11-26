@@ -8,7 +8,7 @@ const services = [
     title: "Residential Design",
     description:
       "Full-home and apartment interiors covering living spaces, kitchens, wardrobes, lighting layouts, and finish schedules.",
-    icon: <Home size={40} />,
+    icon: <Home size={24} />,
     link: "/services#residential-design",
   },
   {
@@ -16,7 +16,7 @@ const services = [
     title: "Commercial Design",
     description:
       "Workplaces, studios, and hospitality interiors planned for acoustic comfort, brand consistency, and daily durability.",
-    icon: <Building2 size={40} />,
+    icon: <Building2 size={24} />,
     link: "/services#commercial-design",
   },
   {
@@ -24,7 +24,7 @@ const services = [
     title: "Space Planning",
     description:
       "Measured 2D furniture layouts, electrical mapping, and circulation studies that make compact or complex footprints work harder.",
-    icon: <LayoutDashboard size={40} />,
+    icon: <LayoutDashboard size={24} />,
     link: "/services#space-planning",
   },
   {
@@ -32,7 +32,7 @@ const services = [
     title: "Custom Furniture & Millwork",
     description:
       "Made-to-measure cabinetry, modular kitchens, vanities, and loose furniture detailed to fit your room dimensions.",
-    icon: <Sofa size={40} />,
+    icon: <Sofa size={24} />,
     link: "/services#custom-furniture",
   },
   {
@@ -40,7 +40,7 @@ const services = [
     title: "Material & Color Curation",
     description:
       "Coordinated palettes across veneers, laminates, stone, upholstery, and wall finishes tested under your site lighting.",
-    icon: <Palette size={40} />,
+    icon: <Palette size={24} />,
     link: "/services#color-consultation",
   },
   {
@@ -48,24 +48,53 @@ const services = [
     title: "Turnkey Execution",
     description:
       "On-site coordination with civil, electrical, carpentry, and painting trades with milestone tracking through completion.",
-    icon: <Ruler size={40} />,
+    icon: <Ruler size={24} />,
     link: "/services#project-management",
   },
 ];
 
-const ServicesSection: React.FC = () => {
+interface ServicesSectionProps {
+  tone?: "light" | "dark";
+}
+
+const ServicesSection: React.FC<ServicesSectionProps> = ({ tone = "dark" }) => {
+  const isDark = tone === "dark";
+
   return (
-    <section id="services" className="py-20 bg-ornate-offwhite">
+    <section
+      id="services"
+      className={`py-20 ${
+        isDark ? "bg-ornate-moss text-white" : "bg-ornate-offwhite text-ornate-charcoal"
+      }`}
+    >
       <div className="ornate-container">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <p className="ornate-subtitle mb-3">Scope of Work</p>
-          <h2 className="ornate-title mb-5">Design &amp; Build Services</h2>
-          <p className="text-ornate-charcoal/80 leading-relaxed">
-            Every engagement can be commissioned as a turnkey package or tailored to specific stages of your renovation or new build.
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span
+            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold mb-3 ${
+              isDark
+                ? "bg-white/10 text-ornate-gold border border-white/15"
+                : "ornate-pill-label"
+            }`}
+          >
+            Scope of Work
+          </span>
+          <h2
+            className={`font-serif text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] font-medium mb-4 ${
+              isDark ? "text-white" : "text-ornate-charcoal"
+            }`}
+          >
+            Design &amp; Build Services
+          </h2>
+          <p
+            className={`leading-relaxed ${
+              isDark ? "text-white/75" : "text-ornate-muted"
+            }`}
+          >
+            Commission a complete turnkey fit-out or engage our studio for individual design, space planning, and custom cabinetry stages.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <ServiceCard
               key={service.id}
@@ -74,6 +103,7 @@ const ServicesSection: React.FC = () => {
               icon={service.icon}
               link={service.link}
               index={index}
+              tone={tone}
             />
           ))}
         </div>

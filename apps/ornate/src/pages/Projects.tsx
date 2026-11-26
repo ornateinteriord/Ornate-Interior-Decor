@@ -190,21 +190,21 @@ const Projects = () => {
             { name: "Projects", path: "/projects" },
           ]}
           aside={
-            <div className="flex items-center gap-6 px-5 py-3.5 bg-white border border-ornate-gold/25 rounded-sm shadow-sm">
+            <div className="flex items-center gap-6 px-5 py-3.5 bg-white border border-ornate-border rounded-2xl shadow-xs">
               <div>
-                <p className="font-serif text-2xl text-ornate-charcoal leading-none">
+                <p className="font-serif text-2xl text-ornate-charcoal leading-none price-nums">
                   {featuredProjects.length + allProjects.length}
                 </p>
-                <p className="font-display text-[10px] uppercase tracking-[0.16em] text-ornate-darkgold mt-1">
+                <p className="text-xs font-semibold text-ornate-darkgold mt-1">
                   Curated Works
                 </p>
               </div>
-              <div className="h-8 w-px bg-ornate-gold/25" aria-hidden="true" />
+              <div className="h-8 w-px bg-ornate-border" aria-hidden="true" />
               <div>
-                <p className="font-serif text-2xl text-ornate-charcoal leading-none">
+                <p className="font-serif text-2xl text-ornate-charcoal leading-none price-nums">
                   3
                 </p>
-                <p className="font-display text-[10px] uppercase tracking-[0.16em] text-ornate-darkgold mt-1">
+                <p className="text-xs font-semibold text-ornate-darkgold mt-1">
                   Typologies
                 </p>
               </div>
@@ -216,35 +216,35 @@ const Projects = () => {
           <div className="ornate-container">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
               <div>
-                <p className="ornate-subtitle mb-2">Featured Work</p>
+                <span className="ornate-pill-label mb-2">Featured Work</span>
                 <h2 className="ornate-title">Signature Spaces</h2>
               </div>
-              <p className="text-ornate-charcoal/75 text-sm md:text-base max-w-md leading-relaxed">
+              <p className="text-ornate-muted text-sm md:text-base max-w-md leading-relaxed">
                 Projects built around measured floor plans, custom millwork, and coordinated architectural lighting.
               </p>
             </div>
 
             {/* Lead Spotlight Card */}
-            <article className="grid grid-cols-1 lg:grid-cols-12 bg-ornate-offwhite border border-ornate-gold/20 rounded-sm overflow-hidden shadow-sm mb-8 group">
+            <article className="grid grid-cols-1 lg:grid-cols-12 bg-ornate-offwhite border border-ornate-border rounded-2xl overflow-hidden shadow-sm mb-8 group">
               <div className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto lg:min-h-[380px] overflow-hidden bg-ornate-cream">
                 <img
                   src={leadProject.image}
                   alt={leadProject.alt}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <span className="absolute top-4 left-4 px-3 py-1 bg-ornate-softblack/85 backdrop-blur-sm text-ornate-gold font-display text-[10px] uppercase tracking-[0.16em]">
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-ornate-softblack/85 backdrop-blur-sm text-ornate-gold text-xs font-semibold">
                   Featured · {leadProject.category}
                 </span>
               </div>
               <div className="lg:col-span-5 p-8 lg:p-10 flex flex-col justify-between">
                 <div>
-                  <p className="font-display text-xs uppercase tracking-[0.16em] text-ornate-darkgold mb-3">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ornate-darkgold mb-3">
                     {leadProject.scope}
                   </p>
                   <h3 className="font-serif text-2xl lg:text-3xl text-ornate-charcoal mb-4 leading-snug">
                     {leadProject.title}
                   </h3>
-                  <p className="text-ornate-charcoal/80 leading-relaxed mb-6">
+                  <p className="text-ornate-muted leading-relaxed mb-6">
                     {leadProject.description}
                   </p>
                 </div>
@@ -265,7 +265,7 @@ const Projects = () => {
             </article>
 
             {/* Two Balanced Featured Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {secondaryFeatured.map((project) => (
                 <ProjectCard
                   key={project.title}
@@ -283,21 +283,21 @@ const Projects = () => {
           </div>
         </section>
 
-        <section id="residential" className="py-16 md:py-20 bg-ornate-offwhite border-t border-ornate-gold/15">
+        <section id="residential" className="py-16 md:py-20 bg-ornate-offwhite border-t border-ornate-border">
           <div id="commercial" />
           <div id="hospitality" />
           <div className="ornate-container">
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
               <div>
-                <p className="ornate-subtitle mb-2">Complete Index</p>
+                <span className="ornate-pill-label mb-2">Complete Index</span>
                 <h2 className="ornate-title mb-2">Browse by Space Type</h2>
-                <p className="text-ornate-charcoal/75 leading-relaxed">
+                <p className="text-ornate-muted leading-relaxed">
                   Filter completed projects across residential, commercial, and hospitality typologies.
                 </p>
               </div>
 
               <div
-                className="flex flex-wrap gap-2.5"
+                className="flex flex-wrap gap-2"
                 role="tablist"
                 aria-label="Filter projects by category"
               >
@@ -310,10 +310,10 @@ const Projects = () => {
                       role="tab"
                       aria-selected={isSelected}
                       onClick={() => setActiveCategory(category)}
-                      className={`px-4 py-2.5 rounded-sm font-display text-xs uppercase tracking-[0.14em] border transition-all ${
+                      className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
                         isSelected
-                          ? "bg-ornate-charcoal text-white border-ornate-charcoal shadow-sm"
-                          : "bg-white text-ornate-charcoal border-ornate-gold/30 hover:border-ornate-charcoal"
+                          ? "bg-ornate-moss text-white border-ornate-moss shadow-xs"
+                          : "bg-white text-ornate-charcoal border-ornate-border hover:border-ornate-moss"
                       }`}
                     >
                       {category} ({categoryCounts[category]})
@@ -324,7 +324,7 @@ const Projects = () => {
             </div>
 
             <div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               role="tabpanel"
             >
               {filteredProjects.map((project) => (
@@ -344,13 +344,13 @@ const Projects = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-ornate-charcoal text-white">
+        <section className="py-20 bg-ornate-moss text-white">
           <div className="ornate-container">
             <div className="text-center max-w-3xl mx-auto">
-              <p className="text-ornate-gold text-xs uppercase tracking-[0.2em] font-display mb-3">
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-ornate-gold text-xs font-semibold mb-3">
                 Start Your Project
-              </p>
-              <h2 className="text-3xl md:text-5xl font-serif mb-6">
+              </span>
+              <h2 className="text-3xl md:text-5xl font-serif mb-5">
                 Planning a Renovation or New Interior?
               </h2>
               <p className="text-white/80 leading-relaxed mb-8">
@@ -358,7 +358,7 @@ const Projects = () => {
               </p>
               <Link
                 to="/contact"
-                className="ornate-btn bg-ornate-gold text-ornate-softblack hover:bg-white inline-flex items-center font-medium"
+                className="ornate-btn-accent inline-flex items-center"
               >
                 Schedule a Consultation
                 <ArrowRight size={16} className="ml-2" aria-hidden="true" />

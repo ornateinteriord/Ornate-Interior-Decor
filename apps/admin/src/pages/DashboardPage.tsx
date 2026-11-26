@@ -71,7 +71,7 @@ export const DashboardPage: React.FC = () => {
         </div>
         <Link
           to="/products"
-          className="px-4 py-2 bg-ornate-charcoal text-white rounded text-xs font-display uppercase tracking-wider hover:bg-ornate-darkgold transition-colors"
+          className="px-5 py-2.5 bg-ornate-moss text-white rounded-full text-xs font-semibold hover:bg-ornate-mossLight transition-colors"
         >
           Manage Combined Products
         </Link>

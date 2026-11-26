@@ -79,19 +79,19 @@ const PrivacyAndPolicy = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {privacyPoints.map((point) => (
               <article
                 key={point.title}
-                className="bg-white p-8 border border-ornate-gold/20"
+                className="ornate-card p-7"
               >
-                <div className="text-ornate-darkgold mb-5" aria-hidden="true">
+                <div className="w-11 h-11 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss mb-5" aria-hidden="true">
                   {point.icon}
                 </div>
-                <h3 className="font-serif text-xl mb-3 text-ornate-charcoal">
+                <h3 className="font-serif text-xl mb-2.5 text-ornate-charcoal">
                   {point.title}
                 </h3>
-                <p className="text-ornate-charcoal/75 text-sm leading-relaxed">
+                <p className="text-ornate-muted text-sm leading-relaxed">
                   {point.description}
                 </p>
               </article>
@@ -153,29 +153,29 @@ const PrivacyAndPolicy = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-ornate-charcoal text-white">
+      <section className="py-20 bg-ornate-moss text-white">
         <div className="ornate-container">
           <div className="text-center max-w-3xl mx-auto">
-            <p className="text-ornate-gold text-xs uppercase tracking-widest font-display mb-3">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-ornate-gold text-xs font-semibold mb-3">
               Privacy Inquiries
-            </p>
-            <h2 className="text-3xl md:text-5xl font-serif mb-6">
+            </span>
+            <h2 className="text-3xl md:text-5xl font-serif mb-5">
               Questions About Your Data?
             </h2>
             <p className="text-white/80 leading-relaxed mb-8">
               Write directly to our studio or review our terms of service.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3.5">
               <Link
                 to="/contact"
-                className="ornate-btn bg-ornate-gold text-ornate-softblack hover:bg-white inline-flex items-center font-medium"
+                className="ornate-btn-accent inline-flex items-center"
               >
                 Contact Studio
                 <ArrowRight size={16} className="ml-2" aria-hidden="true" />
               </Link>
               <Link
                 to="/terms-and-conditions"
-                className="ornate-btn border border-white/40 text-white hover:bg-white hover:text-ornate-charcoal"
+                className="ornate-btn border border-white/35 text-white hover:bg-white hover:text-ornate-softblack"
               >
                 Terms &amp; Conditions
               </Link>

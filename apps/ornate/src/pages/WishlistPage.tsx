@@ -45,12 +45,12 @@ const WishlistPage: React.FC = () => {
       <section className="py-8 md:py-12">
         <div className="ornate-container">
           {savedProducts.length === 0 ? (
-            <div className="max-w-lg mx-auto bg-white border border-ornate-gold/25 rounded-sm p-10 text-center space-y-4">
+            <div className="max-w-lg mx-auto ornate-card p-10 text-center space-y-4">
               <Heart size={40} className="mx-auto text-ornate-darkgold" />
               <h1 className="font-serif text-3xl text-ornate-charcoal">
                 No Saved Items Yet
               </h1>
-              <p className="text-sm text-ornate-charcoal/70">
+              <p className="text-sm text-ornate-muted">
                 Tap the heart icon on any furniture piece while browsing to save it here.
               </p>
               <Link to="/shop" className="ornate-btn-primary inline-flex items-center gap-2">
@@ -62,7 +62,7 @@ const WishlistPage: React.FC = () => {
               {savedProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white border border-ornate-gold/20 rounded-sm overflow-hidden flex flex-col justify-between shadow-sm"
+                  className="ornate-card overflow-hidden flex flex-col justify-between"
                 >
                   <div>
                     <Link
@@ -76,21 +76,21 @@ const WishlistPage: React.FC = () => {
                       />
                     </Link>
                     <div className="p-5 space-y-1.5">
-                      <p className="font-display text-[11px] uppercase tracking-wider text-ornate-darkgold">
+                      <p className="text-xs font-semibold text-ornate-darkgold">
                         {product.subcategoryName} · {product.brand}
                       </p>
                       <Link
                         to={`/shop/${product.slug}`}
-                        className="font-serif text-lg text-ornate-charcoal hover:text-ornate-darkgold block"
+                        className="font-sans font-semibold text-lg text-ornate-charcoal hover:text-ornate-moss block"
                       >
                         {product.name}
                       </Link>
                       <div className="flex items-baseline gap-2 pt-1">
-                        <span className="font-serif text-lg font-semibold">
+                        <span className="font-sans text-lg font-bold price-nums">
                           {formatINR(product.price)}
                         </span>
                         {product.mrp && (
-                          <span className="text-xs text-ornate-charcoal/45 line-through">
+                          <span className="text-xs text-ornate-muted line-through price-nums">
                             {formatINR(product.mrp)}
                           </span>
                         )}
@@ -103,16 +103,16 @@ const WishlistPage: React.FC = () => {
                       type="button"
                       disabled={!product.inStock}
                       onClick={() => void addToCart(product, 1, true)}
-                      className="flex-1 ornate-btn-primary py-2.5 gap-1.5 disabled:opacity-50"
+                      className="flex-1 ornate-btn-primary py-2.5 text-xs gap-1.5 disabled:opacity-50"
                     >
                       <ShoppingBag size={14} />
-                      {product.inStock ? "Move to Cart" : "Out of Stock"}
+                      {product.inStock ? "Move to Bag" : "Out of Stock"}
                     </button>
                     <button
                       type="button"
                       onClick={() => void toggleWishlist(product.id, product.name)}
                       aria-label="Remove from wishlist"
-                      className="px-3 border border-rose-200 text-rose-700 rounded-sm hover:bg-rose-50"
+                      className="px-3.5 border border-rose-200 text-rose-700 rounded-full hover:bg-rose-50"
                     >
                       <Trash2 size={15} />
                     </button>

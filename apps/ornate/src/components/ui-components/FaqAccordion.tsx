@@ -19,7 +19,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
   };
 
   return (
-    <div className="divide-y divide-ornate-gold/20 border-t border-b border-ornate-gold/20">
+    <div className="divide-y divide-ornate-border border-t border-b border-ornate-border">
       {faqs.map((faq, index) => {
         const isOpen = openIndex === index;
         const buttonId = `${groupId}-btn-${index}`;
@@ -42,7 +42,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
                 <ChevronDown
                   size={20}
                   aria-hidden="true"
-                  className={`text-ornate-darkgold flex-shrink-0 transition-transform duration-200 ${
+                  className={`text-ornate-moss flex-shrink-0 transition-transform duration-200 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -55,7 +55,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
               hidden={!isOpen}
               className="pb-6"
             >
-              <p className="text-ornate-charcoal/80 leading-relaxed">{faq.answer}</p>
+              <p className="text-ornate-muted leading-relaxed text-sm md:text-base">{faq.answer}</p>
             </div>
           </div>
         );

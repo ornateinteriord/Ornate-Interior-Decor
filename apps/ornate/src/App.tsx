@@ -13,8 +13,10 @@ import ErrorBoundary from "./components/error/ErrorBoundary";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { StoreExtrasProvider } from "./context/StoreExtrasContext";
+import { SearchProvider } from "./context/SearchContext";
 import { CartDrawer } from "./components/ecommerce/CartDrawer";
 import { CompareBar } from "./components/ecommerce/CompareBar";
+import { SearchCommandModal } from "./components/ui-components/SearchCommandModal";
 import "./App.css";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -52,9 +54,12 @@ const PageLoader = () => (
     role="status"
     aria-live="polite"
   >
-    <p className="font-display text-xs uppercase tracking-widest text-ornate-charcoal/70">
-      Loading page...
-    </p>
+    <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-ornate-border shadow-xs">
+      <span className="w-2 h-2 rounded-full bg-ornate-moss animate-pulse" />
+      <p className="text-xs font-semibold text-ornate-muted">
+        Loading Ornate Studio...
+      </p>
+    </div>
   </div>
 );
 
@@ -64,57 +69,60 @@ const App = () => (
     <AuthProvider>
       <CartProvider>
         <StoreExtrasProvider>
-          <BrowserRouter>
-            <div className="hidden md:block">
-              <Navbar />
-            </div>
-            <div className="md:hidden">
-              <MobileTopBar />
-            </div>
+          <SearchProvider>
+            <BrowserRouter>
+              <div className="hidden md:block">
+                <Navbar />
+              </div>
+              <div className="md:hidden">
+                <MobileTopBar />
+              </div>
 
-            <ScrollToTop />
-            <CartDrawer />
-            <CompareBar />
+              <ScrollToTop />
+              <SearchCommandModal />
+              <CartDrawer />
+              <CompareBar />
 
-            <main className="min-h-screen pt-14 pb-24 md:pt-0 md:pb-0">
-              <ErrorBoundary>
-                <Suspense fallback={<PageLoader />}>
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/shop" element={<Shop />} />
-                    <Route path="/shop/:productSlug" element={<ProductDetail />} />
-                    <Route path="/cart" element={<CartPage />} />
-                    <Route path="/wishlist" element={<WishlistPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/checkout" element={<CheckoutPage />} />
-                    <Route path="/orders/:orderNumber" element={<OrderSuccessPage />} />
-                    <Route path="/account" element={<AccountPage />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/services" element={<Service />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/faq" element={<Faq />} />
-                    <Route path="/help" element={<Help />} />
-                    <Route path="/privacy-policy" element={<PrivacyandPolicy />} />
-                    <Route path="/terms-and-conditions" element={<Terms />} />
-                    <Route
-                      path="/terms"
-                      element={<Navigate to="/terms-and-conditions" replace />}
-                    />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </Suspense>
-              </ErrorBoundary>
-            </main>
+              <main className="min-h-screen pt-14 pb-24 md:pt-0 md:pb-0">
+                <ErrorBoundary>
+                  <Suspense fallback={<PageLoader />}>
+                    <Routes>
+                      <Route path="/" element={<Index />} />
+                      <Route path="/shop" element={<Shop />} />
+                      <Route path="/shop/:productSlug" element={<ProductDetail />} />
+                      <Route path="/cart" element={<CartPage />} />
+                      <Route path="/wishlist" element={<WishlistPage />} />
+                      <Route path="/login" element={<LoginPage />} />
+                      <Route path="/register" element={<RegisterPage />} />
+                      <Route path="/checkout" element={<CheckoutPage />} />
+                      <Route path="/orders/:orderNumber" element={<OrderSuccessPage />} />
+                      <Route path="/account" element={<AccountPage />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/services" element={<Service />} />
+                      <Route path="/projects" element={<Projects />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/faq" element={<Faq />} />
+                      <Route path="/help" element={<Help />} />
+                      <Route path="/privacy-policy" element={<PrivacyandPolicy />} />
+                      <Route path="/terms-and-conditions" element={<Terms />} />
+                      <Route
+                        path="/terms"
+                        element={<Navigate to="/terms-and-conditions" replace />}
+                      />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </Suspense>
+                </ErrorBoundary>
+              </main>
 
-            <div className="hidden md:block">
-              <Footer />
-            </div>
-            <div className="md:hidden">
-              <MobileBottomNav />
-            </div>
-          </BrowserRouter>
+              <div className="hidden md:block">
+                <Footer />
+              </div>
+              <div className="md:hidden">
+                <MobileBottomNav />
+              </div>
+            </BrowserRouter>
+          </SearchProvider>
         </StoreExtrasProvider>
       </CartProvider>
     </AuthProvider>

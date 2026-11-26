@@ -40,7 +40,7 @@ export function useFurnitureFilters(
     sortBy: "featured",
   });
 
-  // Sync URL ?category= once API subcategories are available
+  // Sync URL ?category= and ?q= when navigation updates query params
   useEffect(() => {
     const paramCategory = searchParams.get("category");
     if (paramCategory && validSlugs.has(paramCategory)) {
@@ -52,6 +52,13 @@ export function useFurnitureFilters(
     } else if (!paramCategory && initialSubcategory === null) {
       setFilters((prev) =>
         prev.subcategory === "all" ? prev : { ...prev, subcategory: "all" }
+      );
+    }
+
+    const paramQuery = searchParams.get("q");
+    if (paramQuery !== null) {
+      setFilters((prev) =>
+        prev.search === paramQuery ? prev : { ...prev, search: paramQuery }
       );
     }
   }, [searchParams, validSlugs, initialSubcategory]);

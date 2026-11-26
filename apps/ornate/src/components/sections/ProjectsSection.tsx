@@ -60,10 +60,10 @@ const ProjectsSection: React.FC = () => {
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="ornate-container">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <p className="ornate-subtitle mb-3">Selected Portfolio</p>
-          <h2 className="ornate-title mb-5">Residential &amp; Commercial Spaces</h2>
-          <p className="text-ornate-charcoal/80 leading-relaxed">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="ornate-pill-label mb-3">Selected Portfolio</span>
+          <h2 className="ornate-title mb-4">Residential &amp; Commercial Spaces</h2>
+          <p className="text-ornate-muted leading-relaxed">
             Browse typologies across apartments, independent homes, offices, and hospitality interiors.
           </p>
         </div>

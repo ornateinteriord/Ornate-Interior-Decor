@@ -11,24 +11,24 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="bg-ornate-cream/80 border-b border-ornate-gold/15 py-3.5"
+      className="bg-ornate-cream/80 border-b border-ornate-border py-3"
     >
-      <ol className="ornate-container flex flex-wrap items-center gap-2 text-xs font-display uppercase tracking-wider text-ornate-charcoal/70">
+      <ol className="ornate-container flex flex-wrap items-center gap-1.5 text-xs font-medium text-ornate-muted">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
-            <li key={item.path} className="flex items-center gap-2">
+            <li key={item.path} className="flex items-center gap-1.5">
               {index > 0 && (
-                <ChevronRight size={14} className="text-ornate-gold" aria-hidden="true" />
+                <ChevronRight size={13} className="text-ornate-darkgold" aria-hidden="true" />
               )}
               {isLast ? (
-                <span aria-current="page" className="text-ornate-charcoal font-medium">
+                <span aria-current="page" className="text-ornate-charcoal font-semibold">
                   {item.name}
                 </span>
               ) : (
                 <Link
                   to={item.path}
-                  className="hover:text-ornate-darkgold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ornate-gold"
+                  className="hover:text-ornate-moss transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -42,4 +42,3 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
 };
 
 export default Breadcrumbs;
-

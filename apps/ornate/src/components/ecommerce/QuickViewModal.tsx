@@ -35,13 +35,13 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
   const compared = compareIds.includes(product.id);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white w-full max-w-3xl rounded-sm border border-ornate-gold/30 shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 relative max-h-[90vh]">
+    <div className="fixed inset-0 z-50 bg-ornate-softblack/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-3xl rounded-3xl border border-ornate-border shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 relative max-h-[90vh]">
         <button
           type="button"
           onClick={onClose}
           aria-label="Close quick view"
-          className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/90 border border-ornate-gold/25 flex items-center justify-center text-ornate-charcoal hover:bg-ornate-cream"
+          className="absolute top-3.5 right-3.5 z-10 w-9 h-9 rounded-full bg-white/95 border border-ornate-border flex items-center justify-center text-ornate-charcoal hover:bg-ornate-cream"
         >
           <X size={16} />
         </button>
@@ -53,7 +53,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             className="w-full h-full object-cover"
           />
           {product.dealActive && (
-            <span className="absolute top-3 left-3 px-2.5 py-1 bg-ornate-softblack text-ornate-gold text-[10px] font-display uppercase tracking-widest">
+            <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-ornate-moss text-white text-xs font-semibold">
               Deal · {product.savingsPercent}% Off
             </span>
           )}
@@ -61,7 +61,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
         <div className="p-6 overflow-y-auto flex flex-col justify-between space-y-4">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 text-[11px] font-display uppercase tracking-widest text-ornate-darkgold">
+            <div className="flex items-center gap-2 text-xs font-semibold text-ornate-darkgold">
               <span>{product.subcategoryName}</span>
               <span>·</span>
               <span>{product.brand}</span>
@@ -72,19 +72,19 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             </h2>
 
             {product.reviewCount > 0 && (
-              <div className="flex items-center gap-1.5 text-xs text-ornate-charcoal/80">
+              <div className="flex items-center gap-1.5 text-xs text-ornate-charcoal">
                 <Star size={14} className="text-amber-500 fill-amber-500" />
                 <span className="font-semibold">{product.averageRating}</span>
-                <span>({product.reviewCount} reviews)</span>
+                <span className="text-ornate-muted">({product.reviewCount} reviews)</span>
               </div>
             )}
 
             <div className="flex items-baseline gap-2.5">
-              <span className="font-serif text-2xl font-semibold text-ornate-charcoal">
+              <span className="font-sans text-2xl font-bold text-ornate-charcoal price-nums">
                 {formatINR(product.price)}
               </span>
               {product.mrp && (
-                <span className="text-sm text-ornate-charcoal/45 line-through">
+                <span className="text-sm text-ornate-muted line-through price-nums">
                   {formatINR(product.mrp)}
                 </span>
               )}
@@ -95,43 +95,43 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               )}
             </div>
 
-            <p className="text-xs text-ornate-charcoal/75 leading-relaxed">
+            <p className="text-xs text-ornate-muted leading-relaxed">
               {product.shortDescription || product.longDescription}
             </p>
 
             {product.attributes.length > 0 && (
-              <div className="border-t border-ornate-gold/15 pt-3 space-y-1.5">
+              <div className="border-t border-ornate-border pt-3 space-y-1.5">
                 {product.attributes.slice(0, 3).map((attr) => (
                   <div
                     key={attr.key}
-                    className="flex justify-between text-xs text-ornate-charcoal/80"
+                    className="flex justify-between text-xs text-ornate-charcoal"
                   >
-                    <span className="text-ornate-charcoal/60">
+                    <span className="text-ornate-muted">
                       {formatAttributeKey(attr.key)}
                     </span>
-                    <span className="font-medium">{attr.value}</span>
+                    <span className="font-semibold">{attr.value}</span>
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          <div className="space-y-3 pt-3 border-t border-ornate-gold/15">
+          <div className="space-y-3 pt-3 border-t border-ornate-border">
             <div className="flex items-center gap-3">
-              <div className="flex items-center border border-ornate-gold/30 rounded-sm">
+              <div className="flex items-center border border-ornate-border rounded-full bg-ornate-offwhite px-1">
                 <button
                   type="button"
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  className="w-9 h-10 flex items-center justify-center hover:bg-ornate-cream"
+                  className="w-8 h-9 flex items-center justify-center rounded-full hover:bg-white"
                 >
                   <Minus size={13} />
                 </button>
-                <span className="w-9 text-center text-sm font-medium">{qty}</span>
+                <span className="w-8 text-center text-sm font-bold price-nums">{qty}</span>
                 <button
                   type="button"
                   disabled={qty >= product.stockCount}
                   onClick={() => setQty((q) => Math.min(product.stockCount, q + 1))}
-                  className="w-9 h-10 flex items-center justify-center hover:bg-ornate-cream disabled:opacity-40"
+                  className="w-8 h-9 flex items-center justify-center rounded-full hover:bg-white disabled:opacity-40"
                 >
                   <Plus size={13} />
                 </button>
@@ -144,10 +144,10 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                   await addToCart(product, qty, true);
                   onClose();
                 }}
-                className="flex-1 ornate-btn-primary h-10 gap-2 disabled:opacity-50"
+                className="flex-1 ornate-btn-primary h-10 gap-2 text-xs disabled:opacity-50"
               >
-                <ShoppingBag size={15} />
-                {product.inStock ? "Add to Cart" : "Out of Stock"}
+                <ShoppingBag size={14} />
+                {product.inStock ? "Add to Bag" : "Out of Stock"}
               </button>
             </div>
 
@@ -156,8 +156,8 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 <button
                   type="button"
                   onClick={() => void toggleWishlist(product.id, product.name)}
-                  className={`inline-flex items-center gap-1 ${
-                    wishlisted ? "text-rose-700 font-medium" : "text-ornate-charcoal/70"
+                  className={`inline-flex items-center gap-1 font-medium ${
+                    wishlisted ? "text-rose-700" : "text-ornate-muted"
                   }`}
                 >
                   <Heart size={14} className={wishlisted ? "fill-rose-600" : ""} />
@@ -166,8 +166,8 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 <button
                   type="button"
                   onClick={() => toggleCompare(product.id, product.name)}
-                  className={`inline-flex items-center gap-1 ${
-                    compared ? "text-ornate-darkgold font-medium" : "text-ornate-charcoal/70"
+                  className={`inline-flex items-center gap-1 font-medium ${
+                    compared ? "text-ornate-moss" : "text-ornate-muted"
                   }`}
                 >
                   <GitCompareArrows size={14} />
@@ -178,7 +178,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               <Link
                 to={`/shop/${product.slug}`}
                 onClick={onClose}
-                className="inline-flex items-center gap-1 text-ornate-darkgold font-medium hover:underline"
+                className="inline-flex items-center gap-1 text-ornate-moss font-semibold hover:underline"
               >
                 Full Details <ArrowRight size={13} />
               </Link>

@@ -94,29 +94,29 @@ const Faq = () => {
           ]}
         />
 
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="ornate-container">
           <div className="max-w-4xl mx-auto">
-            <div className="mb-16">
-              <p className="ornate-subtitle mb-3">General Questions</p>
-              <h2 className="ornate-title mb-8">Scope, Pricing &amp; Coverage</h2>
+            <div className="mb-14">
+              <span className="ornate-pill-label mb-3">General Questions</span>
+              <h2 className="ornate-title mb-7">Scope, Pricing &amp; Coverage</h2>
               <FaqAccordion faqs={generalFaqs} />
             </div>
 
-            <div className="mb-16">
-              <p className="ornate-subtitle mb-3">Process Questions</p>
-              <h2 className="ornate-title mb-8">From Brief to Handover</h2>
+            <div className="mb-14">
+              <span className="ornate-pill-label mb-3">Process Questions</span>
+              <h2 className="ornate-title mb-7">From Brief to Handover</h2>
               <FaqAccordion faqs={processFaqs} />
             </div>
 
-            <div className="text-center p-8 md:p-10 bg-ornate-cream border border-ornate-gold/20">
+            <div className="text-center p-8 md:p-10 rounded-3xl bg-ornate-cream border border-ornate-border">
               <h2 className="font-serif text-2xl mb-3 text-ornate-charcoal">
                 Still Have Questions?
               </h2>
-              <p className="text-ornate-charcoal/80 mb-6 leading-relaxed">
+              <p className="text-ornate-muted mb-6 leading-relaxed">
                 Contact our studio directly or read our consultation preparation checklist.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-3.5">
                 <Link
                   to="/contact"
                   className="ornate-btn-primary inline-flex items-center group"

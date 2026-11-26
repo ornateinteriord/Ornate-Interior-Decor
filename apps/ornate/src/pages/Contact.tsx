@@ -34,25 +34,27 @@ const Contact = () => {
           ]}
         />
 
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="ornate-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             <div>
-              <p className="ornate-subtitle mb-3">Studio Details</p>
-              <h2 className="ornate-title mb-6">Visit Us in Vijayanagar</h2>
+              <span className="ornate-pill-label mb-3">Studio Details</span>
+              <h2 className="ornate-title mb-5">Visit Us in Vijayanagar</h2>
 
-              <p className="text-ornate-charcoal/80 mb-10 leading-relaxed">
+              <p className="text-ornate-muted mb-8 leading-relaxed">
                 Whether you are furnishing a new apartment, renovating a family home, or planning an office interior, our team welcomes scheduled studio visits and phone consultations.
               </p>
 
-              <div className="space-y-8 mb-10">
-                <div className="flex items-start">
-                  <MapPin size={22} className="text-ornate-darkgold mr-4 mt-1 flex-shrink-0" aria-hidden="true" />
+              <div className="space-y-6 mb-10">
+                <div className="flex items-start gap-4">
+                  <span className="w-10 h-10 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss shrink-0">
+                    <MapPin size={19} aria-hidden="true" />
+                  </span>
                   <div>
-                    <h3 className="font-serif text-lg mb-1.5 text-ornate-charcoal">
+                    <h3 className="font-sans font-semibold text-base mb-1 text-ornate-charcoal">
                       Studio Address
                     </h3>
-                    <address className="text-ornate-charcoal/80 not-italic leading-relaxed">
+                    <address className="text-ornate-muted text-sm not-italic leading-relaxed">
                       148/E, 17th Main Rd, SBI Staff Colony,
                       <br />
                       Hosahalli Extension, Stage 1, Vijayanagar,
@@ -62,43 +64,49 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Mail size={22} className="text-ornate-darkgold mr-4 mt-1 flex-shrink-0" aria-hidden="true" />
+                <div className="flex items-start gap-4">
+                  <span className="w-10 h-10 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss shrink-0">
+                    <Mail size={19} aria-hidden="true" />
+                  </span>
                   <div>
-                    <h3 className="font-serif text-lg mb-1.5 text-ornate-charcoal">
+                    <h3 className="font-sans font-semibold text-base mb-1 text-ornate-charcoal">
                       Email
                     </h3>
                     <a
                       href={`mailto:${STUDIO_INFO.email}`}
-                      className="text-ornate-charcoal/80 hover:text-ornate-darkgold transition-colors"
+                      className="text-sm text-ornate-charcoal font-medium hover:text-ornate-darkgold transition-colors"
                     >
                       {STUDIO_INFO.email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Phone size={22} className="text-ornate-darkgold mr-4 mt-1 flex-shrink-0" aria-hidden="true" />
+                <div className="flex items-start gap-4">
+                  <span className="w-10 h-10 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss shrink-0">
+                    <Phone size={19} aria-hidden="true" />
+                  </span>
                   <div>
-                    <h3 className="font-serif text-lg mb-1.5 text-ornate-charcoal">
+                    <h3 className="font-sans font-semibold text-base mb-1 text-ornate-charcoal">
                       Phone
                     </h3>
                     <a
                       href={STUDIO_INFO.phoneHref}
-                      className="text-ornate-charcoal/80 hover:text-ornate-darkgold transition-colors"
+                      className="text-sm text-ornate-charcoal font-medium hover:text-ornate-darkgold transition-colors"
                     >
                       {STUDIO_INFO.phoneDisplay}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Clock size={22} className="text-ornate-darkgold mr-4 mt-1 flex-shrink-0" aria-hidden="true" />
+                <div className="flex items-start gap-4">
+                  <span className="w-10 h-10 rounded-xl bg-ornate-sage flex items-center justify-center text-ornate-moss shrink-0">
+                    <Clock size={19} aria-hidden="true" />
+                  </span>
                   <div>
-                    <h3 className="font-serif text-lg mb-1.5 text-ornate-charcoal">
+                    <h3 className="font-sans font-semibold text-base mb-1 text-ornate-charcoal">
                       Office Hours
                     </h3>
-                    <p className="text-ornate-charcoal/80 leading-relaxed">
+                    <p className="text-sm text-ornate-muted leading-relaxed">
                       Monday - Friday: 9:00 AM - 6:00 PM
                       <br />
                       Saturday: 10:00 AM - 4:00 PM
@@ -110,46 +118,46 @@ const Contact = () => {
               </div>
 
               <div>
-                <h3 className="font-serif text-lg mb-4 text-ornate-charcoal">
+                <h3 className="font-sans font-semibold text-sm text-ornate-charcoal mb-3">
                   Social Channels
                 </h3>
-                <div className="flex space-x-3">
+                <div className="flex space-x-2.5">
                   <a
                     href="https://instagram.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Ornate Interior Decor on Instagram"
-                    className="p-3 border border-ornate-gold/30 text-ornate-darkgold hover:bg-ornate-charcoal hover:text-white hover:border-ornate-charcoal transition-colors"
+                    className="w-10 h-10 rounded-full border border-ornate-border text-ornate-moss hover:bg-ornate-moss hover:text-white hover:border-ornate-moss flex items-center justify-center transition-colors"
                   >
-                    <Instagram size={20} aria-hidden="true" />
+                    <Instagram size={18} aria-hidden="true" />
                   </a>
                   <a
                     href="https://facebook.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Ornate Interior Decor on Facebook"
-                    className="p-3 border border-ornate-gold/30 text-ornate-darkgold hover:bg-ornate-charcoal hover:text-white hover:border-ornate-charcoal transition-colors"
+                    className="w-10 h-10 rounded-full border border-ornate-border text-ornate-moss hover:bg-ornate-moss hover:text-white hover:border-ornate-moss flex items-center justify-center transition-colors"
                   >
-                    <Facebook size={20} aria-hidden="true" />
+                    <Facebook size={18} aria-hidden="true" />
                   </a>
                   <a
                     href="https://twitter.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Ornate Interior Decor on X (Twitter)"
-                    className="p-3 border border-ornate-gold/30 text-ornate-darkgold hover:bg-ornate-charcoal hover:text-white hover:border-ornate-charcoal transition-colors"
+                    className="w-10 h-10 rounded-full border border-ornate-border text-ornate-moss hover:bg-ornate-moss hover:text-white hover:border-ornate-moss flex items-center justify-center transition-colors"
                   >
-                    <Twitter size={20} aria-hidden="true" />
+                    <Twitter size={18} aria-hidden="true" />
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="bg-ornate-offwhite p-8 md:p-10 border border-ornate-gold/20">
+            <div className="bg-ornate-offwhite p-8 md:p-10 rounded-3xl border border-ornate-border">
               <h2 className="font-serif text-2xl mb-2 text-ornate-charcoal">
                 Send Project Details
               </h2>
-              <p className="text-sm text-ornate-charcoal/75 mb-6">
+              <p className="text-sm text-ornate-muted mb-6">
                 Fill in your inquiry below to prepare a structured brief for our design team.
               </p>
               <ContactForm />

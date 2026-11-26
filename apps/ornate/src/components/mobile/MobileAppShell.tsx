@@ -5,16 +5,17 @@ import {
   ChevronRight,
   Compass,
   FileText,
+  FolderKanban,
   Heart,
   HelpCircle,
   Home,
   Info,
-  Layers,
   Mail,
   MapPin,
   Menu,
   Package,
   Phone,
+  Search,
   Shield,
   ShoppingBag,
   ShoppingCart,
@@ -32,18 +33,19 @@ import { STUDIO_INFO } from "@/lib/seo";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { useStoreExtras } from "@/context/StoreExtrasContext";
+import { useGlobalSearch } from "@/context/SearchContext";
 
 const PAGE_TITLES: Record<string, string> = {
   "/": "Ornate Studio",
-  "/shop": "Furniture Shop",
+  "/shop": "Furniture Store",
   "/cart": "Shopping Bag",
   "/wishlist": "Saved Wishlist",
   "/login": "Sign In",
   "/register": "Create Account",
-  "/checkout": "Razorpay Checkout",
+  "/checkout": "Secure Checkout",
   "/account": "My Account",
   "/services": "Design Services",
-  "/projects": "Our Projects",
+  "/projects": "Portfolio Projects",
   "/about": "About Studio",
   "/contact": "Contact Studio",
   "/faq": "FAQ",
@@ -53,13 +55,13 @@ const PAGE_TITLES: Record<string, string> = {
 };
 
 const STUDIO_MENU_LINKS = [
-  { label: "My Account & Orders", path: "/account", icon: Package },
+  { label: "Portfolio Projects", path: "/projects", icon: FolderKanban },
+  { label: "My Orders & Account", path: "/account", icon: Package },
   { label: "Saved Wishlist", path: "/wishlist", icon: Heart },
-  { label: "Shopping Bag", path: "/cart", icon: ShoppingCart },
   { label: "About Our Studio", path: "/about", icon: Info },
   { label: "Book Consultation", path: "/contact", icon: Mail },
-  { label: "Frequently Asked Questions", path: "/faq", icon: HelpCircle },
-  { label: "Help & Support", path: "/help", icon: Compass },
+  { label: "FAQ", path: "/faq", icon: HelpCircle },
+  { label: "Help & Visit Prep", path: "/help", icon: Compass },
   { label: "Privacy Policy", path: "/privacy-policy", icon: Shield },
   { label: "Terms & Conditions", path: "/terms-and-conditions", icon: FileText },
 ];
@@ -69,11 +71,11 @@ export const MobileTopBar: React.FC = () => {
   const navigate = useNavigate();
   const { itemCount, setDrawerOpen } = useCart();
   const { isAuthenticated } = useAuth();
-  const { wishlistIds } = useStoreExtras();
+  const { openSearch } = useGlobalSearch();
 
   const isHome = location.pathname === "/";
   const currentTitle = location.pathname.startsWith("/shop/")
-    ? "Product Details"
+    ? "Furniture Details"
     : location.pathname.startsWith("/orders/")
     ? "Order Tracking"
     : PAGE_TITLES[location.pathname] ?? "Ornate Interior";
@@ -87,7 +89,7 @@ export const MobileTopBar: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-40 h-14 bg-white/95 backdrop-blur-xl border-b border-ornate-gold/15 px-2.5 sm:px-3 flex items-center justify-between gap-1.5">
+    <header className="fixed top-0 inset-x-0 z-40 h-14 bg-white/95 backdrop-blur-xl border-b border-ornate-border px-3 flex items-center justify-between gap-2">
       {isHome ? (
         <Link
           to="/"
@@ -97,61 +99,44 @@ export const MobileTopBar: React.FC = () => {
           <img
             src="/Ornate%20Interior%20Decor%20Logo.png"
             alt="Ornate Interior Decor"
-            className="h-10 w-auto max-w-[145px] object-contain brightness-0 opacity-90 shrink-0"
+            className="h-9 w-auto max-w-[132px] object-contain brightness-[0.22] contrast-125 shrink-0"
           />
         </Link>
       ) : (
-        <>
-          <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
-            <button
-              type="button"
-              onClick={handleBack}
-              aria-label="Go back"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-ornate-charcoal active:bg-ornate-cream transition-colors shrink-0"
-            >
-              <ChevronLeft size={21} />
-            </button>
-            <Link
-              to="/"
-              aria-label="Ornate Interior Decor Home"
-              className="flex items-center shrink-0"
-            >
-              <img
-                src="/Ornate%20Interior%20Decor%20Logo.png"
-                alt="Ornate Interior Decor"
-                className="h-7 sm:h-8 w-auto max-w-[110px] sm:max-w-[130px] object-contain brightness-0 opacity-95"
-              />
-            </Link>
-          </div>
-          <h1 className="flex-1 min-w-0 text-center font-serif text-[15px] sm:text-lg text-ornate-charcoal truncate px-1">
+        <div className="flex items-center gap-1.5 min-w-0 flex-1">
+          <button
+            type="button"
+            onClick={handleBack}
+            aria-label="Go back"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-ornate-charcoal bg-ornate-offwhite border border-ornate-border active:scale-95 transition-transform shrink-0"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <h1 className="font-serif text-[17px] font-medium text-ornate-charcoal truncate">
             {currentTitle}
           </h1>
-        </>
+        </div>
       )}
 
-      <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
-        <Link
-          to="/wishlist"
-          aria-label="Wishlist"
-          className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
+      <div className="flex items-center gap-1.5 shrink-0">
+        <button
+          type="button"
+          onClick={openSearch}
+          aria-label="Search store and pages"
+          className="w-9 h-9 rounded-full bg-ornate-offwhite border border-ornate-border flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
         >
-          <Heart size={16} />
-          {wishlistIds.length > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-ornate-darkgold text-white text-[9px] font-semibold flex items-center justify-center">
-              {wishlistIds.length}
-            </span>
-          )}
-        </Link>
+          <Search size={17} />
+        </button>
 
         <button
           type="button"
           onClick={() => setDrawerOpen(true)}
-          aria-label="Open Cart"
-          className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
+          aria-label="Open shopping bag"
+          className="relative w-9 h-9 rounded-full bg-ornate-offwhite border border-ornate-border flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
         >
-          <ShoppingCart size={16} />
+          <ShoppingCart size={17} />
           {itemCount > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full bg-ornate-gold text-ornate-softblack text-[9px] font-bold flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-ornate-moss text-white text-[10px] font-bold flex items-center justify-center price-nums">
               {itemCount}
             </span>
           )}
@@ -159,10 +144,14 @@ export const MobileTopBar: React.FC = () => {
 
         <Link
           to={isAuthenticated ? "/account" : "/login"}
-          aria-label="Account"
-          className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-ornate-cream flex items-center justify-center text-ornate-charcoal active:scale-95 transition-transform"
+          aria-label={isAuthenticated ? "My Account" : "Sign In"}
+          className={`w-9 h-9 rounded-full flex items-center justify-center border active:scale-95 transition-transform ${
+            isAuthenticated
+              ? "bg-ornate-sage border-ornate-moss/25 text-ornate-moss"
+              : "bg-ornate-offwhite border-ornate-border text-ornate-charcoal"
+          }`}
         >
-          <User size={16} />
+          <User size={17} />
         </Link>
       </div>
     </header>
@@ -173,156 +162,161 @@ export const MobileBottomNav: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const { itemCount } = useCart();
+  const { wishlistIds } = useStoreExtras();
+  const { openSearch } = useGlobalSearch();
 
+  const isShopActive =
+    location.pathname === "/shop" || location.pathname.startsWith("/shop/");
   const isMoreRouteActive = STUDIO_MENU_LINKS.some(
     (item) => item.path === location.pathname
   );
+
+  const navItems = [
+    {
+      label: "Home",
+      to: "/",
+      icon: Home,
+      active: location.pathname === "/",
+    },
+    {
+      label: "Shop",
+      to: "/shop",
+      icon: ShoppingBag,
+      active: isShopActive,
+    },
+    {
+      label: "Services",
+      to: "/services",
+      icon: Sparkles,
+      active: location.pathname === "/services",
+    },
+    {
+      label: "Projects",
+      to: "/projects",
+      icon: FolderKanban,
+      active: location.pathname === "/projects",
+    },
+  ];
 
   return (
     <>
       <nav
         aria-label="Mobile App Navigation"
-        className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-xl border-t border-ornate-gold/20 shadow-[0_-8px_28px_rgba(0,0,0,0.06)] pb-[env(safe-area-inset-bottom)]"
+        className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-xl border-t border-ornate-border shadow-[0_-6px_24px_rgba(20,18,16,0.06)] pb-[env(safe-area-inset-bottom)]"
       >
-        <div className="grid grid-cols-5 h-16 px-1">
-          <Link
-            to="/"
-            className={`flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
-              location.pathname === "/" ? "text-ornate-charcoal" : "text-ornate-charcoal/55"
-            }`}
-          >
-            <span
-              className={`px-3 py-1 rounded-full transition-colors ${
-                location.pathname === "/" ? "bg-ornate-gold/25" : ""
-              }`}
-            >
-              <Home size={19} strokeWidth={location.pathname === "/" ? 2.3 : 1.8} />
-            </span>
-            <span>Home</span>
-          </Link>
-
-          <Link
-            to="/shop"
-            className={`flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
-              location.pathname === "/shop" || location.pathname.startsWith("/shop/")
-                ? "text-ornate-charcoal"
-                : "text-ornate-charcoal/55"
-            }`}
-          >
-            <span
-              className={`px-3 py-1 rounded-full transition-colors ${
-                location.pathname === "/shop" || location.pathname.startsWith("/shop/")
-                  ? "bg-ornate-gold/25"
-                  : ""
-              }`}
-            >
-              <ShoppingBag
-                size={19}
-                strokeWidth={
-                  location.pathname === "/shop" || location.pathname.startsWith("/shop/")
-                    ? 2.3
-                    : 1.8
-                }
-              />
-            </span>
-            <span>Shop</span>
-          </Link>
-
-          <Link
-            to="/cart"
-            className={`flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
-              location.pathname === "/cart" ? "text-ornate-charcoal" : "text-ornate-charcoal/55"
-            }`}
-          >
-            <span
-              className={`relative px-3 py-1 rounded-full transition-colors ${
-                location.pathname === "/cart" ? "bg-ornate-gold/25" : ""
-              }`}
-            >
-              <ShoppingCart
-                size={19}
-                strokeWidth={location.pathname === "/cart" ? 2.3 : 1.8}
-              />
-              {itemCount > 0 && (
-                <span className="absolute -top-0.5 right-1 min-w-[15px] h-4 px-1 rounded-full bg-ornate-darkgold text-white text-[9px] font-bold flex items-center justify-center">
-                  {itemCount}
+        <div className="grid grid-cols-5 h-16 px-1.5">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`flex flex-col items-center justify-center gap-0.5 text-[11px] font-medium transition-colors ${
+                  item.active ? "text-ornate-moss font-semibold" : "text-ornate-muted"
+                }`}
+              >
+                <span
+                  className={`px-3.5 py-1 rounded-full transition-colors ${
+                    item.active ? "bg-ornate-moss text-white" : ""
+                  }`}
+                >
+                  <Icon size={18} strokeWidth={item.active ? 2.2 : 1.8} />
                 </span>
-              )}
-            </span>
-            <span>Cart</span>
-          </Link>
-
-          <Link
-            to="/projects"
-            className={`flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
-              location.pathname === "/projects"
-                ? "text-ornate-charcoal"
-                : "text-ornate-charcoal/55"
-            }`}
-          >
-            <span
-              className={`px-3 py-1 rounded-full transition-colors ${
-                location.pathname === "/projects" ? "bg-ornate-gold/25" : ""
-              }`}
-            >
-              <Layers
-                size={19}
-                strokeWidth={location.pathname === "/projects" ? 2.3 : 1.8}
-              />
-            </span>
-            <span>Projects</span>
-          </Link>
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
 
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className={`flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
-              isMoreRouteActive ? "text-ornate-charcoal" : "text-ornate-charcoal/55"
+            className={`flex flex-col items-center justify-center gap-0.5 text-[11px] font-medium transition-colors ${
+              isMoreRouteActive ? "text-ornate-moss font-semibold" : "text-ornate-muted"
             }`}
           >
             <span
-              className={`px-3 py-1 rounded-full transition-colors ${
-                isMoreRouteActive ? "bg-ornate-gold/25" : ""
+              className={`relative px-3.5 py-1 rounded-full transition-colors ${
+                isMoreRouteActive ? "bg-ornate-moss text-white" : ""
               }`}
             >
-              <Menu size={19} strokeWidth={isMoreRouteActive ? 2.3 : 1.8} />
+              <Menu size={18} strokeWidth={isMoreRouteActive ? 2.2 : 1.8} />
+              {(itemCount > 0 || wishlistIds.length > 0) && !isMoreRouteActive && (
+                <span className="absolute top-0.5 right-2 w-2 h-2 rounded-full bg-ornate-darkgold" />
+              )}
             </span>
-            <span>More</span>
+            <span>Menu</span>
           </button>
         </div>
       </nav>
 
       <Drawer open={menuOpen} onOpenChange={setMenuOpen}>
-        <DrawerContent className="bg-ornate-offwhite rounded-t-2xl max-h-[85vh]">
-          <DrawerHeader className="text-left pb-3.5 border-b border-ornate-gold/15">
+        <DrawerContent className="bg-ornate-offwhite rounded-t-3xl max-h-[88vh]">
+          <DrawerHeader className="text-left pb-3.5 border-b border-ornate-border">
             <div className="flex items-center justify-between gap-3">
               <div className="space-y-1">
                 <img
                   src="/Ornate%20Interior%20Decor%20Logo.png"
                   alt={STUDIO_INFO.name}
-                  className="h-10 w-auto object-contain brightness-0 opacity-90"
+                  className="h-9 w-auto object-contain brightness-[0.22] contrast-125"
                 />
                 <DrawerTitle className="sr-only">{STUDIO_INFO.name}</DrawerTitle>
-                <DrawerDescription className="text-xs text-ornate-charcoal/70 flex items-center gap-1">
-                  <MapPin size={11} className="text-ornate-darkgold shrink-0" />
+                <DrawerDescription className="text-xs text-ornate-muted flex items-center gap-1">
+                  <MapPin size={12} className="text-ornate-darkgold shrink-0" />
                   Vijayanagar, Bengaluru
                 </DrawerDescription>
               </div>
-              <Link
-                to="/services"
-                onClick={() => setMenuOpen(false)}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-ornate-cream border border-ornate-gold/25 text-xs font-medium text-ornate-charcoal"
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  openSearch();
+                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-ornate-border text-xs font-semibold text-ornate-charcoal"
               >
-                <Sparkles size={13} className="text-ornate-darkgold" /> Services
-              </Link>
+                <Search size={14} className="text-ornate-moss" /> Search
+              </button>
             </div>
           </DrawerHeader>
 
           <div className="p-4 space-y-4 overflow-y-auto">
+            {/* Quick Action Tiles */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <Link
+                to="/cart"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between p-3.5 rounded-2xl bg-ornate-moss text-white"
+              >
+                <div className="flex items-center gap-2.5">
+                  <ShoppingCart size={18} className="text-ornate-gold" />
+                  <span className="text-xs font-semibold">Shopping Bag</span>
+                </div>
+                {itemCount > 0 && (
+                  <span className="px-2 py-0.5 rounded-full bg-ornate-gold text-ornate-softblack text-[11px] font-bold price-nums">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
+              <Link
+                to="/wishlist"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between p-3.5 rounded-2xl bg-white border border-ornate-border text-ornate-charcoal"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Heart size={18} className="text-ornate-darkgold" />
+                  <span className="text-xs font-semibold">Wishlist</span>
+                </div>
+                {wishlistIds.length > 0 && (
+                  <span className="px-2 py-0.5 rounded-full bg-ornate-cream text-ornate-charcoal text-[11px] font-bold price-nums">
+                    {wishlistIds.length}
+                  </span>
+                )}
+              </Link>
+            </div>
+
             <div className="grid grid-cols-2 gap-2.5">
               <a
                 href={STUDIO_INFO.phoneHref}
-                className="flex items-center justify-center gap-2 h-11 rounded-xl bg-ornate-charcoal text-white text-xs font-medium"
+                className="flex items-center justify-center gap-2 h-11 rounded-full bg-ornate-gold text-ornate-softblack text-xs font-semibold"
               >
                 <Phone size={15} />
                 Call Studio
@@ -330,14 +324,14 @@ export const MobileBottomNav: React.FC = () => {
               <Link
                 to="/account"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-center gap-2 h-11 rounded-xl bg-white border border-ornate-gold/30 text-ornate-charcoal text-xs font-medium"
+                className="flex items-center justify-center gap-2 h-11 rounded-full bg-white border border-ornate-border text-ornate-charcoal text-xs font-semibold"
               >
-                <User size={15} className="text-ornate-darkgold" />
+                <User size={15} className="text-ornate-moss" />
                 My Account
               </Link>
             </div>
 
-            <div className="bg-white rounded-xl border border-ornate-gold/20 divide-y divide-ornate-gold/10 overflow-hidden">
+            <div className="bg-white rounded-2xl border border-ornate-border divide-y divide-ornate-border overflow-hidden">
               {STUDIO_MENU_LINKS.map((item) => {
                 const Icon = item.icon;
                 const active = location.pathname === item.path;
@@ -348,20 +342,20 @@ export const MobileBottomNav: React.FC = () => {
                     onClick={() => setMenuOpen(false)}
                     className={`flex items-center justify-between px-4 py-3.5 text-sm transition-colors ${
                       active
-                        ? "bg-ornate-cream/70 font-medium text-ornate-charcoal"
-                        : "text-ornate-charcoal active:bg-ornate-cream/50"
+                        ? "bg-ornate-sage/60 font-semibold text-ornate-moss"
+                        : "text-ornate-charcoal active:bg-ornate-cream/60"
                     }`}
                   >
                     <span className="flex items-center gap-3">
                       <Icon
                         size={18}
                         className={
-                          active ? "text-ornate-darkgold" : "text-ornate-charcoal/60"
+                          active ? "text-ornate-moss" : "text-ornate-darkgold"
                         }
                       />
                       {item.label}
                     </span>
-                    <ChevronRight size={16} className="text-ornate-charcoal/35" />
+                    <ChevronRight size={16} className="text-ornate-muted" />
                   </Link>
                 );
               })}

@@ -56,7 +56,7 @@ const OrderSuccessPage: React.FC = () => {
   if (isLoading || !order) {
     return (
       <div className="min-h-screen bg-ornate-offwhite pt-16 md:pt-32 px-4 text-center">
-        <p className="text-sm text-ornate-charcoal/70">
+        <p className="text-sm text-ornate-muted">
           {isLoading ? "Loading order details..." : "Order not found."}
         </p>
       </div>
@@ -103,13 +103,13 @@ const OrderSuccessPage: React.FC = () => {
       <div className="ornate-container max-w-4xl space-y-6">
         <Link
           to="/account"
-          className="inline-flex items-center gap-1.5 text-xs font-display uppercase tracking-wider text-ornate-darkgold hover:text-ornate-charcoal"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-ornate-moss hover:text-ornate-darkgold"
         >
           <ArrowLeft size={14} /> Back to My Orders
         </Link>
 
         {/* Status Header Banner */}
-        <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+        <div className="ornate-card p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-start gap-4">
             {order.paymentStatus === "PAID" && order.orderStatus !== "CANCELLED" ? (
               <CheckCircle2 size={34} className="text-emerald-700 shrink-0 mt-1" />
@@ -119,13 +119,13 @@ const OrderSuccessPage: React.FC = () => {
               <AlertCircle size={34} className="text-amber-600 shrink-0 mt-1" />
             )}
             <div>
-              <p className="text-xs font-display uppercase tracking-widest text-ornate-darkgold">
+              <p className="text-xs font-semibold uppercase tracking-wider text-ornate-darkgold">
                 {ORDER_STATUS_LABELS[order.orderStatus] || order.orderStatus}
               </p>
               <h1 className="font-serif text-3xl text-ornate-charcoal">
-                Order {order.orderNumber}
+                Order <span className="font-mono text-2xl">{order.orderNumber}</span>
               </h1>
-              <p className="text-xs text-ornate-charcoal/70 mt-1">
+              <p className="text-xs text-ornate-muted mt-1">
                 Placed on {new Date(order.createdAt).toLocaleString("en-IN")} · Estimated
                 Delivery: {order.estimatedDelivery}
               </p>
@@ -137,7 +137,7 @@ const OrderSuccessPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleRetryPayment}
-                className="ornate-btn-primary py-2.5 px-4 gap-1.5"
+                className="ornate-btn-primary py-2.5 px-4 text-xs gap-1.5"
               >
                 <RefreshCw size={14} /> Complete Payment
               </button>
@@ -145,7 +145,7 @@ const OrderSuccessPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setInvoiceOpen(true)}
-              className="ornate-btn-outline py-2.5 px-4 gap-1.5"
+              className="ornate-btn-outline py-2.5 px-4 text-xs gap-1.5"
             >
               <FileText size={14} /> View Tax Invoice
             </button>
@@ -153,7 +153,7 @@ const OrderSuccessPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleCancelOrder}
-                className="px-4 py-2.5 border border-rose-200 text-rose-700 text-xs font-display uppercase tracking-wider rounded-sm hover:bg-rose-50"
+                className="px-4 py-2.5 border border-rose-200 text-rose-700 text-xs font-semibold rounded-full hover:bg-rose-50"
               >
                 Cancel Order
               </button>
@@ -163,9 +163,9 @@ const OrderSuccessPage: React.FC = () => {
 
         {/* Visual Tracking Stepper */}
         {order.orderStatus !== "CANCELLED" && order.paymentStatus === "PAID" && (
-          <div className="bg-white border border-ornate-gold/25 rounded-sm p-6">
+          <div className="ornate-card p-6">
             <h2 className="font-serif text-lg mb-5 flex items-center gap-2">
-              <Package size={17} className="text-ornate-darkgold" />
+              <Package size={17} className="text-ornate-moss" />
               Delivery Progress
             </h2>
             <div className="grid grid-cols-5 gap-2 text-center">
@@ -175,12 +175,12 @@ const OrderSuccessPage: React.FC = () => {
                   <div key={step} className="space-y-2">
                     <div
                       className={`h-2 rounded-full ${
-                        done ? "bg-emerald-700" : "bg-ornate-cream"
+                        done ? "bg-ornate-moss" : "bg-ornate-cream"
                       }`}
                     />
                     <p
-                      className={`text-[11px] font-medium ${
-                        done ? "text-ornate-charcoal" : "text-ornate-charcoal/45"
+                      className={`text-xs font-semibold ${
+                        done ? "text-ornate-charcoal" : "text-ornate-muted/60"
                       }`}
                     >
                       {ORDER_STATUS_LABELS[step]}
@@ -193,86 +193,89 @@ const OrderSuccessPage: React.FC = () => {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-2 text-sm">
-            <h2 className="font-serif text-lg border-b border-ornate-gold/15 pb-2">
+          <div className="ornate-card p-6 space-y-2 text-sm">
+            <h2 className="font-serif text-lg border-b border-ornate-border pb-2">
               Shipping Address
             </h2>
-            <p className="font-medium">{order.shippingAddress.fullName}</p>
-            <p className="text-ornate-charcoal/80">
+            <p className="font-semibold">{order.shippingAddress.fullName}</p>
+            <p className="text-ornate-muted">
               {order.shippingAddress.line1}
               {order.shippingAddress.line2 ? `, ${order.shippingAddress.line2}` : ""}
             </p>
-            <p className="text-ornate-charcoal/80">
+            <p className="text-ornate-muted">
               {order.shippingAddress.city}, {order.shippingAddress.state} -{" "}
               {order.shippingAddress.pincode}
             </p>
-            <p className="text-ornate-charcoal/80">Phone: {order.shippingAddress.phone}</p>
+            <p className="text-ornate-muted">Phone: {order.shippingAddress.phone}</p>
           </div>
 
-          <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-2 text-sm">
-            <h2 className="font-serif text-lg border-b border-ornate-gold/15 pb-2">
+          <div className="ornate-card p-6 space-y-2 text-sm">
+            <h2 className="font-serif text-lg border-b border-ornate-border pb-2">
               Razorpay Payment Details
             </h2>
             <p>
               <strong>Payment Status:</strong> {order.paymentStatus}
             </p>
             <p className="text-xs">
-              <strong>Razorpay Order ID:</strong> {order.razorpayOrderId}
+              <strong>Razorpay Order ID:</strong>{" "}
+              <span className="font-mono">{order.razorpayOrderId}</span>
             </p>
             <p className="text-xs">
-              <strong>Razorpay Payment ID:</strong> {order.razorpayPaymentId || "—"}
+              <strong>Razorpay Payment ID:</strong>{" "}
+              <span className="font-mono">{order.razorpayPaymentId || "—"}</span>
             </p>
             <p className="text-xs">
-              <strong>Total Paid:</strong> {formatINR(order.pricing.grandTotal)}
+              <strong>Total Paid:</strong>{" "}
+              <span className="font-bold price-nums">{formatINR(order.pricing.grandTotal)}</span>
             </p>
           </div>
         </div>
 
         {/* Items */}
-        <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-4">
-          <h2 className="font-serif text-lg border-b border-ornate-gold/15 pb-2">
+        <div className="ornate-card p-6 space-y-4">
+          <h2 className="font-serif text-lg border-b border-ornate-border pb-2">
             Ordered Furniture ({order.items.length})
           </h2>
-          <div className="divide-y divide-ornate-gold/15">
+          <div className="divide-y divide-ornate-border">
             {order.items.map((item) => (
               <div key={item.productId} className="py-3 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-14 h-14 rounded-sm object-cover bg-ornate-cream"
+                    className="w-14 h-14 rounded-xl object-cover bg-ornate-cream"
                   />
                   <div>
                     <Link
                       to={`/shop/${item.slug}`}
-                      className="font-serif text-base hover:text-ornate-darkgold"
+                      className="font-sans font-semibold text-base hover:text-ornate-moss"
                     >
                       {item.name}
                     </Link>
-                    <p className="text-xs text-ornate-charcoal/65">
+                    <p className="text-xs text-ornate-muted price-nums">
                       Qty {item.quantity} × {formatINR(item.unitPrice)}
                     </p>
                   </div>
                 </div>
-                <p className="font-semibold">{formatINR(item.lineTotal)}</p>
+                <p className="font-bold price-nums">{formatINR(item.lineTotal)}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Timeline */}
-        <div className="bg-white border border-ornate-gold/25 rounded-sm p-6 space-y-3">
+        <div className="ornate-card p-6 space-y-3">
           <h2 className="font-serif text-lg">Activity Timeline</h2>
           <div className="space-y-2.5 text-xs">
             {[...order.timeline].reverse().map((entry, idx) => (
-              <div key={idx} className="flex justify-between gap-4 border-l-2 border-ornate-gold pl-3 py-0.5">
+              <div key={idx} className="flex justify-between gap-4 border-l-2 border-ornate-moss pl-3 py-0.5">
                 <div>
                   <p className="font-semibold">
                     {ORDER_STATUS_LABELS[entry.status] || entry.status}
                   </p>
-                  <p className="text-ornate-charcoal/75">{entry.note}</p>
+                  <p className="text-ornate-muted">{entry.note}</p>
                 </div>
-                <span className="text-ornate-charcoal/55 shrink-0">
+                <span className="text-ornate-muted shrink-0">
                   {new Date(entry.timestamp).toLocaleString("en-IN")}
                 </span>
               </div>

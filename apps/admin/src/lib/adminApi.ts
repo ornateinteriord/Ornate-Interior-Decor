@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:4000";
+  import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:9000";
 
 const ADMIN_TOKEN_KEY = "ornate_admin_token";
 

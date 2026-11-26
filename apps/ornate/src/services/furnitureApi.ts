@@ -12,7 +12,7 @@ const COMBINED_PRODUCTS_PATH = "/api/products";
 const FALLBACK_SELLER_PATH = "/api/v1/seller/SLR00003/products";
 const PROD_EXTERNAL_API_BASE = "https://api-geteway.vercel.app";
 export const LOCAL_API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:4000";
+  import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:9000";
 
 const FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=900&auto=format&fit=crop";

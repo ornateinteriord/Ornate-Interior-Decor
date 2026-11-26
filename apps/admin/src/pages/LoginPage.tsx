@@ -6,8 +6,8 @@ import { useAdminAuth } from "@/context/AdminAuthContext";
 
 export const LoginPage: React.FC = () => {
   const { login } = useAdminAuth();
-  const [email, setEmail] = useState("admin@ornateinteriordecor.com");
-  const [password, setPassword] = useState("OrnateAdmin@2026");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -87,18 +87,6 @@ export const LoginPage: React.FC = () => {
             {submitting ? "Signing In..." : "Access Admin Studio"}
           </button>
         </form>
-
-        <div className="bg-ornate-cream/60 border border-ornate-gold/25 rounded p-3.5 text-xs text-ornate-charcoal/80 space-y-1">
-          <p className="font-semibold flex items-center gap-1.5 text-ornate-darkgold">
-            <KeyRound size={13} /> Seeded Default Admin (MongoDB `ornate_admin`)
-          </p>
-          <p>
-            Email: <code className="bg-white px-1 rounded">admin@ornateinteriordecor.com</code>
-          </p>
-          <p>
-            Password: <code className="bg-white px-1 rounded">OrnateAdmin@2026</code>
-          </p>
-        </div>
       </div>
     </div>
   );

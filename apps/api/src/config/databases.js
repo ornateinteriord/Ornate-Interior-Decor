@@ -3,6 +3,7 @@ import { env } from "./env.js";
 
 let baseConnection = null;
 let dbs = null;
+let connectPromise = null;
 
 /**
  * Connects once to the MongoDB Atlas cluster and creates separate logical
@@ -13,21 +14,33 @@ export async function connectDatabases() {
     return dbs;
   }
 
-  baseConnection = await mongoose
-    .createConnection(env.mongodbUri, {
-      maxPoolSize: 15,
-      serverSelectionTimeoutMS: 12000,
-    })
-    .asPromise();
+  if (connectPromise) {
+    return connectPromise;
+  }
 
-  dbs = {
-    catalog: baseConnection.useDb(env.dbNames.catalog, { useCache: true }),
-    users: baseConnection.useDb(env.dbNames.users, { useCache: true }),
-    orders: baseConnection.useDb(env.dbNames.orders, { useCache: true }),
-    admin: baseConnection.useDb(env.dbNames.admin, { useCache: true }),
-  };
+  connectPromise = (async () => {
+    try {
+      baseConnection = await mongoose
+        .createConnection(env.mongodbUri, {
+          maxPoolSize: 15,
+          serverSelectionTimeoutMS: 12000,
+        })
+        .asPromise();
 
-  return dbs;
+      dbs = {
+        catalog: baseConnection.useDb(env.dbNames.catalog, { useCache: true }),
+        users: baseConnection.useDb(env.dbNames.users, { useCache: true }),
+        orders: baseConnection.useDb(env.dbNames.orders, { useCache: true }),
+        admin: baseConnection.useDb(env.dbNames.admin, { useCache: true }),
+      };
+
+      return dbs;
+    } finally {
+      connectPromise = null;
+    }
+  })();
+
+  return connectPromise;
 }
 
 export function getDatabases() {

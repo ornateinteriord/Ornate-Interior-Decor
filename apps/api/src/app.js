@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import { env } from "./config/env.js";
-import { getDatabaseHealth } from "./config/databases.js";
+import { connectDatabases, getDatabaseHealth } from "./config/databases.js";
+import { seedInitialData } from "./services/seedService.js";
 import { getImageKitStatus } from "./services/imagekitService.js";
 import { getRazorpayMode } from "./services/paymentService.js";
 import catalogRoutes from "./routes/catalogRoutes.js";
@@ -11,6 +12,16 @@ import addressRoutes from "./routes/addressRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+
+async function ensureReady(_req, _res, next) {
+  try {
+    await connectDatabases();
+    await seedInitialData();
+    next();
+  } catch (err) {
+    next(err);
+  }
+}
 
 export function createApp() {
   const app = express();
@@ -35,6 +46,7 @@ export function createApp() {
   }
 
   app.get("/api/health", async (_req, res) => {
+    await connectDatabases().catch(() => {});
     const db = await getDatabaseHealth();
     res.json({
       success: true,
@@ -46,6 +58,7 @@ export function createApp() {
     });
   });
 
+  app.use("/api", ensureReady);
   app.use("/api", catalogRoutes);
   app.use("/api/auth", authRoutes);
   app.use("/api/addresses", addressRoutes);
@@ -71,3 +84,6 @@ export function createApp() {
 
   return app;
 }
+
+const app = createApp();
+export default app;

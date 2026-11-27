@@ -62,33 +62,52 @@ const STARTER_COUPONS = [
   },
 ];
 
+let seedPromise = null;
+let hasSeeded = false;
+
 export async function seedInitialData() {
-  const { AdminUser, Subcategory, Coupon } = getModels();
+  if (hasSeeded) {
+    return;
+  }
 
-  // Seed one default admin in ornate_admin database (plain password as requested)
-  const existingAdmin = await AdminUser.findOne({
-    email: env.defaultAdmin.email.toLowerCase(),
-  });
-  if (!existingAdmin) {
-    await AdminUser.create({
-      name: env.defaultAdmin.name,
+  if (seedPromise) {
+    return seedPromise;
+  }
+
+  seedPromise = (async () => {
+    const { AdminUser, Subcategory, Coupon } = getModels();
+
+    // Seed one default admin in ornate_admin database (plain password as requested)
+    const existingAdmin = await AdminUser.findOne({
       email: env.defaultAdmin.email.toLowerCase(),
-      password: env.defaultAdmin.password,
-      role: "superadmin",
-      isActive: true,
     });
-    console.log(
-      `[Seed] Default admin created in ${env.dbNames.admin}: ${env.defaultAdmin.email}`
-    );
-  }
+    if (!existingAdmin) {
+      await AdminUser.create({
+        name: env.defaultAdmin.name,
+        email: env.defaultAdmin.email.toLowerCase(),
+        password: env.defaultAdmin.password,
+        role: "superadmin",
+        isActive: true,
+      });
+      console.log(
+        `[Seed] Default admin created in ${env.dbNames.admin}: ${env.defaultAdmin.email}`
+      );
+    }
 
-  const subCount = await Subcategory.countDocuments();
-  if (subCount === 0) {
-    await Subcategory.insertMany(STARTER_SUBCATEGORIES);
-  }
+    const subCount = await Subcategory.countDocuments();
+    if (subCount === 0) {
+      await Subcategory.insertMany(STARTER_SUBCATEGORIES);
+    }
 
-  const couponCount = await Coupon.countDocuments();
-  if (couponCount === 0) {
-    await Coupon.insertMany(STARTER_COUPONS);
-  }
+    const couponCount = await Coupon.countDocuments();
+    if (couponCount === 0) {
+      await Coupon.insertMany(STARTER_COUPONS);
+    }
+
+    hasSeeded = true;
+  })().finally(() => {
+    seedPromise = null;
+  });
+
+  return seedPromise;
 }
